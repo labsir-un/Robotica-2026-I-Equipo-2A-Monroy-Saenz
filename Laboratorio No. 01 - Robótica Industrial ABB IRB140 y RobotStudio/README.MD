@@ -7,13 +7,14 @@
 
 <h3>Curso de Robótica 2026-I</h3>
 
-<h1>Compilado de Informes de Laboratorio de Robótica</h1>
+<h1>Desarrollo Laboratorio No.1 </h1>
 
-<h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
+<h2> Robótica Industrial: Trayectorias, entradas y salidas digitales. <h2>
 
-<h2>Juan Diego Sáenz Ardila<br>
-    Alejandra Sofia Monroy Socha <br> </h2>
+<h3>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h3>
 
+<h3>Juan Diego Sáenz Ardila<br>
+    Alejandra Sofia Monroy Socha <br> </h3>
 
 </div>
 
