@@ -1,42 +1,24 @@
-```mermaid
-flowchart TD
+flowchart TB
+    C{"DI_03==1?"} -- Si --> D["DO_03=1"]
+    C -- No --> F["DI_01=1?"]
+    n1["Creación de los targets"] --> C
+    n2["Creación del objeto de trabajo y la herramienta"] --> n1
+    D --> n3["BWD_Conveyor=1"]
+    n3 --> n4["Esperar 4 segundos"]
+    n4 --> n5["DO_03=0"]
+    n5 --> n6["BWD_Conveyor=0"]
+    F --> n8["FWD_Conveyor=1"] & n9["Untitled Node"]
+    n8 --> n10["Esperar 4 segundos"]
+    n10 --> n11["FWD_Conveyor=1"]
+    n11 --> n12["Esperar 5 segundos"]
+    n12 --> n13["DO_01=1"]
+    n13 --> n14["Ir a home"]
+    n14 --> n15["Trazar los nombres"]
+    n15 --> n16["Trazar la figura"]
+    n16 --> n17["Ir a home"]
+    n17 --> n18["FWD_Converyor=0"]
+    n18 --> n19["Esperar 4 segundos"]
 
-    A[Inicio] --> B[Loop infinito]
-
-    B --> C{DI_03 = 1?}
-    C -- Sí --> C1[Activar banda atrás\n(SET DO_03 + BWD_Conveyor)]
-    C1 --> C2[Esperar 4s]
-    C2 --> C3[Detener banda\n(RESET)]
-    C3 --> B
-    C -- No --> D{DI_01 = 1?}
-
-    D -- Sí --> D1[Activar banda adelante]
-    D1 --> D2[Esperar 4s]
-    D2 --> D3[Detener banda]
-    D3 --> D4[Esperar 5s]
-    D4 --> D5[Activar herramienta (DO_01)]
-
-    %% SECUENCIA DETALLADA
-    D5 --> N1[Nombre integrante 1]
-    N1 --> N2[Nombre integrante 2]
-    N2 --> H[Corazón]
-
-    H --> D6[Volver a Home]
-
-    D6 --> D7[Activar banda adelante]
-    D7 --> D8[Esperar 4s]
-    D8 --> D9[Detener banda]
-    D9 --> D10[Desactivar herramienta]
-    D10 --> B
-
-    D -- No --> E{DI_02 = 1?}
-
-    E -- Sí --> E1[Activar modo mantenimiento (DO_02)]
-    E1 --> E2[Ir a posición de mantenimiento]
-    E2 --> E3[Esperar 1s]
-    E3 --> E4[Volver a Home]
-    E4 --> E5[Desactivar mantenimiento]
-    E5 --> B
-
-    E -- No --> B
-```
+    F@{ shape: diam}
+    n1@{ shape: rect}
+    n2@{ shape: rect}
