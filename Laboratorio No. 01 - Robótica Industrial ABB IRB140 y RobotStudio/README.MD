@@ -1,63 +1,98 @@
-# 4.6 Requerimientos
+<div align="center">
+<picture>
+    <source srcset="https://imgur.com/5bYAzsb.png" media="(prefers-color-scheme: dark)">
+    <source srcset="https://imgur.com/Os03JoE.png" media="(prefers-color-scheme: light)">
+    <img src="https://imgur.com/Os03JoE.png" alt="Escudo UNAL" width="350px">
+</picture>
 
-Este documento contiene el desarrollo completo de la práctica, incluyendo diseño, implementación y validación del sistema robótico.
+<h3>Curso de Robótica 2026-I</h3>
 
----
+<h1>Compilado de Informes de Laboratorio de Robótica</h1>
 
-## 1. Descripción de la solución planteada
-En esta sección se debe incluir una explicación clara y detallada de la solución desarrollada.
+<h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
-**Contenido sugerido:**
-- Problema a resolver
-- Enfoque de solución
-- Justificación de la metodología
-- Resultados esperados
+<h4>Juan Diego Sáenz Ardila<br>
+    Alejandra Sofia Monroy Socha <br> </h4>
 
----
-
-## 2. Diagrama de flujo del robot
-Aquí se debe presentar el flujo de acciones que ejecuta el robot.
-
-**Contenido sugerido:**
-- Imagen del diagrama
-- Explicación paso a paso del flujo
-- Decisiones lógicas implementadas
-
----
-
-## 3. Plano de planta
-Se debe mostrar la distribución física de todos los elementos del sistema.
-
-**Contenido sugerido:**
-- Imagen o esquema del layout
-- Ubicación de robots, herramientas y objetos
-- Referencias espaciales importantes
+<p>
+  <img alt="Ubuntu 24.04 LTS" src="https://img.shields.io/badge/Ubuntu-24.04%20LTS-E95420?logo=ubuntu&logoColor=white">
+  <img alt="ROS 2 Jazzy" src="https://img.shields.io/badge/ROS%202-Jazzy-22314E?logo=ros&logoColor=white">
+  <img alt="ABB" src="https://img.shields.io/badge/ABB-robotics-5E8D5A?logo=ABB&logoColor=white">
+  <img alt="RobotStudio" src="https://img.shields.io/badge/RobotStudio-2022-41C9D0?logo=robotstudio&logoColor=white">
+  <img alt="Yaskawa" src="https://img.shields.io/badge/Yaskawa-Robotics-FFE500?logo=Yaskawa&logoColor=black">
+  <img alt="RoboDK" src="https://img.shields.io/badge/RoboDK-Simulation-0092F3?logo=RoboDK&logoColor=white">
+  <img alt="EPSON" src="https://img.shields.io/badge/EPSON-Robotics-00B0B9?logo=Epson&logoColor=white">
+  <img alt="Robotis Dynamixel" src="https://img.shields.io/badge/Robotis%20Dynamixel-Servos-FF6600?logo=robotis&logoColor=white">
+  <img alt="Python" src="https://img.shields.io/badge/Python-Programming-3776AB?logo=python&logoColor=white">
+  <img alt="C" src="https://img.shields.io/badge/C-Programming-A8B9CC?logo=c&logoColor=white">
+  <img alt="Intel" src="https://img.shields.io/badge/Intel-Processors-0071C5?logo=intel&logoColor=white">
+  <img alt="Matlab" src="https://img.shields.io/badge/Matlab-Software-0076A8?logo=matlab&logoColor=white">
+  <img alt="Visual Studio Code" src="https://img.shields.io/badge/Visual%20Studio%20Code-Editor-007ACC?logo=visualstudiocode&logoColor=white">
+</p>
+</div>
 
 ---
 
-## 4. Descripción de funciones
-En esta sección se describen todas las funciones utilizadas en el desarrollo.
+## Descripción
 
-**Contenido sugerido:**
-- Nombre de cada función
-- Parámetros de entrada y salida
-- Descripción de su propósito
+Este repositorio corresponde al desarrollo de las actividades del curso de **Robótica 2026-I**.  
+Aquí se documentan los laboratorios, avances, resultados y la presentación de los integrantes del equipo.
 
 ---
 
-## 5. Diseño de la herramienta
-Descripción detallada de la herramienta utilizada por el robot.
+## Objetivos del repositorio
 
-**Contenido sugerido:**
-- Diseño mecánico
-- Dimensiones
-- Materiales
-- Funcionalidad
+- Organizar el desarrollo de los laboratorios del curso.
+- Documentar procedimientos, resultados y evidencias.
+- Presentar formalmente a los integrantes del equipo.
+- Mantener una estructura clara y ordenada para la evaluación.
 
 ---
 
-## 6. Código en RAPID
-Aquí se debe incluir el código desarrollado para la práctica.
+## Integrantes del equipo
 
-```rapid
-! Pega aquí tu código RAPID
+### Integrante 1
+<div align="center">
+  <img src="./assets/integrantes/integrante1.jpg" alt="Foto integrante 1" style="border-radius: 50%; width: 180px;"><br>
+</div>
+
+- **Nombre completo:** Juan Diego Sáenz Ardila
+- **Carrera:** Ingeniería Mecatrónica
+- **Correo institucional:** jsaenza@unal.edu.co
+- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
+- **Rol en el equipo:** Ej. Integración ROS 2, documentación, simulación
+- **Intereses:** Robótica móvil, visión artificial, automatización
+- **Descripción breve:**  
+  Escribe aquí una breve presentación personal y académica del integrante.
+
+---
+
+### Integrante 2
+<div align="center">
+  <img src="./assets/integrantes/integrante2.jpg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
+</div>
+
+- **Nombre completo:** Nombre Apellido
+- **Carrera:** Ingeniería Mecatrónica
+- **Correo institucional:** nombre@unal.edu.co
+- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
+- **Rol en el equipo:** Ej. Modelado, programación, control
+- **Intereses:** Manipulación, ROS 2, control de robots
+- **Descripción breve:**  
+  Escribe aquí una breve presentación personal y académica del integrante.
+
+---
+
+### Integrante 3
+<div align="center">
+  <img src="./assets/integrantes/integrante3.jpg" alt="Foto integrante 3" style="border-radius: 50%; width: 180px;"><br>
+</div>
+
+- **Nombre completo:** Nombre Apellido
+- **Carrera:** Ingeniería Mecatrónica
+- **Correo institucional:** nombre@unal.edu.co
+- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
+- **Rol en el equipo:** Ej. Documentación, pruebas, simulación
+- **Intereses:** Robótica industrial, sistemas autónomos, IA
+- **Descripción breve:**  
+  Escribe aquí una breve presentación personal y académica del integrante.
