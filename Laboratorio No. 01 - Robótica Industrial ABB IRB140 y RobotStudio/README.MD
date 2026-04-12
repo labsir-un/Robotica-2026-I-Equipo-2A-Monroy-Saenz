@@ -14,72 +14,77 @@
 
 <h3>Estudiantes: Juan Diego Sáenz Ardila <br> Alejandra Sofia Monroy Socha <br> </h3>
 
-%</div>
-
+</div>
 ---
 
 ## Introducción al problema y descripción de la solución planteada 
 ### Planteamiento del problema
-En este laboratorio se necesita que el manipulador ABB IRB 140 dibuje sobre un objeto de trabajo, un simbolo junto a los nombres de los integrantes. 
-###Solución del problema
 
+En este laboratorio se aborda el desarrollo de un sistema automatizado con el manipulador ABB IRB 140 para la decoración de una torta mediante un robot industrial, con el propósito de sustituir un proceso manual por uno programado que garantice mayor precisión, repetibilidad y control. El problema consiste en lograr que el robot ejecute trayectorias sobre una superficie plana que representa una torta virtual, en la cual se deben escribir los nombres de los integrantes del equipo y realizar una figura decorativa adicional.
 
+Adicionalmente, el sistema debe integrar el control de una banda transportadora a través del uso de entradas y salidas digitales, y el diseño de una herramienta adecuada para realizar la decoración, de manera que todos los componentes funcionen de forma coordinada.
 
----
+El desarrollo de la solución está sujeto a las siguientes especificaciones y restricciones:
 
-## Objetivos del laboratorio
+- La torta está dimensionada para aproximadamente 20 personas, lo que define el área de trabajo.
+- Los nombres de los integrantes deben ser legibles y estar separados dentro de la superficie.
+- La decoración debe incluir al menos una figura adicional.
+- Las trayectorias deben ejecutarse dentro de un rango de velocidades entre 100 y 1000.
+- Se debe cumplir una tolerancia máxima de error en la posición de z10 mm.
+- El movimiento debe realizarse como un trazo continuo.
+- El proceso debe iniciar y finalizar en la misma posición *home*.
 
-- Organizar el desarrollo de los laboratorios del curso.
-- Documentar procedimientos, resultados y evidencias.
-- Presentar formalmente a los integrantes del equipo.
-- Mantener una estructura clara y ordenada para la evaluación.
+### Solución del problema
 
----
+La solución se desarrolló de manera progresiva, teniendo como primer acercamiento el entorno virtual y luego el físico. Los pasos con los que se dió solución al problema y su respectiva descripción se muestran a continuación.
 
-## Integrantes del equipo
+#### 1. Definición de la herramienta
+Inicialmente, se consultó el datasheet del robot con el fin de identificar las especificaciones del flange (dimensiones y forma de ajuste), para luego realizar el modelado CAD de la herramienta en Autodesk Inventor. Este diseño incorporó consideraciones de orientadas a su fabricación mediante manufactura aditiva.
+> El diseño detallado de la herramienta se presenta en una sección posterior.
 
-### Integrante 1
-<div align="center">
-  <img src="./assets/integrantes/integrante1.jpg" alt="Foto integrante 1" style="border-radius: 50%; width: 180px;"><br>
-</div>
+#### 2. Caracterización del entorno de trabajo
+Con el fin de definir un sistema coherente entre el entorno real y la simulación se realizaron las siguientes mediciones en el laboratorio:
+- Posición y dimensiones de la banda transportadora.
+- Distancia entre el robot y la zona de trabajo.
 
-- **Nombre completo:** Juan Diego Sáenz Ardila
-- **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** jsaenza@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Integración ROS 2, documentación, simulación
-- **Intereses:** Robótica móvil, visión artificial, automatización
-- **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+#### 3. Modelado del sistema
+Con la zona de trabajo definida se modeló el pastel considerando: 
+- La distribución espacial de los nombres.
+- La definición de la figura decorativa.
+Este modelado se utilizó como guía para la generación de trayectorias del robot.
 
----
+###$ 4. Simulación y configuración en RobotStudio
 
-### Integrante 2
-<div align="center">
-  <img src="./assets/integrantes/integrante2.jpg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
-</div>
+Se implementó el sistema en el entorno de simulación, donde se realizaron las siguientes configuraciones:
 
-- **Nombre completo:** Nombre Apellido
-- **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Modelado, programación, control
-- **Intereses:** Manipulación, ROS 2, control de robots
-- **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+- Carga del robot y la herramienta diseñada  
+- Definición del TCP (Tool Center Point)  
+- Creación de *workobjects* virtual y real  
+
+Se decidió trabajar con el **TCP medido experimentalmente**, debido a que presentó menor error en las pruebas realizadas en laboratorio. Asimismo, se utilizó el *workobject* real para garantizar coherencia entre la simulación y la ejecución física.
 
 ---
 
-### Integrante 3
-<div align="center">
-  <img src="./assets/integrantes/integrante3.jpg" alt="Foto integrante 3" style="border-radius: 50%; width: 180px;"><br>
-</div>
+### 5. Generación de trayectorias
 
-- **Nombre completo:** Nombre Apellido
-- **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Documentación, pruebas, simulación
-- **Intereses:** Robótica industrial, sistemas autónomos, IA
-- **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+Se programaron las trayectorias necesarias para:
+
+- Escritura de los nombres de los integrantes  
+- Ejecución de la figura decorativa  
+- Retorno a la posición *home*  
+
+Las trayectorias fueron diseñadas para cumplir con la condición de trazo continuo y respetar las restricciones de velocidad y precisión.
+
+---
+
+### 6. Integración del sistema
+
+Finalmente, se integraron los distintos componentes del sistema:
+
+- Control de la banda transportadora  
+- Lógica de ejecución basada en entradas digitales  
+- Definición de posición de mantenimiento  
+
+Esto permitió obtener un sistema completo capaz de ejecutar la decoración de manera automatizada bajo las condiciones establecidas.
+
+---
