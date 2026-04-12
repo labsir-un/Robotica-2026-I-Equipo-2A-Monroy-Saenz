@@ -16,7 +16,12 @@ flowchart TD
     D3 --> D4[Esperar 5s]
     D4 --> D5[Activar herramienta (DO_01)]
 
-    D5 --> D6[Ejecutar trayectoria:\n(Home → Letras + Corazón → Home)]
+    %% SECUENCIA DETALLADA
+    D5 --> N1[Nombre integrante 1]
+    N1 --> N2[Nombre integrante 2]
+    N2 --> H[Corazón]
+
+    H --> D6[Volver a Home]
 
     D6 --> D7[Activar banda adelante]
     D7 --> D8[Esperar 4s]
