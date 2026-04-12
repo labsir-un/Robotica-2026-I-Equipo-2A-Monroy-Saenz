@@ -1,3 +1,4 @@
+<div align="center">
 <h3>Curso de Robótica 2026-I</h3>
 
 <h1>Desarrollo Laboratorio No.1 </h1>
