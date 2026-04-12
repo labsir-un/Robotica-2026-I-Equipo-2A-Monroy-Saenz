@@ -7,9 +7,8 @@
 
 <h3>Curso de Robótica 2026-I</h3>
 
-<h1>Desarrollo Laboratorio No.1 </h1>
-
-<h2> Robótica Industrial: Trayectorias, entradas y salidas digitales. </h2>
+<h1>Desarrollo Laboratorio No.1 <h1>
+<h2> Robótica Industrial: Trayectorias, entradas y salidas digitales. <h2>
 
 ---
 
