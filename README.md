@@ -53,7 +53,7 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 
 ### Integrante 1
 <div align="center">
-  <img src="./assets/integrantes/integrante1.jpg" alt="Foto integrante 1" style="border-radius: 50%; width: 180px;"><br>
+  <img src="Imágenes/Foto_juan.jpeg" alt="Foto integrante 1" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
 - **Nombre completo:** Juan Diego Sáenz Ardila
@@ -69,7 +69,7 @@ Soy Juan Diego Sáenz, estudiante de ingeniería mecatrónica y física. Me apas
 
 ### Integrante 2
 <div align="center">
-  <img src="./assets/integrantes/integrante2.jpg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
+  <img src="Imágenes/Foto_aleja.jpeg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
 - **Nombre completo:** Alejandra Sofia Monroy Socha 
@@ -79,6 +79,6 @@ Soy Juan Diego Sáenz, estudiante de ingeniería mecatrónica y física. Me apas
 - **Rol en el equipo:** Modelado, manufactura y simulación. 
 - **Intereses:** Procesos de manufactura y automatización. 
 - **Descripción breve:**  
-Soy Alejandra Monroy, estudiante de ingeniería mecatrónica con profundo interés en los procesos de manufactura, la optimización y el diseño orientado a la manufactura. 
+Soy Alejandra Monroy, estudiante de ingeniería mecánica con profundo interés en los procesos de manufactura, la optimización y el diseño orientado a la manufactura. 
 
 
