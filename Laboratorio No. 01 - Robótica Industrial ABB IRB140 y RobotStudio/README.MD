@@ -19,8 +19,8 @@
 
 ---
 
-##Introducción al problema y descripción de la solución planteada 
-###Planteamiento del problema
+## Introducción al problema y descripción de la solución planteada 
+### Planteamiento del problema
 En este laboratorio se necesita que el manipulador ABB IRB 140 dibuje sobre un objeto de trabajo, un simbolo junto a los nombres de los integrantes. 
 ###Solución del problema
 
