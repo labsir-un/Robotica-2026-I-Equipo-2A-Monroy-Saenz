@@ -40,7 +40,7 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 
 ---
 
-## Objetivos del repositorio
+## Objetivos del laboratorio
 
 - Organizar el desarrollo de los laboratorios del curso.
 - Documentar procedimientos, resultados y evidencias.
