@@ -4,7 +4,7 @@ Este documento contiene el desarrollo completo de la práctica, incluyendo dise�
 
 ---
 
-## 📌 1. Descripción de la solución planteada
+## 1. Descripción de la solución planteada
 En esta sección se debe incluir una explicación clara y detallada de la solución desarrollada.
 
 **Contenido sugerido:**
@@ -15,7 +15,7 @@ En esta sección se debe incluir una explicación clara y detallada de la soluci
 
 ---
 
-## 🔄 2. Diagrama de flujo del robot
+## 2. Diagrama de flujo del robot
 Aquí se debe presentar el flujo de acciones que ejecuta el robot.
 
 **Contenido sugerido:**
@@ -25,7 +25,7 @@ Aquí se debe presentar el flujo de acciones que ejecuta el robot.
 
 ---
 
-## 🏗️ 3. Plano de planta
+## 3. Plano de planta
 Se debe mostrar la distribución física de todos los elementos del sistema.
 
 **Contenido sugerido:**
@@ -35,7 +35,7 @@ Se debe mostrar la distribución física de todos los elementos del sistema.
 
 ---
 
-## ⚙️ 4. Descripción de funciones
+## 4. Descripción de funciones
 En esta sección se describen todas las funciones utilizadas en el desarrollo.
 
 **Contenido sugerido:**
@@ -45,7 +45,7 @@ En esta sección se describen todas las funciones utilizadas en el desarrollo.
 
 ---
 
-## 🛠️ 5. Diseño de la herramienta
+## 5. Diseño de la herramienta
 Descripción detallada de la herramienta utilizada por el robot.
 
 **Contenido sugerido:**
@@ -56,7 +56,7 @@ Descripción detallada de la herramienta utilizada por el robot.
 
 ---
 
-## 💻 6. Código en RAPID
+## 6. Código en RAPID
 Aquí se debe incluir el código desarrollado para la práctica.
 
 ```rapid
