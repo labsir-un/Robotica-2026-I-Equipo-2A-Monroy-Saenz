@@ -1,10 +1,3 @@
-<div align="center">
-<picture>
-    <source srcset="https://imgur.com/5bYAzsb.png" media="(prefers-color-scheme: dark)">
-    <source srcset="https://imgur.com/Os03JoE.png" media="(prefers-color-scheme: light)">
-    <img src="https://imgur.com/Os03JoE.png" alt="Escudo UNAL" width="350px">
-</picture>
-
 <h3>Curso de Robótica 2026-I</h3>
 
 <h1>Desarrollo Laboratorio No.1 </h1>
@@ -16,7 +9,6 @@
 
 </div>
 ---
-
 ## Introducción al problema y descripción de la solución planteada 
 ### Planteamiento del problema
 
@@ -47,44 +39,52 @@ Con el fin de definir un sistema coherente entre el entorno real y la simulació
 - Posición y dimensiones de la banda transportadora.
 - Distancia entre el robot y la zona de trabajo.
 
-#### 3. Modelado del sistema
+#### 3. Modelado del objeto de trabajo.
 Con la zona de trabajo definida se modeló el pastel considerando: 
 - La distribución espacial de los nombres.
-- La definición de la figura decorativa.
-Este modelado se utilizó como guía para la generación de trayectorias del robot.
+- La creación de la figura decorativa.
+El resultado final es: 
+%IMAGEN PASTEL
+> Este modelado se utilizó como guía para la generación de trayectorias del robot.
 
-###$ 4. Simulación y configuración en RobotStudio
+#### 4. Simulación y configuración en RobotStudio
+En el entorno de sumulación se realizó el siguiente procedimiento: 
+- Carga del robot y la herramienta diseñada.
+- Definición del TCP (Tool Center Point).
+- Creación de workobject virtual.
 
-Se implementó el sistema en el entorno de simulación, donde se realizaron las siguientes configuraciones:
+Finalmente, se programaron las trayectorias necesarias para: 
+- Inicio de la rutina en *home*.
+- Escritura de los nombres de los integrantes.
+- Ejecución de la figura decorativa (corazón).
+- Retorno a la posición *home*.
 
-- Carga del robot y la herramienta diseñada  
-- Definición del TCP (Tool Center Point)  
-- Creación de *workobjects* virtual y real  
+#### 5. Integración del sistema
 
-Se decidió trabajar con el **TCP medido experimentalmente**, debido a que presentó menor error en las pruebas realizadas en laboratorio. Asimismo, se utilizó el *workobject* real para garantizar coherencia entre la simulación y la ejecución física.
+Finalmente, se integraron los distintos componentes del sistema, buscando la coordinación entre el robot y la banda transportadora mediante el uso de señales digitales.
 
----
+Para el control de la banda, se implementó una lógica basada en entradas y salidas digitales (DI/DO), las cuales fueron previamente definidas tanto en el controlador como en el entorno de simulación de RobotStudio. Esto permitió disponer de una consola de simulación desde la cual se podían activar y monitorear las señales, facilitando la validación del comportamiento del sistema antes de su ejecución física.
 
-### 5. Generación de trayectorias
+Dado que no se contaba con un perfil caracterizado de velocidades de la banda transportadora, la sincronización del sistema no se realizó en función de velocidad, sino mediante parámetros temporales. Se definieron:
 
-Se programaron las trayectorias necesarias para:
+- Tiempos de activación de la banda (encendido/apagado)  
+- Tiempos de espera entre la llegada de un pastel y el siguiente  
+- Tiempos de espera asociados a la ejecución del robot  
 
-- Escritura de los nombres de los integrantes  
-- Ejecución de la figura decorativa  
-- Retorno a la posición *home*  
+Adicionalmente, se implementó la lógica de ejecución del sistema mediante condiciones sobre las entradas digitales, así como una rutina de posición de mantenimiento, permitiendo llevar el robot a una configuración segura cuando fuera requerido.
 
-Las trayectorias fueron diseñadas para cumplir con la condición de trazo continuo y respetar las restricciones de velocidad y precisión.
+#### 6. Implementación y pruebas en laboratorio
 
----
+Una vez validado el sistema en el entorno de simulación, se procedió a su implementación en el laboratorio, con el objetivo de verificar la correspondencia entre el modelo virtual y el comportamiento físico del sistema.
 
-### 6. Integración del sistema
+En esta etapa se realizó la calibración experimental del TCP utilizando la herramienta física. Sin embargo, esta calibración presentó un error aproximado de **6 mm**, atribuible a imprecisiones en el proceso de medición y alineación. Debido a esto, para la ejecución final se optó por utilizar el TCP virtual, el cual presentaba error nulo con un modelado casi exacto de la herramienta real.
 
-Finalmente, se integraron los distintos componentes del sistema:
+Por otro lado, se definió también workobject en el entorno real. A diferencia del TCP, en este caso se decidió trabajar con el workobject real ya que la banda transportadora en el laboratorio no coincidía exactamente con la representada en el simulador.
 
-- Control de la banda transportadora  
-- Lógica de ejecución basada en entradas digitales  
-- Definición de posición de mantenimiento  
+Durante las pruebas experimentales se ajustaron parámetros como:
 
-Esto permitió obtener un sistema completo capaz de ejecutar la decoración de manera automatizada bajo las condiciones establecidas.
+- Tiempos de activación de la banda transportadora.
+- Tiempos de espera entre ciclos.
+- Sistemas coordenados del objeto de trabajo. 
 
----
+>  El resultado final del sistema se presenta en la sección de videos más adelante.
