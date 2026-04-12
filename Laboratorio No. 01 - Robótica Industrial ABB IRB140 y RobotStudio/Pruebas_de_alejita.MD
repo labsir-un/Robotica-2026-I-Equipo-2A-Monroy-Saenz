@@ -1,3 +1,4 @@
+```mermaid
 flowchart TB
     C{"DI_03==1?"} -- Si --> D["DO_03=1"]
     C -- No --> F["DI_01=1?"]
