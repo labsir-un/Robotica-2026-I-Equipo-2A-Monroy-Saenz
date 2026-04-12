@@ -59,11 +59,11 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 - **Nombre completo:** Juan Diego Sáenz Ardila
 - **Carrera:** Ingeniería Mecatrónica
 - **Correo institucional:** jsaenza@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Integración ROS 2, documentación, simulación
-- **Intereses:** Robótica móvil, visión artificial, automatización
+- **Usuario de GitHub:** [juandiego4334](https://github.com/juandiego4334)
+- **Rol en el equipo:** Programación,  y control.
+- **Intereses:** Física y control. 
 - **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+Soy Juan Diego Sáenz, estudiante de ingeniería mecatrónica y física. Me apasionan los números y las aplicaciones de la ingeniería en la física. 
 
 ---
 
@@ -72,28 +72,13 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
   <img src="./assets/integrantes/integrante2.jpg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
-- **Nombre completo:** Nombre Apellido
-- **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Modelado, programación, control
-- **Intereses:** Manipulación, ROS 2, control de robots
+- **Nombre completo:** Alejandra Sofia Monroy Socha 
+- **Carrera:** Ingeniería Mecánica
+- **Correo institucional:** almonroys@unal.edu.co
+- **Usuario de GitHub:** [Alejaconeja15](https://github.com/Alejaconeja15)
+- **Rol en el equipo:** Modelado, manufactura y simulación. 
+- **Intereses:** Procesos de manufactura y automatización. 
 - **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+Soy Alejandra Monroy, estudiante de ingeniería mecatrónica con profundo interés en los procesos de manufactura, la optimización y el diseño orientado a la manufactura. 
 
----
-
-### Integrante 3
-<div align="center">
-  <img src="./assets/integrantes/integrante3.jpg" alt="Foto integrante 3" style="border-radius: 50%; width: 180px;"><br>
-</div>
-
-- **Nombre completo:** Nombre Apellido
-- **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Documentación, pruebas, simulación
-- **Intereses:** Robótica industrial, sistemas autónomos, IA
-- **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
 
