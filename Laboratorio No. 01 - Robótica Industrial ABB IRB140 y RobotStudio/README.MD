@@ -95,4 +95,4 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 
 ## Diagrama de flujo de acciones del robot
 
-<img src="imagenes/Diagrama_flujo.png">
+<img src="imagenes/Diagrama_flujo.png" style="border-radius: 50%; width: 480px;">
