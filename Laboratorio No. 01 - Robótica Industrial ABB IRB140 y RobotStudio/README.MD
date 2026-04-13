@@ -95,5 +95,4 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 
 ## Diagrama de flujo de acciones del robot
 
-![Mi imagen](Laboratorio No. 01 - Robótica Industrial ABB IRB140 y RobotStudio/imagenes/Flowchart - Page 1.png)
-
+<img src="Laboratorio No. 01 - Robótica Industrial ABB IRB140 y RobotStudio/imagenes/Diagrama_flujo.png">
