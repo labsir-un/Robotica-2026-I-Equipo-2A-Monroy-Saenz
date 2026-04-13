@@ -92,3 +92,8 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 - Sistemas coordenados del objeto de trabajo. 
 
 >  El resultado final del sistema se presenta en la sección de videos más adelante.
+
+## Diagrama de flujo de acciones del robot
+
+![Mi imagen](imagenes/Flowchart-Page 1.png)
+
