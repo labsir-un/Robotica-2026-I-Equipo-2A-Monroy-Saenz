@@ -65,17 +65,17 @@ Finalmente, se programaron las trayectorias necesarias para:
 
 #### 5. Integración del sistema
 
-Finalmente, se integraron los distintos componentes del sistema, buscando la coordinación entre el robot y la banda transportadora mediante el uso de señales digitales.
+Se integraron los distintos componentes del sistema, buscando la coordinación entre el robot y la banda transportadora mediante el uso de señales digitales.
 
 Para el control de la banda, se implementó una lógica basada en entradas y salidas digitales (DI/DO), las cuales fueron previamente definidas tanto en el controlador como en el entorno de simulación de RobotStudio. Esto permitió disponer de una consola de simulación desde la cual se podían activar y monitorear las señales, facilitando la validación del comportamiento del sistema antes de su ejecución física.
 
 Dado que no se contaba con un perfil caracterizado de velocidades de la banda transportadora, la sincronización del sistema no se realizó en función de velocidad, sino mediante parámetros temporales. Se definieron:
 
-- Tiempos de activación de la banda (encendido/apagado)  
-- Tiempos de espera entre la llegada de un pastel y el siguiente  
-- Tiempos de espera asociados a la ejecución del robot  
+- Tiempos de activación de la banda (encendido/apagado).
+- Tiempos de espera entre la llegada de un pastel y el siguiente.
+- Tiempos de espera asociados a la ejecución del robot.
 
-Adicionalmente, se implementó la lógica de ejecución del sistema mediante condiciones sobre las entradas digitales, así como una rutina de posición de mantenimiento, permitiendo llevar el robot a una configuración segura cuando fuera requerido.
+Adicionalmente, se implementó la lógica de ejecución del sistema mediante condiciones sobre las entradas digitales, así como una rutina de posición de mantenimiento, permitiendo llevar el robot a una configuración dónde el cambio de herramienta se dé fácilmente. Las entradas digitales se daban al sistema físico en forma de botones y las salidas eran el encendido y apagado de luces. 
 
 #### 6. Implementación y pruebas en laboratorio
 
@@ -89,7 +89,7 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 
 - Tiempos de activación de la banda transportadora.
 - Tiempos de espera entre ciclos.
-- Sistemas coordenados del objeto de trabajo. 
+- Sistemas coordenados del objeto de trabajo y la mejor ubicación según el tipo de acercamiento del robot. 
 
 >  El resultado final del sistema se presenta en la sección de videos más adelante.
 
