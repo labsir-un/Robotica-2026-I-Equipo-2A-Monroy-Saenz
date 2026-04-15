@@ -103,7 +103,7 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 ## 6. Código de RAPID
 
 El programa de RAPID puede consultarse aquí:  
-[Ver Module1.mod](./Module1.mod)
+[Ver Module1.mod](Laboratorio No. 01 - Robótica Industrial ABB IRB140 y RobotStudio/Código_RAPID.MD)
 
 La estructura que sigue el código es la siguiente: 
 
@@ -111,7 +111,7 @@ La estructura que sigue el código es la siguiente:
 
 El programa está contenido dentro de un módulo RAPID:
 
-```rapid
+```python
 MODULE Module1
 ```
 
@@ -119,54 +119,44 @@ MODULE Module1
 
 Se definen los datos persistentes de la herramienta y el objeto de trabajo:
 
-- **tooldata (`Marcador`)**: representa la herramienta activa del robot.
-- **wobjdata (`Pastel`)**: define el sistema de referencia sobre el cual se ejecutan las trayectorias.
+- tooldata (`Marcador`): representa la herramienta activa del robot.
+- wobjdata (`Pastel`): define el sistema de referencia sobre el cual se ejecutan las trayectorias.
 
 ### 6.3. Definición de puntos
 
 Se utilizan múltiples variables de tipo `robtarget`, por ejemplo:
 
-```rapid
+```python
 CONST robtarget C1_1 := [...];
 ```
 Estos puntos están organizados y nombrados en el orden en el que se usan en cada trayectoria. 
 
 ### 6.4. Procedimiento condicionado a entradas digitales
 
-
-```rapid
+```python
 PROC main()
 ```
 
 Este procedimiento contiene un bucle infinito (`WHILE TRUE`) que responde a entradas digitales:
 
-- `DI_01`: ejecuta la secuencia completa de trayectorias al pastel.
-- `DI_02`: envía el robot a posición de mantenimiento.
-- `DI_03`: activa el control de la banda transportadora. 
+- DI_01: ejecuta la secuencia completa de trayectorias al pastel.
+- DI_02: envía el robot a posición de mantenimiento.
+- DI_03: activa el control de la banda transportadora. 
 
 ### 6.5. Definición de trayectorias (Paths)
 
 Cada trayectoria se define en procedimientos independientes:
 
-```rapid
+```python
 PROC Path_A_1()
 PROC Path_L()
 PROC Path_E()
 ```
+> Dentro de estos procedimientos se utilizan las funciones descritas en la sección 4.
 
-Dentro de estos procedimientos se utilizan instrucciones como:
+En cuanto a los parámetros de movimiento:
 
-- `MoveJ`: movimiento articular
-- `MoveL`: movimiento lineal
-- `MoveC`: movimiento circular
+- Se estableció una velocidad constante de v100 para toda la ejecución según el requerimiento.
+- Se utilizó zona z10 como valor general para suavizar trayectorias y evitar paradas innecesarias segpun el requerimiento.
 
-Cada `Path_*` corresponde a una secuencia de puntos (`robtarget`) que definen una figura o segmento del proceso.
-
-En cuanto a parámetros de movimiento:
-
-- Se estableció una **velocidad constante de `v100`** para toda la ejecución según el requerimiento.
-- Se utilizó **zona `z10`** como valor general para suavizar trayectorias y evitar paradas innecesarias segpun el requerimiento.
-
-Sin embargo, en puntos específicos donde la geometría genera cambios bruscos de dirección (por ejemplo, esquinas pronunciadas como la punta del corazón), el robot presentaba errores de trayectoria de esquina al usar `z10`.  
-
-Para corregir esto, en esos casos puntuales se redujo la zona a **`z1`**, obligando al robot a pasar más cerca del punto y garantizar la precisión del trazo.
+Sin embargo, en puntos específicos donde la geometría genera cambios bruscos de dirección (por ejemplo, esquinas pronunciadas como la punta del corazón), el robot presentaba errores de trayectoria de esquina al usar z10. Para corregir esto, en esos casos puntuales se redujo la zona a z1, obligando al robot a pasar más cerca del punto y garantizar la precisión del trazo.
