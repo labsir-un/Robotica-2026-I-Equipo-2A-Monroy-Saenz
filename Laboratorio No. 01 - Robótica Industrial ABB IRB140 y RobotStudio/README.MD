@@ -152,7 +152,7 @@ PROC Path_A_1()
 PROC Path_L()
 PROC Path_E()
 ```
-> Dentro de estos procedimientos se utilizan las funciones descritas en la sección 4.
+> Dentro de estas trayectorias se utilizan las funciones descritas en la sección 4.
 
 En cuanto a los parámetros de movimiento:
 
