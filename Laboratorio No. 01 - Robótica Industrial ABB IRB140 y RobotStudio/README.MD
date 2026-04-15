@@ -12,9 +12,9 @@
 
 ---
 
-## Introducción al problema y descripción de la solución planteada 
+## 1. Introducción al problema y descripción de la solución planteada 
 
-### Planteamiento del problema
+### 1.1 Planteamiento del problema
 
 En este laboratorio se aborda el desarrollo de un sistema automatizado con el manipulador ABB IRB 140 para la decoración de una torta mediante un robot industrial, con el propósito de sustituir un proceso manual por uno programado que garantice mayor precisión, repetibilidad y control. El problema consiste en lograr que el robot ejecute trayectorias sobre una superficie plana que representa una torta virtual, en la cual se deben escribir los nombres de los integrantes del equipo y realizar una figura decorativa adicional.
 
@@ -30,20 +30,20 @@ El desarrollo de la solución está sujeto a las siguientes especificaciones y r
 - El movimiento debe realizarse como un trazo continuo.
 - El proceso debe iniciar y finalizar en la misma posición *home*.
 
-### Solución del problema
+### 1.2 Solución del problema
 
 La solución se desarrolló de manera progresiva, teniendo como primer acercamiento el entorno virtual y luego el físico. Los pasos con los que se dió solución al problema y su respectiva descripción se muestran a continuación.
 
-#### 1. Definición de la herramienta
+#### a. Definición de la herramienta
 Inicialmente, se consultó el datasheet del robot con el fin de identificar las especificaciones del flange (dimensiones y forma de ajuste), para luego realizar el modelado CAD de la herramienta en Autodesk Inventor. Este diseño incorporó consideraciones de orientadas a su fabricación mediante manufactura aditiva.
 > El diseño detallado de la herramienta se presenta en una sección posterior.
 
-#### 2. Caracterización del entorno de trabajo
+#### b. Caracterización del entorno de trabajo
 Con el fin de definir un sistema coherente entre el entorno real y la simulación se realizaron las siguientes mediciones en el laboratorio:
 - Posición y dimensiones de la banda transportadora.
 - Distancia entre el robot y la zona de trabajo.
 
-#### 3. Modelado del objeto de trabajo.
+#### c. Modelado del objeto de trabajo.
 Con la zona de trabajo definida se modeló el pastel considerando: 
 - La distribución espacial de los nombres.
 - La creación de la figura decorativa.
@@ -51,7 +51,7 @@ El resultado final es:
 %IMAGEN PASTEL
 > Este modelado se utilizó como guía para la generación de trayectorias del robot.
 
-#### 4. Simulación y configuración en RobotStudio
+#### d. Simulación y configuración en RobotStudio
 En el entorno de sumulación se realizó el siguiente procedimiento: 
 - Carga del robot y la herramienta diseñada.
 - Definición del TCP (Tool Center Point).
@@ -63,7 +63,7 @@ Finalmente, se programaron las trayectorias necesarias para:
 - Ejecución de la figura decorativa (corazón).
 - Retorno a la posición *home*.
 
-#### 5. Integración del sistema
+#### e. Integración del sistema
 
 Se integraron los distintos componentes del sistema, buscando la coordinación entre el robot y la banda transportadora mediante el uso de señales digitales.
 
@@ -77,7 +77,7 @@ Dado que no se contaba con un perfil caracterizado de velocidades de la banda tr
 
 Adicionalmente, se implementó la lógica de ejecución del sistema mediante condiciones sobre las entradas digitales, así como una rutina de posición de mantenimiento, permitiendo llevar el robot a una configuración dónde el cambio de herramienta se dé fácilmente. Las entradas digitales se daban al sistema físico en forma de botones y las salidas eran el encendido y apagado de luces. 
 
-#### 6. Implementación y pruebas en laboratorio
+#### f. Implementación y pruebas en laboratorio
 
 Una vez validado el sistema en el entorno de simulación, se procedió a su implementación en el laboratorio, con el objetivo de verificar la correspondencia entre el modelo virtual y el comportamiento físico del sistema.
 
@@ -93,8 +93,80 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 
 >  El resultado final del sistema se presenta en la sección de videos más adelante.
 
-## Diagrama de flujo de acciones del robot
+## 2. Diagrama de flujo de acciones del robot
 
 <div align="center">
 <img src="imagenes/Diagrama_flujo.png" style="border-radius: 50%; width: 480px;">
 </div>
+
+
+## 6. Código de RAPID
+
+El programa de RAPID puede consultarse aquí:  
+[Ver Module1.mod](./Module1.mod)
+
+La estructura que sigue el código es la siguiente: 
+
+### 6.1. Creación del módulo
+
+El programa está contenido dentro de un módulo RAPID:
+
+```rapid
+MODULE Module1
+```
+
+### 6.2. Definición de herramienta y WorkObject
+
+Se definen los datos persistentes de la herramienta y el objeto de trabajo:
+
+- **tooldata (`Marcador`)**: representa la herramienta activa del robot.
+- **wobjdata (`Pastel`)**: define el sistema de referencia sobre el cual se ejecutan las trayectorias.
+
+### 6.3. Definición de puntos
+
+Se utilizan múltiples variables de tipo `robtarget`, por ejemplo:
+
+```rapid
+CONST robtarget C1_1 := [...];
+```
+Estos puntos están organizados y nombrados en el orden en el que se usan en cada trayectoria. 
+
+### 6.4. Procedimiento condicionado a entradas digitales
+
+
+```rapid
+PROC main()
+```
+
+Este procedimiento contiene un bucle infinito (`WHILE TRUE`) que responde a entradas digitales:
+
+- `DI_01`: ejecuta la secuencia completa de trayectorias al pastel.
+- `DI_02`: envía el robot a posición de mantenimiento.
+- `DI_03`: activa el control de la banda transportadora. 
+
+### 6.5. Definición de trayectorias (Paths)
+
+Cada trayectoria se define en procedimientos independientes:
+
+```rapid
+PROC Path_A_1()
+PROC Path_L()
+PROC Path_E()
+```
+
+Dentro de estos procedimientos se utilizan instrucciones como:
+
+- `MoveJ`: movimiento articular
+- `MoveL`: movimiento lineal
+- `MoveC`: movimiento circular
+
+Cada `Path_*` corresponde a una secuencia de puntos (`robtarget`) que definen una figura o segmento del proceso.
+
+En cuanto a parámetros de movimiento:
+
+- Se estableció una **velocidad constante de `v100`** para toda la ejecución según el requerimiento.
+- Se utilizó **zona `z10`** como valor general para suavizar trayectorias y evitar paradas innecesarias segpun el requerimiento.
+
+Sin embargo, en puntos específicos donde la geometría genera cambios bruscos de dirección (por ejemplo, esquinas pronunciadas como la punta del corazón), el robot presentaba errores de trayectoria de esquina al usar `z10`.  
+
+Para corregir esto, en esos casos puntuales se redujo la zona a **`z1`**, obligando al robot a pasar más cerca del punto y garantizar la precisión del trazo.
