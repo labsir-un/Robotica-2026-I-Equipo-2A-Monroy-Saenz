@@ -104,7 +104,7 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 
 El programa de RAPID puede consultarse aquí: 
 [Ver definición de main](./Module1.mod#L120)
-[Ver Module1.mod](Laboratorio No. 01 - Robótica Industrial ABB IRB140 y RobotStudio/Código_RAPID.MD)
+[Ver Module1.mod](./Código_RAPID.MD)
 
 La estructura que sigue el código es la siguiente: 
 
