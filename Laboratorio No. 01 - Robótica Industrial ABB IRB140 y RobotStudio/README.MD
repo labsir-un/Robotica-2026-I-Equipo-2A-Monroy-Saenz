@@ -99,6 +99,14 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 <img src="imagenes/Diagrama_flujo.png" style="border-radius: 50%; width: 480px;">
 </div>
 
+## 3. Plano de planta 
+
+
+## 4. Descripción de las funciones utilizadas 
+
+
+## 5. Diseño de la herramienta detallado 
+
 
 ## 6. Código de RAPID
 
@@ -160,3 +168,10 @@ En cuanto a los parámetros de movimiento:
 - Se utilizó zona z10 como valor general para suavizar trayectorias y evitar paradas innecesarias segpun el requerimiento.
 
 Sin embargo, en puntos específicos donde la geometría genera cambios bruscos de dirección (por ejemplo, esquinas pronunciadas como la punta del corazón), el robot presentaba errores de trayectoria de esquina al usar z10. Para corregir esto, en esos casos puntuales se redujo la zona a z1, obligando al robot a pasar más cerca del punto y garantizar la precisión del trazo.
+
+## 7. Video simulación en RobotStudio
+
+
+## 8. Video resultado final Laboratorio 1
+
+
