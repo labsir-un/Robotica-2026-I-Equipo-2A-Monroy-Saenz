@@ -101,6 +101,10 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 
 ## 3. Plano de planta 
 
+<div align="center">
+<img src="imagenes/Plano Montaje Lab 1.pdf" style="border-radius: 50%; width: 480px;">
+</div>
+
 
 ## 4. Descripción de las funciones utilizadas 
 
