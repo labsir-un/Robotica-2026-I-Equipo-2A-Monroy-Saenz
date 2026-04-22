@@ -47,8 +47,10 @@ Con el fin de definir un sistema coherente entre el entorno real y la simulació
 Con la zona de trabajo definida se modeló el pastel considerando: 
 - La distribución espacial de los nombres.
 - La creación de la figura decorativa.
-El resultado final es: 
-%IMAGEN PASTEL
+El plano del resultado final es: 
+<div align="center">
+<img src="imagenes/Plano pastel-1.png" style="border-radius: 50%; width: 600px;">
+</div>
 > Este modelado se utilizó como guía para la generación de trayectorias del robot.
 
 #### d. Simulación y configuración en RobotStudio
@@ -110,6 +112,9 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 
 
 ## 5. Diseño de la herramienta detallado 
+<div align="center">
+<img src="imagenes/Ensamble herramienta-1.png" style="border-radius: 50%; width: 850px;">
+</div>
 
 
 ## 6. Código de RAPID
