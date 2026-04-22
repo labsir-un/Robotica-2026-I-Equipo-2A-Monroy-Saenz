@@ -102,7 +102,7 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 ## 3. Plano de planta 
 
 <div align="center">
-<img src="imagenes/Plano Montaje Lab 1-1.png" style="border-radius: 50%; width: 700px;">
+<img src="imagenes/Plano Montaje Lab 1-1.png" style="border-radius: 50%; width: 850px;">
 </div>
 
 
