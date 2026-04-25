@@ -97,11 +97,44 @@ Durante las pruebas experimentales se ajustaron parámetros como:
 >  El resultado final del sistema se presenta en la sección de videos más adelante.
 
 ## 2. Diagrama de flujo de acciones del robot
+```mermaid
+flowchart TB
 
-<div align="center">
-<img src="imagenes/Diagrama_flujo.png" style="border-radius: 50%; width: 480px;">
-</div>
+A["Creación del objeto de trabajo y la herramienta"] --> B["Creación de los targets"]
 
+B --> C{"DI_03 == 1?"}
+
+%% Rama izquierda (retroceso banda)
+C -- Sí --> D["DO_03 = 1"]
+D --> E["Encender banda transportadora atrás durante 4 s"]
+E --> F["DO_03 = 1"]
+F --> B
+
+%% Rama central (proceso principal)
+C -- No --> G{"DI_03 == 1?"}
+
+G -- Sí --> H["Encender banda transportadora adelante durante 4 s"]
+H --> I["Esperar 5 s"]
+I --> J["DO_01 = 1"]
+J --> K["Ir a home"]
+K --> L["Trazar los nombres"]
+L --> M["Trazar la figura"]
+M --> N["Ir a home"]
+N --> O["Encender banda transportadora adelante durante 4 s"]
+O --> P["DO_01 = 0"]
+P --> B
+
+%% Rama derecha (mantenimiento)
+G -- No --> Q{"DI_03 == 1?"}
+
+Q -- Sí --> R["DO_02 = 1"]
+R --> S["Ir a posición de mantenimiento"]
+S --> T["Esperar 1 s"]
+T --> U["Ir a home"]
+U --> B
+
+Q -- No --> B
+```
 ## 3. Plano de planta 
 
 <div align="center">
