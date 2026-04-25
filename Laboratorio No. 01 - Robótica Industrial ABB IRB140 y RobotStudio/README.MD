@@ -144,7 +144,76 @@ Q -- No --> B
 
 ## 4. Descripción de las funciones utilizadas 
 
+Dentro de las trayectorias definidas en el programa RAPID, se emplean diversas instrucciones fundamentales para controlar el movimiento del robot y la interacción con el entorno.
 
+A continuación, se describen las principales funciones utilizadas:
+
+### 4.1. Funciones de movimiento 
+
+#### 🔹 MoveJ
+
+La instrucción `MoveJ` permite realizar un movimiento articular del robot. En este tipo de movimiento, cada eje se desplaza de forma independiente hasta alcanzar la posición objetivo.
+
+Este fue utilizado para cuando la trayectoria no importaba, como alejar la herramienta del workobject, moverse a home y moverse a la posición de mantenimiento.
+
+```rapid
+MoveJ C1_1, v100, z10, Marcador\WObj:=Pastel;
+```
+
+*C1_1* representa el punto a donde se debe dirigir el robot, *v100* representa la velocidad del TCP en mm/s, *z10* representa la incertidumbre de la zona de aproximación en mm y *Marcador\Wobj:=Pastel* representa la herramienta (indicando el TCP y la orientación) , después de "\" se indica el workobject ( que representa el sistema de coordenadas del entorno).
+
+
+#### 🔹 MoveL
+
+La instrucción `MoveL` ejecuta un movimiento lineal, asegurando que el efector final del robot se desplace en línea recta entre dos puntos. Esta función se utilizo para las lineas rectas del dibujo.
+
+```rapid
+MoveL C1_2, v100, z10, Marcador\WObj:=Pastel;
+```
+La sintaxis de la función es igual a MoveJ.
+
+#### 🔹 MoveC
+
+La instrucción `MoveC` permite realizar un movimiento circular, definido mediante un punto intermedio y un punto final (el punto inicial se toma como el actual) .Esta función se utilizo para las curvas del dibujo.
+
+```rapid
+MoveC C1_3, C1_4, v100, z10, Marcador\WObj:=Pastel;
+```
+La sintaxis de la función es similar a MoveJ, con la aclaración de que el primer punto es el punto intermedio y el otro punto es el punto final.
+### 4.2. Funciones de control 
+#### 🔹 Set
+
+La instrucción `Set` se utiliza para activar una señal digital de salida.
+
+En el laboratorio se utilizaron para encender luces que mostraban que función se estaba ejecutando y también se utilizaba para encender la banda transportadora en un sentido.
+```rapid
+Set DO_03;
+```
+
+
+#### 🔹 Reset
+
+La instrucción `Reset` permite desactivar una señal digital de salida previamente activada.
+
+Se utilizó para apagar la banda transportadora y las luces del panel de control.
+
+```rapid
+Reset DO_03;
+```
+
+
+#### 🔹 WaitTime
+
+La instrucción `WaitTime` introduce una pausa en la ejecución del programa, deteniendo temporalmente el robot durante un tiempo específico (en segundos).
+
+Este fue utilizado para poder fijar la traslación del objeto de trabajo en la banda transportadora, pues se esperaba un número de segundos para apagar la banda.
+
+```rapid
+WaitTime 2;
+```
+
+
+Estas funciones constituyen la base del control de movimiento y lógica del robot dentro del entorno de RobotStudio, permitiendo ejecutar trayectorias precisas y coordinar acciones con elementos externos del sistema.
 ## 5. Diseño de la herramienta detallado 
 <div align="center">
 <img src="imagenes/Ensamble herramienta-1.png" style="border-radius: 50%; width: 850px;">
