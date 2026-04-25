@@ -159,8 +159,13 @@ Este fue utilizado para cuando la trayectoria no importaba, como alejar la herra
 ```rapid
 MoveJ C1_1, v100, z10, Marcador\WObj:=Pastel;
 ```
-
-*C1_1* representa el punto a donde se debe dirigir el robot, *v100* representa la velocidad del TCP en mm/s, *z10* representa la incertidumbre de la zona de aproximación en mm y *Marcador\Wobj:=Pastel* representa la herramienta (indicando el TCP y la orientación) , después de "\" se indica el workobject ( que representa el sistema de coordenadas del entorno).
+- *C1_1*: representa el punto al que se debe dirigir el robot.  
+- *v100*: representa la velocidad del TCP en mm/s.  
+- *z10*: representa la zona de aproximación (incertidumbre) en mm.  
+- *Marcador\\WObj:=Pastel*:  
+  - *Marcador*: define la herramienta (TCP y orientación).  
+  - `\\`: separador entre la herramienta y el WorkObject.  
+  - *WObj:=Pastel*: define el sistema de coordenadas del entorno (WorkObject).
 
 
 #### 🔹 MoveL
