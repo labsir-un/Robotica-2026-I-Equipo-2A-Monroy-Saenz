@@ -164,7 +164,7 @@ MoveJ C1_1, v100, z10, Marcador\WObj:=Pastel;
 - *z10*: representa la zona de aproximación (incertidumbre) en mm.  
 - *Marcador\\WObj:=Pastel*:  
   - *Marcador*: define la herramienta (TCP y orientación).  
-  - `\\`: separador entre la herramienta y el WorkObject.  
+  - \\: separador entre la herramienta y el WorkObject.  
   - *WObj:=Pastel*: define el sistema de coordenadas del entorno (WorkObject).
 
 
