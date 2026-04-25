@@ -107,11 +107,11 @@ B --> C{"DI_03 == 1?"}
 %% Rama izquierda (retroceso banda)
 C -- Sí --> D["DO_03 = 1"]
 D --> E["Encender banda transportadora atrás durante 4 s"]
-E --> F["DO_03 = 1"]
+E --> F["DO_03 = 0"]
 F --> B
 
 %% Rama central (proceso principal)
-C -- No --> G{"DI_03 == 1?"}
+C -- No --> G{"DI_01 == 1?"}
 
 G -- Sí --> H["Encender banda transportadora adelante durante 4 s"]
 H --> I["Esperar 5 s"]
@@ -125,14 +125,14 @@ O --> P["DO_01 = 0"]
 P --> B
 
 %% Rama derecha (mantenimiento)
-G -- No --> Q{"DI_03 == 1?"}
+G -- No --> Q{"DI_02 == 1?"}
 
 Q -- Sí --> R["DO_02 = 1"]
 R --> S["Ir a posición de mantenimiento"]
 S --> T["Esperar 1 s"]
 T --> U["Ir a home"]
-U --> B
-
+U --> W["DO_02 = 0"]
+W --> B
 Q -- No --> B
 ```
 ## 3. Plano de planta 
@@ -213,7 +213,7 @@ En cuanto a los parámetros de movimiento:
 Sin embargo, en puntos específicos donde la geometría genera cambios bruscos de dirección (por ejemplo, esquinas pronunciadas como la punta del corazón), el robot presentaba errores de trayectoria de esquina al usar z10. Para corregir esto, en esos casos puntuales se redujo la zona a z1, obligando al robot a pasar más cerca del punto y garantizar la precisión del trazo.
 
 ## 7. Video simulación en RobotStudio
-
+A continuación se presenta el link del video de youtube donde se encuentra el video: [Video simulación en RobotStudio](https://youtu.be/7ArkRfWwZoY)
 
 ## 8. Video resultado final Laboratorio 1
 
