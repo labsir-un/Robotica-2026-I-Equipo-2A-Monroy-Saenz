@@ -156,7 +156,7 @@ La instrucción `MoveJ` permite realizar un movimiento articular del robot. En e
 
 Este fue utilizado para cuando la trayectoria no importaba, como alejar la herramienta del workobject, moverse a home y moverse a la posición de mantenimiento.
 
-```rapid
+```python
 MoveJ C1_1, v100, z10, Marcador\WObj:=Pastel;
 ```
 - *C1_1*: representa el punto al que se debe dirigir el robot.  
@@ -172,7 +172,7 @@ MoveJ C1_1, v100, z10, Marcador\WObj:=Pastel;
 
 La instrucción `MoveL` ejecuta un movimiento lineal, asegurando que el efector final del robot se desplace en línea recta entre dos puntos. Esta función se utilizo para las lineas rectas del dibujo.
 
-```rapid
+```python
 MoveL C1_2, v100, z10, Marcador\WObj:=Pastel;
 ```
 La sintaxis de la función es igual a MoveJ.
@@ -181,7 +181,7 @@ La sintaxis de la función es igual a MoveJ.
 
 La instrucción `MoveC` permite realizar un movimiento circular, definido mediante un punto intermedio y un punto final (el punto inicial se toma como el actual) .Esta función se utilizo para las curvas del dibujo.
 
-```rapid
+```python
 MoveC C1_3, C1_4, v100, z10, Marcador\WObj:=Pastel;
 ```
 La sintaxis de la función es similar a MoveJ, con la aclaración de que el primer punto es el punto intermedio y el otro punto es el punto final.
@@ -191,7 +191,7 @@ La sintaxis de la función es similar a MoveJ, con la aclaración de que el prim
 La instrucción `Set` se utiliza para activar una señal digital de salida.
 
 En el laboratorio se utilizaron para encender luces que mostraban que función se estaba ejecutando y también se utilizaba para encender la banda transportadora en un sentido.
-```rapid
+```python
 Set DO_03;
 ```
 
@@ -202,7 +202,7 @@ La instrucción `Reset` permite desactivar una señal digital de salida previame
 
 Se utilizó para apagar la banda transportadora y las luces del panel de control.
 
-```rapid
+```python
 Reset DO_03;
 ```
 
@@ -213,7 +213,7 @@ La instrucción `WaitTime` introduce una pausa en la ejecución del programa, de
 
 Este fue utilizado para poder fijar la traslación del objeto de trabajo en la banda transportadora, pues se esperaba un número de segundos para apagar la banda.
 
-```rapid
+```python
 WaitTime 2;
 ```
 
