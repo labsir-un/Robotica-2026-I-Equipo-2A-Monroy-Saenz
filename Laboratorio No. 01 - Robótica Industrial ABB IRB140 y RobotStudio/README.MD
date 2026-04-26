@@ -220,9 +220,11 @@ WaitTime 2;
 
 Estas funciones constituyen la base del control de movimiento y lógica del robot dentro del entorno de RobotStudio, permitiendo ejecutar trayectorias precisas y coordinar acciones con elementos externos del sistema.
 ## 5. Diseño de la herramienta detallado 
+
 <div align="center">
 <img src="imagenes/Ensamble herramienta-1.png" style="border-radius: 50%; width: 850px;">
 </div>
+
 ### 5.1 Explicación funcionamiento
 El diseño se basa en la unión de dos piezas: una fija al robot y otra independiente, acoplada al marcador. Ambas se conectan mediante resortes que, en ausencia de obstrucciones, permanecen unidos. Esto permite que, si el robot se acerca en exceso, el marcador se desplace hacia arriba. Sin embargo, este mecanismo impide un acercamiento adecuado cuando el robot se encuentra lejos del workobject, por lo que se decidió ubicar los targets 10 mm más profundos en el eje Z.
 
