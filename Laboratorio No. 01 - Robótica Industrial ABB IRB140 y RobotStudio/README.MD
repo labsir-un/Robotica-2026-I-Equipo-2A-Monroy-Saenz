@@ -223,7 +223,19 @@ Estas funciones constituyen la base del control de movimiento y lógica del robo
 <div align="center">
 <img src="imagenes/Ensamble herramienta-1.png" style="border-radius: 50%; width: 850px;">
 </div>
+###5.1 Explicación funcionamiento
+El diseño se basa en la unión de dos piezas: una fija al robot y otra independiente, acoplada al marcador. Ambas se conectan mediante resortes que, en ausencia de obstrucciones, permanecen unidos. Esto permite que, si el robot se acerca en exceso, el marcador se desplace hacia arriba. Sin embargo, este mecanismo impide un acercamiento adecuado cuando el robot se encuentra lejos del workobject, por lo que se decidió ubicar los targets 10 mm más profundos en el eje Z.
 
+###5.2 Iteraciones de manufactura 
+La primera iteración se fabricó sobre la cara de 100 mm; sin embargo, esto afectó la tolerancia de entrada del marcador y el ajuste con el flange del robot. Por ello, en la segunda impresión se priorizó la dimensión del ajuste pasante con el marcador, y a la unión con el flange se le asignó una tolerancia adicional de 1,5 mm, considerando que la pieza se imprimiría en orientación vertical.
+
+###5.3 Ajuste de resortes y tolerancias
+Al inicio se planteó ajustar resortes de compresión dentro de ambas piezas; sin embargo, el acople no encajaba en el hueco diseñado para ellos. Por lo tanto, se optó por utilizar cauchos: se cortaron, se introdujeron por el orificio y luego se unieron mediante un nudo. Aunque había espacio para colocar hasta cuatro cauchos, la diferencia frente a usar solo dos era prácticamente nula, por lo que se decidió emplear únicamente dos.
+
+Para evitar que la punta del marcador se desplazara en los ejes X o Y debido a pequeñas flexiones, se recubrió con cinta en el punto justo donde no interfiriera con el movimiento en el eje Z.
+<div align="center">
+<img src="imagenes/Herramienta.jpeg" style="border-radius: 50%; width: 850px;">
+</div>
 
 ## 6. Código de RAPID
 
