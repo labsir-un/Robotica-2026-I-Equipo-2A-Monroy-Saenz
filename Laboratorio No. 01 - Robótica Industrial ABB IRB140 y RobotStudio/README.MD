@@ -150,7 +150,7 @@ A continuación, se describen las principales funciones utilizadas:
 
 ### 4.1. Funciones de movimiento 
 
-#### 🔹 MoveJ
+#### MoveJ
 
 La instrucción `MoveJ` permite realizar un movimiento articular del robot. En este tipo de movimiento, cada eje se desplaza de forma independiente hasta alcanzar la posición objetivo.
 
@@ -168,7 +168,7 @@ MoveJ C1_1, v100, z10, Marcador\WObj:=Pastel;
   - *WObj:=Pastel*: define el sistema de coordenadas del entorno (WorkObject).
 
 
-#### 🔹 MoveL
+#### MoveL
 
 La instrucción `MoveL` ejecuta un movimiento lineal, asegurando que el efector final del robot se desplace en línea recta entre dos puntos. Esta función se utilizo para las lineas rectas del dibujo.
 
@@ -177,7 +177,7 @@ MoveL C1_2, v100, z10, Marcador\WObj:=Pastel;
 ```
 La sintaxis de la función es igual a MoveJ.
 
-#### 🔹 MoveC
+#### MoveC
 
 La instrucción `MoveC` permite realizar un movimiento circular, definido mediante un punto intermedio y un punto final (el punto inicial se toma como el actual) .Esta función se utilizo para las curvas del dibujo.
 
@@ -186,7 +186,7 @@ MoveC C1_3, C1_4, v100, z10, Marcador\WObj:=Pastel;
 ```
 La sintaxis de la función es similar a MoveJ, con la aclaración de que el primer punto es el punto intermedio y el otro punto es el punto final.
 ### 4.2. Funciones de control 
-#### 🔹 Set
+#### Set
 
 La instrucción `Set` se utiliza para activar una señal digital de salida.
 
@@ -196,7 +196,7 @@ Set DO_03;
 ```
 
 
-#### 🔹 Reset
+#### Reset
 
 La instrucción `Reset` permite desactivar una señal digital de salida previamente activada.
 
@@ -207,7 +207,7 @@ Reset DO_03;
 ```
 
 
-#### 🔹 WaitTime
+#### WaitTime
 
 La instrucción `WaitTime` introduce una pausa en la ejecución del programa, deteniendo temporalmente el robot durante un tiempo específico (en segundos).
 
