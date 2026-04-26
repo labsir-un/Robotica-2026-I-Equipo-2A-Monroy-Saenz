@@ -305,4 +305,4 @@ A continuación se presenta el link del video de youtube donde se encuentra el v
 
 ## 8. Video resultado final Laboratorio 1
 
-
+A continuación se presenta el link del video de youtube donde se encuentra el video: [Video resultado final Laboratorio 1](https://youtu.be/ZwOYCiIF9hw)
