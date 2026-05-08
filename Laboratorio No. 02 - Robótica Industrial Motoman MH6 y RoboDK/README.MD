@@ -2,7 +2,7 @@
 <h3>Curso de Robótica 2026-I</h3>
 
 <h1>Desarrollo Laboratorio No.2 </h1>
-<h2> Robótica Industrial - An´alisis y Operación del Manipulador Motoman MH6. </h2>
+<h2> Robótica Industrial - Análisis y Operación del Manipulador Motoman MH6. </h2>
 
 <h3>Profesores: Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h3>
 
