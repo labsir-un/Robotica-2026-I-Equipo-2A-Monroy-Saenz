@@ -1,3 +1,4 @@
+'''python
 from robodk.robolink import *    # API para comunicarte con RoboDK
 from robodk.robomath import *    # Funciones matemáticas
 from matplotlib.textpath import TextPath 
@@ -156,3 +157,4 @@ draw_text(text2)
 robot.MoveL(transl(x, y, z_surface - z_safe))
 
 robot.MoveJ(target)
+'''
