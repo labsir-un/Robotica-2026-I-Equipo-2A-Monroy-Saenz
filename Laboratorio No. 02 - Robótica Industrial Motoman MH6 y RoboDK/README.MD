@@ -12,9 +12,7 @@
 
 ---
 
-## 1. Cuadro comparativo de las características técnicas entre el Motoman MH6 y el IRB140. 
-
-## Cuadro Comparativo: Motoman MH6 vs. ABB IRB 140
+## 1. Cuadro Comparativo: Motoman MH6 vs. ABB IRB 140. 
 
 | Característica Técnica | Motoman MH6 | ABB IRB 140 |
 |---|---|---|
