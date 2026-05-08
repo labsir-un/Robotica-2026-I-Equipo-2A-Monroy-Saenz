@@ -21,7 +21,7 @@
 | **Carga Máxima (Payload)** | 6 kg | 6 kg |
 | **Alcance Horizontal** | 1,422 mm | 800 mm (0.8 m) |
 | **Alcance Vertical** | 2,486 mm | 810 mm (altura del brazo) |
-| **Grados de Libertad** | 6 ejes | 6 ejes |
+| **Grados de Libertad** | 6 ejes ( 8 con las articulaciones extras especificas del trabajado en este laboratorio) | 6 ejes |
 | **Repetibilidad** | ±0.08 mm | ±0.03 mm |
 | **Velocidad Máxima (Eje 1)** | 220°/s | 200°/s |
 | **Velocidad Máxima (Eje 2)** | 200°/s | 200°/s |
