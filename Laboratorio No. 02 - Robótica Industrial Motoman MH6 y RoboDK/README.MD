@@ -293,7 +293,7 @@ robot.setSpeed(300)
 robot.setRounding(5)  
 ```
 
-###9.4 Parametrización de los nombres
+### 9.4 Parametrización de los nombres
 La libreria consigue lo una variable que contiene la trayectoria los vertices y el tipo de trayectoria, estas se separan para trabajarlas con el código.
 
 ```python 
@@ -301,10 +301,11 @@ text1 = TextPath((-2, 3), "ALEJANDRA", prop=fp)
 vertices = textpath.vertices
 codes = textpath.codes
 ```
-
-###Conexión a RoboDK e inicialización
+### Conexión a RoboDK e inicialización
+%Esto no es el punto 5???? 
 
 ## 10. Video resultado final Laboratorio 2. 
+A continuación se presenta el link del video de youtube donde se encuentra el video: [Video resultado final Laboratorio 2](https://youtu.be/vdqEJWEgiNM)
 
 ## Gracias 
 
