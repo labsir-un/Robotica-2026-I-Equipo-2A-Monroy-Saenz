@@ -141,13 +141,13 @@ En la imagen que se muestra a continuación se muestra un ejemplo donde se esta 
 Es importante aclarar que también existen iconos que significa movimiento en coordenadas cilindricas y coordenadas del usuario. Una vez elegido el modo se tiene los siguientes botones para realizar traslaciones.
 
 <div align="center">
-<img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 250px;">
+<img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 200px;">
 </div>
 
 Para realizar rotaciones se oprimen los siguientes botones:
 
 <div align="center">
-<img src="Imagenes/Rotaciones.png" style="border-radius: 50%; width: 250px;">
+<img src="Imagenes/Rotaciones.png" style="border-radius: 50%; width: 200px;">
 </div>
 
 ## 4. Explicación sobre los niveles de velocidad. 
