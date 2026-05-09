@@ -56,7 +56,7 @@ Esta posición corresponde a una configuración de reposo, transporte o almacena
 | B | 42647 | 42646 |
 | T | 1392 | 1392 |
 
-### 2.2 Configuración Home 2 (Posución de operación)
+### 2.2 Configuración Home 2 (Posición de operación)
 
 <div align="center">
 <img src="Imagenes/home2.png" style="border-radius: 50%; width: 450px;">
