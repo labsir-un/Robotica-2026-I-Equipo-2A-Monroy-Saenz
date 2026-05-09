@@ -35,7 +35,6 @@
 
 </div>
 
----
 
 ## 2. Descripción de las configuraciones home1 y home2 del Motoman MH6. 
 
@@ -113,19 +112,19 @@ Ahora se tiene que prender los servos oprimiendo servos on. Por último para pod
 
 Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continuación los simbolos que aparecen en la parte superior de la pantalla según el tipo de movimiento.
 <br>
-1. Movimiento articulaciones: 
+### 3.1 Movimiento articulaciones: 
 
 <div align="center">
 <img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 250px;">
 </div>
 
-2. Movimiento en el sistema de la base:
+### 3.2 Movimiento en el sistema de la base:
 
 <div align="center">
 <img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 250px;">
 </div>
 
-3. Movimiento en el sistema de la herramienta:
+### 3.3 Movimiento en el sistema de la herramienta:
 
 <div align="center">
 <img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 250px;">
@@ -137,6 +136,7 @@ En la imagen que se muestra a continuación se muestra un ejemplo donde se esta 
 <img src="Imagenes/Iconos.jpeg" style="border-radius: 50%; width: 350px;">
 </div>
 <br>
+
 Es importante aclarar que también existen iconos que significa movimiento en coordenadas cilindricas y coordenadas del usuario. Una vez elegido el modo se tiene los siguientes botones para realizar traslaciones.
 
 <div align="center">
@@ -263,8 +263,8 @@ classDef process fill:#6fa8dc,stroke:#3d3d3d,stroke-width:1px,color:#000;
 class A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,B1,B2,B3,B4,B5,C1,C2,C3,C4,C5,E1,E2,F1,F2,G1,P box;
 class D1,D2,D3 decision;
 
-
 ```
+
 ## 8. Plano de planta del robot. 
 
 <div align="center">
@@ -320,8 +320,6 @@ text1 = TextPath((-2, 3), "ALEJANDRA", prop=fp)
 vertices = textpath.vertices
 codes = textpath.codes
 ```
-### Conexión a RoboDK e inicialización
-%Esto no es el punto 5???? 
 
 ## 10. Video resultado final Laboratorio 2. 
 A continuación se presenta el link del video de youtube donde se encuentra el video: [Video resultado final Laboratorio 2](https://youtu.be/vdqEJWEgiNM)
