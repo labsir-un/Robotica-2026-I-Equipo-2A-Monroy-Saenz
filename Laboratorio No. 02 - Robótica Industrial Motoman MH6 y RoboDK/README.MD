@@ -80,9 +80,9 @@ Los valores articulares observados en el Teach Pendant son:
 
 ### ¿Cuál configuración es mejor?
 
-En operación industrial, la configuración **Home 1** suele ser la más conveniente como posición de reposo. Al mantener el robot compacto, reduce el espacio ocupado, disminuye el riesgo de colisiones y genera menor esfuerzo sobre los ejes principales mientras el robot está detenido.
+En operación industrial, la configuración Home 1 suele ser la más conveniente como posición de reposo. Al mantener el robot compacto, reduce el espacio ocupado, disminuye el riesgo de colisiones y genera menor esfuerzo sobre los ejes principales mientras el robot está detenido.
 
-Por otro lado, la configuración **Home 2** es más útil para calibración y programación, ya que facilita la verificación visual de la alineación de los ejes y la referencia mecánica del manipulador.
+Por otro lado, la configuración Home 2 es más útil para calibración y programación, ya que facilita la verificación visual de la alineación de los ejes y la referencia mecánica del manipulador.
 
 ## 3. Proceso para realizar movimientos manuales.
 
