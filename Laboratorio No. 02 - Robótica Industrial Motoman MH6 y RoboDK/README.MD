@@ -117,19 +117,19 @@ Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continu
 1. Movimiento articulaciones: 
 
 <div align="center">
-<img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 350px;">
+<img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 250px;">
 </div>
 
 2. Movimiento en el sistema de la base:
 
 <div align="center">
-<img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 350px;">
+<img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 250px;">
 </div>
 
 3. Movimiento en el sistema de la herramienta:
 
 <div align="center">
-<img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 350px;">
+<img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 250px;">
 </div>
 <br>
 En la imagen que se muestra a continuación se muestra un ejemplo donde se esta en el modo de movimiento de las articulaciones.
@@ -141,20 +141,20 @@ En la imagen que se muestra a continuación se muestra un ejemplo donde se esta 
 Es importante aclarar que también existen iconos que significa movimiento en coordenadas cilindricas y coordenadas del usuario. Una vez elegido el modo se tiene los siguientes botones para realizar traslaciones.
 
 <div align="center">
-<img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 350px;">
+<img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 250px;">
 </div>
 
 Para realizar rotaciones se oprimen los siguientes botones:
 
 <div align="center">
-<img src="Imagenes/Rotaciones.png" style="border-radius: 50%; width: 350px;">
+<img src="Imagenes/Rotaciones.png" style="border-radius: 50%; width: 250px;">
 </div>
 
 ## 4. Explicación sobre los niveles de velocidad. 
 El robot tiene 3 niveles de velocidad: baja (low), media (medium) y alta (high). Para cambiar entre los modos se presionan los siguientes botones:
 <br>
 <div align="center">
-<img src="Imagenes/Modos_de_velocidad.jpeg" style="border-radius: 50%; width: 250px;">
+<img src="Imagenes/Modos_de_velocidad.jpeg" style="border-radius: 50%; width: 150px;">
 </div>
 <br>
 Por último para poder saber el nivel de velocidad con el que se esta manipulando el robot según cual de los siguientes íconos se encuentren en la parte superior de la pantalla. (el modo I o "inching" aparece cuando no hay velocidad)
