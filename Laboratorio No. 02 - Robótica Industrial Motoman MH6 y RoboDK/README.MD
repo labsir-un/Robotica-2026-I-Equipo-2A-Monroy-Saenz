@@ -93,7 +93,84 @@ Por otro lado, la configuración Home 2 es más útil para calibración y progra
 ## 6. Comparación entre RoboDK y RobotStudio. 
 
 ## 7. Diagrama de flujo de acciones del robot. 
+```mermaid
+%%{init: {
+  "flowchart": {
+    "curve": "linear",
+    "nodeSpacing": 28,
+    "rankSpacing": 34
+  },
+  "themeVariables": {
+    "fontSize": "14px"
+  }
+}}%%
 
+flowchart TD
+
+%% ===== BLOQUES PRINCIPALES =====
+A1["Importación de librerías"] --> A2["Empezar y verificar la<br/>conexión con el robot"]
+A2 --> A3["Creación del marco de<br/>referencia y ajuste de este<br/>al robot"]
+A3 --> A4["Ajuste de velocidad y<br/>toleracia del robot"]
+A4 --> A5["Creación de parametros de<br/>la figura"]
+A5 --> A6["Creación de parametros de<br/>acercamiento en z"]
+A6 --> A7["Crear y ir a home"]
+A7 --> A8["Ir al 0 del marco del objeto"]
+A8 --> A9["Vuelta_completa= 2*pi"]
+A9 --> A10["Punto=0"]
+
+D1{Punto==Numero<br/>de Puntos+1?}
+
+A10 --> D1
+
+%% ===== RAMA 1: RECORRIDO DE PUNTOS =====
+D1 -->|No| B1["theta=Vuelta*Punto/<br/>Numero de Puntos"]
+B1 --> B2["r = Amplitud * (1 +<br/>|cos(2*theta + pi/2)|)"]
+B2 --> B3["Transformación de r y<br/>theta a x y y"]
+B3 --> B4["Con x y y ir al punto<br/>conseguido"]
+B4 --> B5["Punto= Punto + 1"]
+B5 --> D1
+
+%% ===== RAMA 2: CREACIÓN DE TEXTPATH =====
+D1 -->|Yes| C1["Creación de los<br/>TextPath"]
+C1 --> C2["Separación de vertices<br/>y el tipo de trayectoria"]
+C2 --> C3["Escalar y trasladar los<br/>valores en x y en y"]
+C3 --> C4["Vuelta_completa= 2*pi"]
+C4 --> C5["Punto=0"]
+
+D2{Punto==Numero<br/>de Vertices?}
+C5 --> D2
+
+%% ===== RAMA 3: MOVIMIENTO FINAL =====
+D2 -->|Yes| E1["Moverse encima del último<br/>punto"]
+E1 --> E2["Ir a home"]
+
+D2 -->|No| D3{"La trayectoria es<br/>un MoveJ?"}
+
+D3 -->|Yes| F1["Moverse encima de Punto<br/>de cualquier forma"]
+F1 --> F2["Moverse a punto de<br/>cualquier forma"]
+F2 --> P["Process"]
+
+D3 -->|No| G1["Moverse a punto de<br/>cualquier forma"]
+G1 --> P
+
+P --> D2
+
+%% ===== ESTILOS =====
+classDef box fill:#6fa8dc,stroke:#3d3d3d,stroke-width:1px,color:#000;
+classDef decision fill:#ffffff,stroke:#3d3d3d,stroke-width:1px,color:#000;
+classDef process fill:#6fa8dc,stroke:#3d3d3d,stroke-width:1px,color:#000;
+
+class A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,B1,B2,B3,B4,B5,C1,C2,C3,C4,C5,E1,E2,F1,F2,G1,P box;
+class D1,D2,D3 decision;
+
+%% ===== COLORES DE RAMAS =====
+linkStyle 10 stroke:#ff6b6b,stroke-width:2px
+linkStyle 11 stroke:#55c95e,stroke-width:2px
+linkStyle 20 stroke:#55c95e,stroke-width:2px
+linkStyle 21 stroke:#ff6b6b,stroke-width:2px
+linkStyle 22 stroke:#ff6b6b,stroke-width:2px
+
+```
 ## 8. Plano de planta del robot. 
 
 ## 9. Código de RoboDK. 
