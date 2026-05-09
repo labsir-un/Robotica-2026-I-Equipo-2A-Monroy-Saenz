@@ -97,51 +97,52 @@ Por otro lado, la configuración Home 2 es más útil para calibración y progra
 
 ## 3. Proceso para realizar movimientos manuales.
 
-Primero se tiene que quietar la parada de emergencia girando el boton rojo en sentido horario.
-
+Primero se tiene que quitar la parada de emergencia girando el botón rojo en sentido horario.
+<br>
 <div align="center">
-<img src="Imagenes/Imagen_Tich.jpeg" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/Imagen_Tich.jpeg" style="border-radius: 50%; width: 350px;">
 </div>
-
+<br>
 Luego se tiene que girar la llave de modo que quede alineada con el modo "teach".
+<br>
 <div align="center">
-<img src="Imagenes/Llave_teach.png" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/Llave_teach.png" style="border-radius: 50%; width: 350px;">
 </div>
-
+<br>
 Ahora se tiene que prender los servos oprimiendo servos on. Por último para poderlo manipular se tiene que oprimir el boton de hombre muerto.
 <br>
 
 Modos de operación: 
 Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continuación los simbolos que aparecen según el tipo de movimiento.
+<br>
 1. Movimiento articulaciones: 
 
 <div align="center">
-<img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 350px;">
 </div>
 
 2. Lineal en el sistema de la base:
 
 <div align="center">
-<img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 350px;">
 </div>
 
 3. Lineal en el sistema de la herramienta:
 
 <div align="center">
-<img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 350px;">
 </div>
 
-
-Realizar traslaciones: 
+Una vez elegido el modo se tiene los siguientes botones para realizar traslaciones.
 
 <div align="center">
-<img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 350px;">
 </div>
 
-Realizar rotaciones: 
+Para realizar rotaciones se oprimen los siguientes botones:
 
 <div align="center">
-<img src="Imagenes/Rotaciones.png" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/Rotaciones.png" style="border-radius: 50%; width: 350px;">
 </div>
 
 ## 4. Explicación sobre los niveles de velocidad. 
@@ -238,7 +239,7 @@ El programa en python puede consultarse aquí:
 [Ver código](./Codigo_RBDK.MD)
 
 La estructura del código se explica en el diagrama de flujo, pero aquí se muestra las funciones nuevas vistas.
-###9.1 Importación de librerias
+### 9.1 Importación de librerias
 Las librerias robolink y robomath son para la comunicación con RoboDK y las funciones matemáticas, respectivamente. El resto de librerias permiten crear trayectorias según el texto, también se utilizan una libreria matemática para la parametrización del trebol.
 ```python 
 from robodk.robolink import *   
@@ -248,7 +249,7 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.path import Path
 import math
 ```
-###9.2 Conexión a RoboDK e inicialización
+### 9.2 Conexión a RoboDK e inicialización
 Se establece una conexión a la estación de RoboDK y se elige un robot.
 ```python 
 RDK = Robolink()
@@ -261,7 +262,7 @@ robot.Connect()   #devuelve true o false
 robot.ConnectedState()   #devuelve true o false
 ```
 
-###9.3 Creación Work Object y ajuste parametros de movimiento
+### 9.3 Creación Work Object y ajuste parametros de movimiento
 Se crea el marco de referencia y se le asigna al robot.
 ```python 
 frame_name = "Frame_from_Target1"
