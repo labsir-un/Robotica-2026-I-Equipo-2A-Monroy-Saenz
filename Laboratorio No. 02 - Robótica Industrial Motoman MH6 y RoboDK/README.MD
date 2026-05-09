@@ -10,8 +10,6 @@
 
 </div>
 
----
-
 ## 1. Cuadro Comparativo: Motoman MH6 vs. ABB IRB 140. 
 
 <div align="center">
