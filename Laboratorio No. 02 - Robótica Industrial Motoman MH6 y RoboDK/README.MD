@@ -97,7 +97,50 @@ Por otro lado, la configuración Home 2 es más útil para calibración y progra
 
 ## 3. Proceso para realizar movimientos manuales.
 
+Para realizar movimientos manuales: 
+
+<div align="center">
+<img src="Imagenes/Llave_teach.png" style="border-radius: 50%; width: 450px;">
+</div>
+
+Modos de operación: 
+
+1. movimiento articulaciones: 
+
+<div align="center">
+<img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 450px;">
+</div>
+
+2. lineal en el sistema de la base 
+
+<div align="center">
+<img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 450px;">
+</div>
+
+3. Lineal en el sistema de la herramienta
+
+<div align="center">
+<img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 450px;">
+</div>
+
+
+Realizar traslaciones: 
+
+<div align="center">
+<img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 450px;">
+</div>
+
+Realizar rotaciones: 
+
+<div align="center">
+<img src="Imagenes/Rotaciones.png" style="border-radius: 50%; width: 450px;">
+</div>
+
 ## 4. Explicación sobre los niveles de velocidad. 
+
+<div align="center">
+<img src="Imagenes/velocidades.png" style="border-radius: 50%; width: 450px;">
+</div>
 
 ## 5. Descripción funcionalidades RoboDK, comunicación con el manipulador Motoman y procesos de ejecución de movimiento. 
 
