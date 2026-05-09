@@ -97,27 +97,35 @@ Por otro lado, la configuración Home 2 es más útil para calibración y progra
 
 ## 3. Proceso para realizar movimientos manuales.
 
-Para realizar movimientos manuales: 
+Primero se tiene que quietar la parada de emergencia girando el boton rojo en sentido horario.
 
+<div align="center">
+<img src="Imagenes/Imagen_Tich.jpeg" style="border-radius: 50%; width: 450px;">
+</div>
+
+Luego se tiene que girar la llave de modo que quede alineada con el modo "teach".
 <div align="center">
 <img src="Imagenes/Llave_teach.png" style="border-radius: 50%; width: 450px;">
 </div>
 
-Modos de operación: 
+Ahora se tiene que prender los servos oprimiendo servos on. Por último para poderlo manipular se tiene que oprimir el boton de hombre muerto.
+<br>
 
-1. movimiento articulaciones: 
+Modos de operación: 
+Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continuación los simbolos que aparecen según el tipo de movimiento.
+1. Movimiento articulaciones: 
 
 <div align="center">
 <img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 450px;">
 </div>
 
-2. lineal en el sistema de la base 
+2. Lineal en el sistema de la base:
 
 <div align="center">
 <img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 450px;">
 </div>
 
-3. Lineal en el sistema de la herramienta
+3. Lineal en el sistema de la herramienta:
 
 <div align="center">
 <img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 450px;">
