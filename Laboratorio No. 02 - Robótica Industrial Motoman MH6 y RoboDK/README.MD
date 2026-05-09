@@ -17,11 +17,11 @@
 <div align="center">
 
 | Característica Técnica | Motoman MH6 | ABB IRB 140 |
-|---|---|---|
+|:---:|:---:|:---:|
 | **Carga Máxima (Payload)** | 6 kg | 6 kg |
 | **Alcance Horizontal** | 1422 mm | 800 mm |
 | **Alcance Vertical** | 2486 mm | 810 mm (altura del brazo) |
-| **Grados de Libertad** | 6 ejes ( 8 con las articulaciones extras especificas del trabajado en este laboratorio) | 6 ejes |
+| **Grados de Libertad** | 6 ejes (8 con las articulaciones extras específicas del trabajo realizado en este laboratorio) | 6 ejes |
 | **Repetibilidad** | ±0.08 mm | ±0.03 mm |
 | **Velocidad Máxima (Eje 1)** | 220°/s | 200°/s |
 | **Velocidad Máxima (Eje 2)** | 200°/s | 200°/s |
@@ -34,6 +34,7 @@
 | **Controlador** | DX100 | IRC5 |
 | **Protección Estándar** | No especificado explícitamente | IP67 (toda la unidad) |
 | **Aplicaciones Típicas** | Ensamble, soldadura (arco/punto), empaque, corte, manipulación de materiales | Industrias manufactureras, fundición, sala blanca, pegado, soldadura, carga/descarga |
+
 </div>
 ---
 
@@ -51,16 +52,17 @@ Esta posición corresponde a una configuración de reposo, transporte o almacena
 
 Los valores articulares observados en el Teach Pendant son: 
 
-<div align="center">}
+<div align="center">
 
 | Eje | Origin | Current |
-|---|---|---|
+|:---:|:---:|:---:|
 | S | 0 | -1 |
 | L | -115290 | -115290 |
 | U | -111622 | -111621 |
 | R | 1 | 1 |
 | B | 42647 | 42646 |
 | T | 1392 | 1392 |
+
 </div>
 
 ### 2.2 Configuración Home 2 (Posición de operación)
@@ -77,15 +79,15 @@ Los valores articulares observados en el Teach Pendant son:
 <div align="center">
 
 | Eje | Specified | Current | Difference |
-|---|---|---|---|
+|:---:|:---:|:---:|:---:|
 | S | 0 | 0 | 0 |
 | L | 2037 | 2037 | 0 |
 | U | 2359 | 2359 | 0 |
 | R | 0 | 0 | 0 |
 | B | -121 | -121 | 0 |
 | T | 1392 | 1392 | 0 |
-</div>
 
+</div>
 
 ### ¿Cuál configuración es mejor?
 
