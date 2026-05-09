@@ -169,9 +169,29 @@ En la imagen que se muestra a continuación se muestra un ejemplo donde se esta 
 <img src="Imagenes/Iconos.jpeg" style="border-radius: 50%; width: 350px;">
 </div>
 <br>
+
 ## 5. Descripción funcionalidades RoboDK, comunicación con el manipulador Motoman y procesos de ejecución de movimiento. 
 
 ## 6. Comparación entre RoboDK y RobotStudio. 
+
+<div align="center">
+
+| Aspecto | RoboDK | RobotStudio |
+|---|---|---|
+| **Desarrollador** | RoboDK | ABB RobotStudio |
+| **Compatibilidad de robots** | Compatible con más de 1200 robots de múltiples fabricantes (ABB, KUKA, Fanuc, UR, Yaskawa, etc.). | Principalmente orientado a robots ABB y controladores ABB Virtual Controller. |
+| **Ventaja principal** | Plataforma abierta y flexible para celdas con robots de diferentes marcas. | Simulación extremadamente precisa gracias al Virtual Controller de ABB. |
+| **Facilidad de uso** | Interfaz intuitiva y sencilla, adecuada para aprendizaje rápido y proyectos académicos. | Más robusto y técnico; requiere mayor curva de aprendizaje. |
+| **Programación offline** | Generación rápida de trayectorias y programas sin depender del fabricante. | Programación offline altamente realista usando exactamente el mismo controlador del robot físico. |
+| **Precisión de simulación** | Buena para planificación, validación y trayectorias generales. | Muy alta; replica el comportamiento real del robot ABB casi 1:1. |
+| **Integración CAD/CAM** | Muy fuerte integración con CAD/CAM y manufactura avanzada (CNC, impresión 3D, mecanizado). | Integración sólida en entornos ABB industriales. |
+| **APIs y automatización** | APIs para Python, MATLAB, C#, C++ y más. | Fuerte integración con RAPID y ecosistema ABB. |
+| **Limitaciones** | Algunas funciones avanzadas de lógica industrial y control OEM pueden ser limitadas frente al software oficial del fabricante. | Menor flexibilidad con robots de otras marcas; muy dependiente del ecosistema ABB. |
+| **Costo** | Generalmente más económico y accesible para educación y pequeñas empresas. | Licenciamiento industrial más costoso, orientado a entornos profesionales ABB. |
+| **Aplicaciones ideales** | Educación, investigación, celdas multimarcas, manufactura flexible y simulación rápida. | Automatización industrial ABB, validación industrial precisa y puesta en marcha virtual. |
+| **Uso típico en industria** | Muy valorado cuando se manejan robots de diferentes fabricantes en una misma planta. | Muy usado en industrias donde ABB es el estándar principal de automatización. |
+
+</div>
 
 ## 7. Diagrama de flujo de acciones del robot. 
 ```mermaid
