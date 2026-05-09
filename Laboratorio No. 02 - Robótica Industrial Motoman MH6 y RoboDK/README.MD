@@ -148,7 +148,7 @@ D2 -->|No| D3{"La trayectoria es<br/>un MoveJ?"}
 
 D3 -->|Yes| F1["Moverse encima de Punto<br/>de cualquier forma"]
 F1 --> F2["Moverse a punto de<br/>cualquier forma"]
-F2 --> P["Process"]
+F2 --> P["Punto=Punto+1"]
 
 D3 -->|No| G1["Moverse a punto de<br/>cualquier forma"]
 G1 --> P
@@ -163,12 +163,6 @@ classDef process fill:#6fa8dc,stroke:#3d3d3d,stroke-width:1px,color:#000;
 class A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,B1,B2,B3,B4,B5,C1,C2,C3,C4,C5,E1,E2,F1,F2,G1,P box;
 class D1,D2,D3 decision;
 
-%% ===== COLORES DE RAMAS =====
-linkStyle 10 stroke:#ff6b6b,stroke-width:2px
-linkStyle 11 stroke:#55c95e,stroke-width:2px
-linkStyle 20 stroke:#55c95e,stroke-width:2px
-linkStyle 21 stroke:#ff6b6b,stroke-width:2px
-linkStyle 22 stroke:#ff6b6b,stroke-width:2px
 
 ```
 ## 8. Plano de planta del robot. 
