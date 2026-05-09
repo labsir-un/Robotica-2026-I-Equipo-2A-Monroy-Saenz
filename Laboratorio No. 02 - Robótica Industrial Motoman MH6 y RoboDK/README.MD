@@ -43,6 +43,8 @@
 <img src="Imagenes/home1.png" style="border-radius: 50%; width: 450px;">
 </div>
 
+---
+
 Esta posición corresponde a una configuración de reposo, transporte o almacenamiento del robot, donde el manipulador permanece contraído para minimizar el espacio ocupado y reducir esfuerzos mecánicos sobre los actuadores. Los valores articulares observados en el Teach Pendant son: 
 
 | Eje | Origin | Current |
