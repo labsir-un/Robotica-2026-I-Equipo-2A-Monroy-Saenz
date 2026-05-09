@@ -170,8 +170,8 @@ En la imagen que se muestra a continuación se muestra un ejemplo donde se esta 
 <br>
 
 ## 5. Descripción funcionalidades RoboDK, comunicación con el manipulador Motoman y procesos de ejecución de movimiento. 
-La dirección IP del PC se configura desde el modo de mantenimiento del controlador. Para acceder a este modo, es necesario mantener presionado el botón Menu mientras se enciende el controlador del robot, hasta escuchar un sonido de confirmación tipo “bip”.
-
+La dirección IP del PC se configura desde el modo de mantenimiento del controlador. Para acceder a este modo, es necesario mantener presionado el botón Menu mientras se enciende el controlador del robot, hasta escuchar un sonido de confirmación tipo “bip”. Aquí en el teach pendant se le da a SYSTEM-SETUP, ahí se despliga un menu donde se le tiene que da enter a OPTION FUNCTION y aquí después de dar click en LAN INTERFACE SETTING se configura la IP de LAN 2 o LAN 3.
+<br>
 Para establecer la conexión entre RoboDK y el robot, primero se debe colocar la llave del teach pendant en modo Remote.
 <br>
 <div align="center">
