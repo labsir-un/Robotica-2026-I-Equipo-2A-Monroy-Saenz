@@ -222,6 +222,56 @@ class D1,D2,D3 decision;
 ## 8. Plano de planta del robot. 
 
 ## 9. Código de RoboDK. 
+El programa en python puede consultarse aquí:
+[Ver código](./Codigo_RBDK.MD)
+
+La estructura del código se explica en el diagrama de flujo, pero aquí se muestra las funciones nuevas vistas.
+###9.1 Importación de librerias
+Las librerias robolink y robomath son para la comunicación con RoboDK y las funciones matemáticas, respectivamente. El resto de librerias permiten crear trayectorias según el texto, también se utilizan una libreria matemática para la parametrización del trebol.
+```python 
+from robodk.robolink import *   
+from robodk.robomath import *   
+from matplotlib.textpath import TextPath 
+from matplotlib.font_manager import FontProperties
+from matplotlib.path import Path
+import math
+```
+###9.2 Conexión a RoboDK e inicialización
+Se establece una conexión a la estación de RoboDK y se elige un robot.
+```python 
+RDK = Robolink()
+robot = RDK.ItemUserPick("Selecciona un robot", ITEM_TYPE_ROBOT)
+```
+Con las siguientes funciones se conecta al controlador del robot y se verifica el estado de conexión.
+
+```python 
+robot.Connect()   #devuelve true o false
+robot.ConnectedState()   #devuelve true o false
+```
+
+###9.3 Creación Work Object y ajuste parametros de movimiento
+Se crea el marco de referencia y se le asigna al robot.
+```python 
+frame_name = "Frame_from_Target1"
+frame = RDK.Item(frame_name, ITEM_TYPE_FRAME)
+robot.setPoseFrame(frame)
+```
+Ajuste de velocidad y la toleracia.
+```python 
+robot.setSpeed(300)  
+robot.setRounding(5)  
+```
+
+###9.4 Parametrización de los nombres
+La libreria consigue lo una variable que contiene la trayectoria los vertices y el tipo de trayectoria, estas se separan para trabajarlas con el código.
+
+```python 
+text1 = TextPath((-2, 3), "ALEJANDRA", prop=fp)
+vertices = textpath.vertices
+codes = textpath.codes
+```
+
+###Conexión a RoboDK e inicialización
 
 ## 10. Video resultado final Laboratorio 2. 
 
