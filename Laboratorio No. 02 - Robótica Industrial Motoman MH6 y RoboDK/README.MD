@@ -46,9 +46,8 @@
 
 <br>
 Esta posición corresponde a una configuración de reposo, transporte o almacenamiento del robot, donde el manipulador permanece contraído para minimizar el espacio ocupado y reducir esfuerzos mecánicos sobre los actuadores. 
+
 Los valores articulares observados en el Teach Pendant son: 
-
-
 
 | Eje | Origin | Current |
 |---|---|---|
@@ -67,9 +66,8 @@ Los valores articulares observados en el Teach Pendant son:
 
 <br>
 Esta configuración corresponde a la posición de referencia mecánica utilizada para calibración, sincronización y verificación de alineación de los ejes del robot. 
+
 Los valores articulares observados en el Teach Pendant son: 
-
-
 
 | Eje | Specified | Current | Difference |
 |---|---|---|---|
