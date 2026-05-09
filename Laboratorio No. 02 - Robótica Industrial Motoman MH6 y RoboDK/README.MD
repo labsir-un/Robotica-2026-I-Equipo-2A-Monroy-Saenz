@@ -229,6 +229,10 @@ class D1,D2,D3 decision;
 ```
 ## 8. Plano de planta del robot. 
 
+<div align="center">
+<img src="Imagenes/Plano Montaje Lab 2.png" style="border-radius: 50%; width: 850px;">
+</div>
+
 ## 9. Código de RoboDK. 
 El programa en python puede consultarse aquí:
 [Ver código](./Codigo_RBDK.MD)
