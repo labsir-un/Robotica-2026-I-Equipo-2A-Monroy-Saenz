@@ -51,7 +51,8 @@ Esta posición corresponde a una configuración de reposo, transporte o almacena
 
 Los valores articulares observados en el Teach Pendant son: 
 
-<div align="center">
+<div align="center">}
+
 | Eje | Origin | Current |
 |---|---|---|
 | S | 0 | -1 |
@@ -74,6 +75,7 @@ Esta configuración corresponde a la posición de referencia mecánica utilizada
 Los valores articulares observados en el Teach Pendant son: 
 
 <div align="center">
+
 | Eje | Specified | Current | Difference |
 |---|---|---|---|
 | S | 0 | 0 | 0 |
