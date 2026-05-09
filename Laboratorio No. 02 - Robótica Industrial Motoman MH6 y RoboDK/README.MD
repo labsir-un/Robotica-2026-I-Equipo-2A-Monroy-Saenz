@@ -37,6 +37,50 @@
 
 ## 2. Descripción de las configuraciones home1 y home2 del Motoman MH6. 
 
+### 2.1 Configuración Home 1 (Posición de transporte)
+
+Esta posición corresponde a una configuración de reposo, transporte o almacenamiento del robot, donde el manipulador permanece contraído para minimizar el espacio ocupado y reducir esfuerzos mecánicos sobre los actuadores.
+
+<div align="center">
+<img src="Imagenes/home1.png" style="border-radius: 50%; width: 850px;">
+</div>
+
+Los valores articulares observados en el Teach Pendant son: 
+
+| Eje | Origin | Current |
+|---|---|---|
+| S | 0 | -1 |
+| L | -115290 | -115290 |
+| U | -111622 | -111621 |
+| R | 1 | 1 |
+| B | 42647 | 42646 |
+| T | 1392 | 1392 |
+
+### 2.2 Configuración Home 2 (Posución de operación)
+
+Esta configuración corresponde a la posición de referencia mecánica utilizada para calibración, sincronización y verificación de alineación de los ejes del robot.
+
+<div align="center">
+<img src="Imagenes/home2.png" style="border-radius: 50%; width: 850px;">
+</div>
+
+Los valores articulares observados en el Teach Pendant son: 
+
+| Eje | Specified | Current | Difference |
+|---|---|---|---|
+| S | 0 | 0 | 0 |
+| L | 2037 | 2037 | 0 |
+| U | 2359 | 2359 | 0 |
+| R | 0 | 0 | 0 |
+| B | -121 | -121 | 0 |
+| T | 1392 | 1392 | 0 |
+
+### ¿Cuál configuración es mejor?
+
+En operación industrial, la configuración **Home 1** suele ser la más conveniente como posición de reposo. Al mantener el robot compacto, reduce el espacio ocupado, disminuye el riesgo de colisiones y genera menor esfuerzo sobre los ejes principales mientras el robot está detenido.
+
+Por otro lado, la configuración **Home 2** es más útil para calibración y programación, ya que facilita la verificación visual de la alineación de los ejes y la referencia mecánica del manipulador.
+
 ## 3. Proceso para realizar movimientos manuales.
 
 ## 4. Explicación sobre los niveles de velocidad. 
