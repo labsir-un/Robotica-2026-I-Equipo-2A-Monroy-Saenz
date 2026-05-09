@@ -156,7 +156,7 @@ G1 --> P
 P --> D2
 
 %% ===== ESTILOS =====
-classDef box fill:#6fa8dc,stroke:#3d3d3d,stroke-width:1px,color:#000;
+classDef box fill:#ff00ff,stroke:#3d3d3d,stroke-width:1px,color:#000;
 classDef decision fill:#ffffff,stroke:#3d3d3d,stroke-width:1px,color:#000;
 classDef process fill:#6fa8dc,stroke:#3d3d3d,stroke-width:1px,color:#000;
 
