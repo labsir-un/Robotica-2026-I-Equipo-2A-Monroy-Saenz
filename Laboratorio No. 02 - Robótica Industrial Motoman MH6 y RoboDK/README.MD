@@ -133,9 +133,11 @@ Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continu
 </div>
 <br>
 En la imagen que se muestra a continuación se muestra un ejemplo donde se esta en el modo de movimiento de las articulaciones.
+<br>
 <div align="center">
 <img src="Imagenes/Iconos.jpeg" style="border-radius: 50%; width: 350px;">
 </div>
+<br>
 Es importante aclarar que también existen iconos que significa movimiento en coordenadas cilindricas y coordenadas del usuario. Una vez elegido el modo se tiene los siguientes botones para realizar traslaciones.
 
 <div align="center">
@@ -150,18 +152,23 @@ Para realizar rotaciones se oprimen los siguientes botones:
 
 ## 4. Explicación sobre los niveles de velocidad. 
 El robot tiene 3 niveles de velocidad: baja (low), media (medium) y alta (high). Para cambiar entre los modos se presionan los siguientes botones:
-
+<br>
 <div align="center">
-<img src="Imagenes/Modos_de_velocidad.jpeg" style="border-radius: 50%; width: 450px;">
+<img src="Imagenes/Modos_de_velocidad.jpeg" style="border-radius: 50%; width: 250px;">
 </div>
+<br>
 Por último para poder saber el nivel de velocidad con el que se esta manipulando el robot según cual de los siguientes íconos se encuentren en la parte superior de la pantalla. (el modo I o "inching" aparece cuando no hay velocidad)
+<br>
 <div align="center">
 <img src="Imagenes/velocidades.png" style="border-radius: 50%; width: 450px;">
 </div>
+<br>
 En la imagen que se muestra a continuación se muestra un ejemplo donde se esta en velocidad media .
+<br>
 <div align="center">
 <img src="Imagenes/Iconos.jpeg" style="border-radius: 50%; width: 350px;">
 </div>
+<br>
 ## 5. Descripción funcionalidades RoboDK, comunicación con el manipulador Motoman y procesos de ejecución de movimiento. 
 
 ## 6. Comparación entre RoboDK y RobotStudio. 
