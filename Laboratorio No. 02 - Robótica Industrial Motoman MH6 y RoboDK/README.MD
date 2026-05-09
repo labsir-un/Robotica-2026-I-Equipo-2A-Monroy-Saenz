@@ -185,7 +185,7 @@ En la imagen que se muestra a continuación se muestra un ejemplo donde se esta 
 | **Precisión de simulación** | Buena para planificación, validación y trayectorias generales. | Muy alta; replica el comportamiento real del robot ABB casi 1:1. |
 | **Integración CAD/CAM** | Muy fuerte integración con CAD/CAM y manufactura avanzada (CNC, impresión 3D, mecanizado). | Integración sólida en entornos ABB industriales. |
 | **APIs y automatización** | APIs para Python, MATLAB, C#, C++ y más. | Fuerte integración con RAPID y ecosistema ABB. |
-| **Limitaciones** | Algunas funciones avanzadas de lógica industrial y control OEM pueden ser limitadas frente al software oficial del fabricante. | Menor flexibilidad con robots de otras marcas; muy dependiente del ecosistema ABB. |
+| **Limitaciones** | Algunas funciones avanzadas de lógica industrial y control pueden ser limitadas frente al software oficial del fabricante. | Menor flexibilidad con robots de otras marcas; muy dependiente del ecosistema ABB. |
 | **Costo** | Generalmente más económico y accesible para educación y pequeñas empresas. | Licenciamiento industrial más costoso, orientado a entornos profesionales ABB. |
 | **Aplicaciones ideales** | Educación, investigación, celdas multimarcas, manufactura flexible y simulación rápida. | Automatización industrial ABB, validación industrial precisa y puesta en marcha virtual. |
 | **Uso típico en industria** | Muy valorado cuando se manejan robots de diferentes fabricantes en una misma planta. | Muy usado en industrias donde ABB es el estándar principal de automatización. |
