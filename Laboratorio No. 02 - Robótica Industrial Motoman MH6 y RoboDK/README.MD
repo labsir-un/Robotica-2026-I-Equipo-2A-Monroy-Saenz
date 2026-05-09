@@ -14,6 +14,8 @@
 
 ## 1. Cuadro Comparativo: Motoman MH6 vs. ABB IRB 140. 
 
+<div align="center">
+
 | Característica Técnica | Motoman MH6 | ABB IRB 140 |
 |---|---|---|
 | **Carga Máxima (Payload)** | 6 kg | 6 kg |
@@ -32,7 +34,7 @@
 | **Controlador** | DX100 | IRC5 |
 | **Protección Estándar** | No especificado explícitamente | IP67 (toda la unidad) |
 | **Aplicaciones Típicas** | Ensamble, soldadura (arco/punto), empaque, corte, manipulación de materiales | Industrias manufactureras, fundición, sala blanca, pegado, soldadura, carga/descarga |
-
+</div>
 ---
 
 ## 2. Descripción de las configuraciones home1 y home2 del Motoman MH6. 
@@ -49,6 +51,7 @@ Esta posición corresponde a una configuración de reposo, transporte o almacena
 
 Los valores articulares observados en el Teach Pendant son: 
 
+<div align="center">
 | Eje | Origin | Current |
 |---|---|---|
 | S | 0 | -1 |
@@ -57,6 +60,7 @@ Los valores articulares observados en el Teach Pendant son:
 | R | 1 | 1 |
 | B | 42647 | 42646 |
 | T | 1392 | 1392 |
+</div>
 
 ### 2.2 Configuración Home 2 (Posición de operación)
 
@@ -69,6 +73,7 @@ Esta configuración corresponde a la posición de referencia mecánica utilizada
 
 Los valores articulares observados en el Teach Pendant son: 
 
+<div align="center">
 | Eje | Specified | Current | Difference |
 |---|---|---|---|
 | S | 0 | 0 | 0 |
@@ -77,6 +82,8 @@ Los valores articulares observados en el Teach Pendant son:
 | R | 0 | 0 | 0 |
 | B | -121 | -121 | 0 |
 | T | 1392 | 1392 | 0 |
+</div>
+
 
 ### ¿Cuál configuración es mejor?
 
