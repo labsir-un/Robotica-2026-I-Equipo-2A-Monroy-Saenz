@@ -170,7 +170,21 @@ En la imagen que se muestra a continuación se muestra un ejemplo donde se esta 
 <br>
 
 ## 5. Descripción funcionalidades RoboDK, comunicación con el manipulador Motoman y procesos de ejecución de movimiento. 
+La dirección IP del PC se configura desde el modo de mantenimiento del controlador. Para acceder a este modo, es necesario mantener presionado el botón Menu mientras se enciende el controlador del robot, hasta escuchar un sonido de confirmación tipo “bip”.
 
+Para establecer la conexión entre RoboDK y el robot, primero se debe colocar la llave del teach pendant en modo Remote.
+<br>
+<div align="center">
+<img src="Imagenes/Remoto.jpeg" style="border-radius: 50%; width: 350px;">
+</div>
+<br>
+Luego, en RoboDK, se selecciona la opción Conectar a un robot, donde se introduce la dirección IP del controlador (como en el ejemplo de la imagen) y se inicia la conexión. De esta manera se establece la comunicación mediante el protocolo TCP/IP.
+<br>
+<div align="center">
+<img src="Imagenes/Remoto.jpeg" style="border-radius: 50%; width: 350px;">
+</div>
+<br>
+RoboDK no envía directamente un código de Python al robot. En su lugar, utiliza postprocesadores, cuya función es traducir el programa generado en RoboDK al lenguaje específico que entiende el controlador del robot. Esta es la razón por la cual RoboDK es compatible con distintos modelos y marcas de robots industriales.
 ## 6. Comparación entre RoboDK y RobotStudio. 
 
 <div align="center">
