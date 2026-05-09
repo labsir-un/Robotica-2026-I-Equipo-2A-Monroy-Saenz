@@ -34,6 +34,7 @@
 | **Aplicaciones Típicas** | Ensamble, soldadura (arco/punto), empaque, corte, manipulación de materiales | Industrias manufactureras, fundición, sala blanca, pegado, soldadura, carga/descarga |
 
 </div>
+
 ---
 
 ## 2. Descripción de las configuraciones home1 y home2 del Motoman MH6. 
