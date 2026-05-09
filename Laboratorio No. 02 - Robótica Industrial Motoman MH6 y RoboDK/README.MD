@@ -109,11 +109,10 @@ Luego se tiene que girar la llave de modo que quede alineada con el modo "teach"
 <img src="Imagenes/Llave_teach.png" style="border-radius: 50%; width: 350px;">
 </div>
 <br>
-Ahora se tiene que prender los servos oprimiendo servos on. Por último para poderlo manipular se tiene que oprimir el boton de hombre muerto.
+Ahora se tiene que prender los servos oprimiendo servos on. Por último para poderlo manipular se tiene que oprimir el botón de hombre muerto.
 <br>
 
-Modos de operación: 
-Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continuación los simbolos que aparecen según el tipo de movimiento.
+Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continuación los simbolos que aparecen en la parte superior de la pantalla según el tipo de movimiento.
 <br>
 1. Movimiento articulaciones: 
 
@@ -121,19 +120,23 @@ Para cambiar entre modos se tiene que oprimir el boton que dice COORD, a continu
 <img src="Imagenes/articulaciones.png" style="border-radius: 50%; width: 350px;">
 </div>
 
-2. Lineal en el sistema de la base:
+2. Movimiento en el sistema de la base:
 
 <div align="center">
 <img src="Imagenes/cartesiano_base.png" style="border-radius: 50%; width: 350px;">
 </div>
 
-3. Lineal en el sistema de la herramienta:
+3. Movimiento en el sistema de la herramienta:
 
 <div align="center">
 <img src="Imagenes/cartesiano_tool.png" style="border-radius: 50%; width: 350px;">
 </div>
-
-Una vez elegido el modo se tiene los siguientes botones para realizar traslaciones.
+<br>
+En la imagen que se muestra a continuación se muestra un ejemplo donde se esta en el modo de movimiento de las articulaciones.
+<div align="center">
+<img src="Imagenes/Iconos.jpeg" style="border-radius: 50%; width: 350px;">
+</div>
+Es importante aclarar que también existen iconos que significa movimiento en coordenadas cilindricas y coordenadas del usuario. Una vez elegido el modo se tiene los siguientes botones para realizar traslaciones.
 
 <div align="center">
 <img src="Imagenes/traslaciones.png" style="border-radius: 50%; width: 350px;">
@@ -146,11 +149,19 @@ Para realizar rotaciones se oprimen los siguientes botones:
 </div>
 
 ## 4. Explicación sobre los niveles de velocidad. 
+El robot tiene 3 niveles de velocidad: baja (low), media (medium) y alta (high). Para cambiar entre los modos se presionan los siguientes botones:
 
+<div align="center">
+<img src="Imagenes/Modos_de_velocidad.jpeg" style="border-radius: 50%; width: 450px;">
+</div>
+Por último para poder saber el nivel de velocidad con el que se esta manipulando el robot según cual de los siguientes íconos se encuentren en la parte superior de la pantalla. (el modo I o "inching" aparece cuando no hay velocidad)
 <div align="center">
 <img src="Imagenes/velocidades.png" style="border-radius: 50%; width: 450px;">
 </div>
-
+En la imagen que se muestra a continuación se muestra un ejemplo donde se esta en velocidad media .
+<div align="center">
+<img src="Imagenes/Iconos.jpeg" style="border-radius: 50%; width: 350px;">
+</div>
 ## 5. Descripción funcionalidades RoboDK, comunicación con el manipulador Motoman y procesos de ejecución de movimiento. 
 
 ## 6. Comparación entre RoboDK y RobotStudio. 
