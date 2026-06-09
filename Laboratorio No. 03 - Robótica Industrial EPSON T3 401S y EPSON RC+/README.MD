@@ -12,7 +12,47 @@
 
 ## 1. Cuadro Comparativo: Motoman MH6, IRB140 y EPSON T3-401S 
 
-## 2. Descripción de las configuraciones home del EPSON T3-401S. 
+## 2. Descripción de las configuraciones Home del EPSON T3-401S. 
+
+Durante la práctica de laboratorio con el robot SCARA EPSON T3-401S se identificaron dos configuraciones Home diferentes:
+
+1. Home 1 (predeterminado)
+
+En la configuración predeterminada del fabricante, las articulaciones se encuentran en la siguiente posición:
+
+<div align="center">
+
+| Articulación | Valor | Pulsos |
+| ------------ | ----- | ------ |
+| J1           | 0°    | 0      |
+| J2           | 0°    | 0      |
+| J3           | 0 mm  | 0      |
+| J4           | 0°    | 0      |
+
+</div>
+
+En esta condición, el primer eje rotacional (J1) orienta el robot hacia la dirección correspondiente al eje X del sistema de referencia utilizado por el fabricante.
+
+
+2. Home 2 (Laboratorio)
+
+Durante las prácticas de laboratorio se utiliza una configuración alternativa en la cual la articulación J1 se encuentra desplazada 90° respecto a la configuración original.
+
+Los valores observados son:
+
+<div align="center">
+
+| Articulación | Valor | Pulsos |
+| ------------ | ----- | ------ |
+| J1           | 90°   | 204800 |
+| J2           | 0°    | 0      |
+| J3           | 0 mm  | 0      |
+| J4           | 0°    | 0      |
+
+</div>
+
+Esta modificación orienta el robot hacia la dirección correspondiente al eje Y del sistema de trabajo.
+
 
 ## 3. Proceso para realizar movimientos manuales.
 
