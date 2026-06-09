@@ -41,7 +41,7 @@ En esta condición, el primer eje rotacional (J1) orienta el robot hacia la dire
 ### 2.2. Home 2 (Laboratorio)
 
 <div align="center">
-<img src="Imágenes/Home 2.jpeg" style="border-radius: 50%; width: 400px;">
+<img src="Imágenes/Home 2.jpeg" style="border-radius: 50%; width: 380px;">
 </div>
 
 Durante las prácticas de laboratorio se utiliza una configuración alternativa en la cual la articulación J1 se encuentra desplazada 90° respecto a la configuración original.
