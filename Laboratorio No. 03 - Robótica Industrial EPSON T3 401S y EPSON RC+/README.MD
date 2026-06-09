@@ -80,6 +80,93 @@ En la celda de trabajo del laboratorio, la orientación hacia el eje Y permite q
 
 ## 10. Código desarrollado en EPSON RC+ 7.0. 
 
+Con el fin de implementar la aplicación de pick and place con el robot, se desarrolló una rutina de paletizado para manipular dos huevos ubicados inicialmente en posiciones opuestas de una cubeta de 30 cavidades (6×5), trasladándolos de forma alternada a través de todas las posiciones disponibles. Como restricción del problema, cada desplazamiento debía realizarse siguiendo exclusivamente el patrón de movimiento de un caballo en un tablero de ajedrez. 
+El código completo se presenta [aquí](./Código EPSON RC+ 7.0.MD) y consta de las siguientes secciones: 
+
+### 10.1 Inicialización del sistema
+
+El programa principal habilita los servomotores del robot y configura las condiciones de movimiento.
+
+```python
+Motor On
+Power High
+Accel 100, 100
+Speed 100
+```
+
+Luego, el robot ejecuta de forma continua una secuencia en la que va a la posición Home, hace la ejecución de la rutina de paletizado y regresa nuevamente a Home.
+
+```python
+Do
+    Home
+    Call Palletized
+    Home
+Loop
+```
+
+### 10.2 Función de paletizado
+
+La distribución de posiciones dentro de la cubeta de huevos se definió mediante la instrucción:
+
+```python
+Pallet 1, Origin, PointX, PointY, 6, 5
+```
+
+Esta función genera automáticamente una matriz de paletizado de 6 columnas y 5 filas, equivalente a las 30 posiciones disponibles en la cubeta.
+
+Para definir dicha matriz se utilizaron tres puntos enseñados previamente al robot:
+
+* **Origin:** posición correspondiente a una de las esquinas de referencia de la cubeta.
+* **PointX:** punto utilizado para definir el límite y dirección de la cubeta en el eje X.
+* **PointY:** punto utilizado para definir el límite y dirección de la cubeta en el eje Y.
+
+A partir de estos tres puntos, el controlador calcula automáticamente las posiciones intermedias de la matriz, generando las 30 ubicaciones donde posteriormente se desplazan los huevos durante la simulación.
+
+### 10.3 Definición de las secuencias de recorrido
+
+El programa utiliza dos arreglos denominados **Verde** y **Rosa**.
+
+```python
+Integer Verde(30)
+Integer Rosa(30)
+```
+
+Estos nombres fueron asignados debido a que durante el planteamiento del laboratorio los huevos fueron identificados por colores diferentes: un huevo verde y un huevo rosa.
+
+Cada arreglo contiene una secuencia específica de posiciones dentro de la matriz de paletizado. Estas secuencias determinan el orden en que cada huevo debe visitar las distintas ubicaciones de la cubeta. A diferencia de un recorrido secuencial convencional, las posiciones fueron organizadas siguiendo el patrón inspirado en el movimiento de un caballo sobre un tablero de ajedrez.
+
+De esta manera, ambos huevos recorren progresivamente las diferentes ubicaciones de la cubeta siguiendo trayectorias previamente definidas.
+
+### 10.4 Alternancia entre los huevos
+
+La rutina principal se ejecuta mediante un ciclo que recorre las posiciones almacenadas en ambos arreglos.
+
+```python
+For i = 1 To 29
+```
+
+Durante cada iteración, el robot realiza movimientos asociados al huevo verde y posteriormente movimientos asociados al huevo rosa.
+
+```python
+Jump Pallet(1, Verde(i))
+Off DO_09
+
+Jump Pallet(1, Verde(i + 1))
+On DO_09
+
+Jump Pallet(1, Rosa(i))
+Off DO_09
+
+Jump Pallet(1, Rosa(i + 1))
+On DO_09
+```
+
+La instrucción **Jump** permite al robot desplazarse rápidamente entre las posiciones calculadas por la matriz de paletizado.
+
+La salida digital **DO_09** se emplea para controlar la herramienta de manipulación del robot, la cual consiste en una ventosa utilizada para sujetar los huevos. Esta herramienta opera con lógica negada, por lo que el estado de la salida se interpreta de manera inversa al funcionamiento convencional. En consecuencia, las instrucciones `On DO_09` y `Off DO_09` permiten activar o desactivar el vacío necesario para tomar o liberar los huevos durante el recorrido programado.
+
+La alternancia entre las secuencias Verde y Rosa permite observar simultáneamente el comportamiento de ambos huevos dentro de la cubeta, verificando que cada uno siga la trayectoria definida y visite las posiciones correspondientes.
+
 ## Video de simulación en EPSON RC+ 7.0.
 
 ## Gracias 
