@@ -16,7 +16,11 @@
 
 Durante la práctica de laboratorio con el robot SCARA EPSON T3-401S se identificaron dos configuraciones Home diferentes:
 
-1. Home 1 (predeterminado)
+### 2.1. Home 1 (predeterminado)
+
+<div align="center">
+<img src="Imágenes/Home 1.jpeg" style="border-radius: 50%; width: 450px;">
+</div>
 
 En la configuración predeterminada del fabricante, las articulaciones se encuentran en la siguiente posición:
 
@@ -34,7 +38,11 @@ En la configuración predeterminada del fabricante, las articulaciones se encuen
 En esta condición, el primer eje rotacional (J1) orienta el robot hacia la dirección correspondiente al eje X del sistema de referencia utilizado por el fabricante.
 
 
-2. Home 2 (Laboratorio)
+### 2.2. Home 2 (Laboratorio)
+
+<div align="center">
+<img src="Imágenes/Home 2.jpeg" style="border-radius: 50%; width: 450px;">
+</div>
 
 Durante las prácticas de laboratorio se utiliza una configuración alternativa en la cual la articulación J1 se encuentra desplazada 90° respecto a la configuración original.
 
