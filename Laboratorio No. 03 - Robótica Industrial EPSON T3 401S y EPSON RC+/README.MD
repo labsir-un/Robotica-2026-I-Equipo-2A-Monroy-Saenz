@@ -60,7 +60,9 @@ Los valores observados son:
 </div>
 
 Esta modificación orienta el robot hacia la dirección correspondiente al eje Y del sistema de trabajo.
+La principal razón para utilizar una configuración Home con J1 = 90° es la adaptación del robot al entorno físico donde opera.
 
+En la celda de trabajo del laboratorio, la orientación hacia el eje Y permite que el volumen de trabajo útil quede mejor alineado con la disposición de la mesa y de los elementos de manipulación. De esta manera, el robot inicia su operación apuntando directamente hacia la zona donde se realizan la mayoría de las tareas. Es importante destacar que la modificación del Home 2 no altera los límites mecánicos reales del robot. El robot conserva la misma capacidad física de movimiento, ya que únicamente se modifica el punto de referencia desde el cual se miden las posiciones articulares.
 
 ## 3. Proceso para realizar movimientos manuales.
 
