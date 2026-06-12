@@ -11,7 +11,24 @@
 </div>
 
 ## 1. Cuadro Comparativo: Motoman MH6, IRB140 y EPSON T3-401S 
-
+| Característica Técnica | Motoman MH6 | ABB IRB 140 | Epson T3-401S |
+|------------------------|-------------|-------------|---------------|
+| Carga Máxima (Payload) | 6 kg | 6 kg | 3 kg |
+| Alcance Horizontal | 1422 mm | 800 mm | 400 mm |
+| Alcance Vertical | 2486 mm | 810 mm | 150 mm (eje Z) |
+| Grados de Libertad | 6 ejes (8 con articulaciones extras del laboratorio) | 6 ejes | 4 ejes (SCARA) |
+| Repetibilidad | ±0.08 mm | ±0.03 mm | ±0.02 mm |
+| Velocidad Máxima (Eje 1) | 220°/s | 200°/s | ±132° de rango, velocidad no especificada por eje |
+| Velocidad Máxima (Eje 2) | 200°/s | 200°/s | ±141° de rango, velocidad no especificada por eje |
+| Velocidad Máxima (Eje 3) | 220°/s | 260°/s | 1000 mm/s |
+| Velocidad Máxima (Eje 4) | 410°/s | 360°/s | 2600°/s |
+| Velocidad Máxima (Eje 5) | 410°/s | 360°/s | No aplica |
+| Velocidad Máxima (Eje 6) | 610°/s | 450°/s | No aplica |
+| Masa del Manipulador | 130 kg | 98 kg | 16 kg |
+| Montaje | Suelo, pared, techo | Suelo, invertido, pared (cualquier ángulo) | Mesa (Tabletop) |
+| Controlador | DX100 | IRC5 | Integrado en el manipulador |
+| Protección Estándar | No especificado explícitamente | IP67 (toda la unidad) | CE, EMC, Machinery Directive, RoHS |
+| Aplicaciones Típicas | Ensamble, soldadura (arco/punto), empaque, corte, manipulación de materiales | Manufactura, fundición, sala blanca, pegado, soldadura, carga/descarga | Ensamble, pick-and-place, manipulación de materiales, empaque, palletizado, inspección y pruebas |
 ## 2. Descripción de las configuraciones Home del EPSON T3-401S. 
 
 Durante la práctica de laboratorio con el robot SCARA EPSON T3-401S se identificaron dos configuraciones Home diferentes:
