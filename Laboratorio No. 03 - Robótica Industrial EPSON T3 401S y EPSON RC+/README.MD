@@ -185,5 +185,5 @@ La salida digital **DO_09** se emplea para controlar la herramienta de manipulac
 La alternancia entre las secuencias Verde y Rosa permite observar simultáneamente el comportamiento de ambos huevos dentro de la cubeta, verificando que cada uno siga la trayectoria definida y visite las posiciones correspondientes.
 
 ## Video de simulación en EPSON RC+ 7.0.
-
+A continuación se presenta el link del video de youtube donde se encuentra el video: [Video resultado final Laboratorio 2](https://youtu.be/6_o-GGpcaL4)
 ## Gracias 
