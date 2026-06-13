@@ -107,6 +107,9 @@ Dentro de la ventana `Jog & Teach`, en la opción `Mode`, seleccionar el sistema
 
 ### 3.3 Configuración de la distancia de desplazamiento
 
+<div align="center">
+<img src="Imágenes/Modos.png" style="border-radius: 50%; width: 400px;">
+</div> 
 En la sección `Jog Distance` se puede seleccionar:
 
 | Opción | Descripción |
