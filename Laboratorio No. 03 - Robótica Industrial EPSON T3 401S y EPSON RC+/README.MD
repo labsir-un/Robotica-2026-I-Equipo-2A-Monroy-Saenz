@@ -93,9 +93,6 @@ En la celda de trabajo del laboratorio, la orientación hacia el eje Y permite q
 2. Acceder a la ventana `Jog & Teach`.
 3. Verificar que el robot se encuentre habilitado para realizar movimientos manuales.
 
-Fuente:
-- EPSON RC700-A TP3 Teach Pendant Manual Rev.13, pp. 57–60.
-
 ### 3.2 Selección del modo de operación
 
 Dentro de la ventana `Jog & Teach`, en la opción `Mode`, seleccionar el sistema de coordenadas deseado:
@@ -107,9 +104,6 @@ Dentro de la ventana `Jog & Teach`, en la opción `Mode`, seleccionar el sistema
 | Tool | Movimiento cartesiano respecto al sistema de coordenadas de la herramienta. |
 | Local | Movimiento cartesiano respecto al sistema de coordenadas local. |
 | ECP | Movimiento respecto al punto central efectivo de la herramienta. |
-
-Fuente:
-- EPSON RC700-A TP3 Teach Pendant Manual Rev.13, pp. 57–60.
 
 ### 3.3 Configuración de la distancia de desplazamiento
 
