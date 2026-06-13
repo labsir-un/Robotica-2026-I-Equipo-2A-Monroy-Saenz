@@ -119,8 +119,7 @@ En la sección `Jog Distance` se puede seleccionar:
 | Medium | Movimiento incremental medio. |
 | Short | Movimiento incremental pequeño. |
 
-Fuente:
-- EPSON RC700-A TP3 Teach Pendant Manual Rev.13, pp. 57–60.
+Cuando los robots no estan en modo "Continuous", las articulaciones se mueven de a pasos ( indicado en donde dice jog Distance). La diferencia entre short, medium y long, es que la distancia entre pasos puede ser mayor según el modo.
 
 ### 3.4 Movimiento en modo articulaciones (Joint)
 
