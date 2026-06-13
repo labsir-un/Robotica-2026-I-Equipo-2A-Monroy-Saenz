@@ -26,7 +26,7 @@
 | Velocidad Máxima (Eje 6) | 610°/s | 450°/s | No aplica |
 | Masa del Manipulador | 130 kg | 98 kg | 16 kg |
 | Montaje | Suelo, pared, techo | Suelo, invertido, pared (cualquier ángulo) | Mesa (Tabletop) |
-| Controlador | DX100 | IRC5 | Integrado en el manipulador |
+| Controlador | DX100 | IRC5 | RC90B |
 | Protección Estándar | No especificado explícitamente | IP67 (toda la unidad) | CE Mark, EMC directive, Machinery directive, RoHS directive , ANSI/RIA R15.06-2021, NFPA 79 (Edición 2007) |
 | Aplicaciones Típicas | Ensamble, soldadura (arco/punto), empaque, corte, manipulación de materiales | Manufactura, fundición, sala blanca, pegado, soldadura, carga/descarga | Ensamble, pick-and-place, manipulación de materiales, empaque, palletizado, inspección y pruebas |
 ## 2. Descripción de las configuraciones Home del EPSON T3-401S. 
