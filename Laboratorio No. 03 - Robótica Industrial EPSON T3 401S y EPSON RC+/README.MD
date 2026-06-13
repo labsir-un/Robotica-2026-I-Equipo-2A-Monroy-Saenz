@@ -83,6 +83,92 @@ En la celda de trabajo del laboratorio, la orientación hacia el eje Y permite q
 
 ## 3. Proceso para realizar movimientos manuales.
 
+### 3.1 Cambio al modo de enseñanza
+
+1. Colocar el selector del Teach Pendant TP3 en modo `TEACH/T1`.
+2. Acceder a la ventana `Jog & Teach`.
+3. Verificar que el robot se encuentre habilitado para realizar movimientos manuales.
+
+Fuente:
+- EPSON RC700-A TP3 Teach Pendant Manual Rev.13, pp. 57–60.
+
+### 3.2 Selección del modo de operación
+
+Dentro de la ventana `Jog & Teach`, en la opción `Mode`, seleccionar el sistema de coordenadas deseado:
+
+| Modo | Descripción |
+|--------|-------------|
+| Joint | Movimiento individual de las articulaciones J1, J2, J3 y J4. |
+| World | Movimiento cartesiano respecto al sistema de coordenadas global. |
+| Tool | Movimiento cartesiano respecto al sistema de coordenadas de la herramienta. |
+| Local | Movimiento cartesiano respecto al sistema de coordenadas local. |
+| ECP | Movimiento respecto al punto central efectivo de la herramienta. |
+
+Fuente:
+- EPSON RC700-A TP3 Teach Pendant Manual Rev.13, pp. 57–60.
+
+### 3.3 Configuración de la distancia de desplazamiento
+
+En la sección `Jog Distance` se puede seleccionar:
+
+| Opción | Descripción |
+|---------|-------------|
+| Continuous | El robot se mueve mientras se mantenga presionado el botón de desplazamiento. |
+| Long | Movimiento incremental grande. |
+| Medium | Movimiento incremental medio. |
+| Short | Movimiento incremental pequeño. |
+
+Fuente:
+- EPSON RC700-A TP3 Teach Pendant Manual Rev.13, pp. 57–60.
+
+### 3.4 Movimiento en modo articulaciones (Joint)
+
+Cuando se selecciona el modo `Joint`, cada control de desplazamiento actúa sobre una articulación específica:
+
+| Control | Articulación |
+|----------|-------------|
+| J1 | Primera articulación |
+| J2 | Segunda articulación |
+| J3 | Eje vertical |
+| J4 | Rotación final |
+
+Procedimiento:
+
+1. Mantener presionado el interruptor de habilitación (Enable Switch).
+2. Pulsar la tecla correspondiente a la articulación que se desea mover.
+3. Observar el desplazamiento y detener el movimiento soltando la tecla.
+
+### 3.5 Movimiento en modo cartesiano
+
+Cuando se selecciona cualquiera de los modos cartesianos (World, Tool, Local o ECP), los controles permiten desplazamientos sobre los ejes cartesianos.
+
+Para robots SCARA de 4 grados de libertad como el T3-401S:
+
+| Control | Movimiento |
+|----------|------------|
+| J1 | Traslación en X |
+| J2 | Traslación en Y |
+| J3 | Traslación en Z |
+| J4 | Rotación alrededor del eje Z |
+
+Procedimiento:
+
+1. Seleccionar uno de los modos cartesianos.
+2. Mantener presionado el interruptor de habilitación.
+3. Utilizar las teclas de desplazamiento para mover el robot en la dirección requerida.
+4. Verificar visualmente la trayectoria antes de continuar.
+
+### 3.6 Registro de posiciones
+
+Para almacenar una posición enseñada:
+
+1. Situar el robot en la posición deseada.
+2. En la ventana `Jog & Teach`, seleccionar el archivo de puntos (`Point File`).
+3. Seleccionar el número de punto (`Point`).
+4. Pulsar `Teach`.
+5. Guardar los cambios mediante la opción `Save`.
+
+
 ## 4. Explicación sobre los niveles de velocidad. 
 
 ## 5. Descripción funcionalidades de EPSON RC+ 7.0, 
