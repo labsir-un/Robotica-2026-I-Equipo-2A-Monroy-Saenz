@@ -85,6 +85,10 @@ En la celda de trabajo del laboratorio, la orientación hacia el eje Y permite q
 
 ### 3.1 Cambio al modo de enseñanza
 
+<div align="center">
+<img src="Imágenes/teach_pendant.jpeg" style="border-radius: 50%; width: 380px;">
+</div>
+
 1. Colocar el selector del Teach Pendant TP3 en modo `TEACH/T1`.
 2. Acceder a la ventana `Jog & Teach`.
 3. Verificar que el robot se encuentre habilitado para realizar movimientos manuales.
