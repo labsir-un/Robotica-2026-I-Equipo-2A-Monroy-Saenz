@@ -172,6 +172,25 @@ Para almacenar una posición enseñada:
 ## 4. Explicación sobre los niveles de velocidad. 
 
 ## 5. Descripción funcionalidades de EPSON RC+ 7.0, 
+## 5.1 Descripción de las principales funcionalidades de EPSON RC+ 7.0
+
+EPSON RC+ 7.0 es el entorno de desarrollo y operación del robot. Incluye herramientas para seguridad, operación y configuración del sistema, uso de la interfaz gráfica de desarrollo, programación en SPEL+ y configuración de robot, entradas/salidas y comunicación.
+
+Entre sus funciones prácticas están abrir el Robot Manager, usar el Command Window, trabajar con la ventana Jog & Teach y ejecutar programas de control del robot. 
+
+## 5.2 Cómo se comunica con el manipulador
+
+Para la conexión inicial, primero debe instalarse EPSON RC+ 7.0 en el PC de desarrollo y después conectar el PC de desarrollo con el manipulador usando el cable USB. La documentación también contempla opciones de comunicación por Ethernet y el apartado de Remote Control. 
+
+La referencia oficial para detalles de comunicación PC-controlador es el manual “PC to Controller Communications Command”, y el sistema se organiza alrededor de la relación entre PC de desarrollo, controlador y manipulador. 
+
+## 5.3 Qué procesos realiza para ejecutar movimientos
+
+El flujo básico para mover el robot desde RC+ 7.0 es iniciar el software, crear o abrir un proyecto, abrir el Robot Manager, encender los motores con MOTOR ON y luego mover el manipulador desde la pestaña Jog & Teach. En el ejemplo del manual, se selecciona el modo Joint y se usan las teclas J1 a J4 para el jog manual. 
+
+Cuando el movimiento se hace por comandos, el manual muestra que primero se ejecuta `Motor On` y después un comando de movimiento como `Go Pulse(0,0,0,0)`. La referencia de SPEL+ confirma que para mover el robot la potencia de motor debe estar encendida, y que `Motor On` ajusta varios parámetros del control del robot a sus valores por defecto. 
+
+En cuanto a la ejecución de trayectorias, `Move` traslada el brazo con interpolación lineal y velocidad constante del TCP, mientras que `Go` hace un movimiento PTP y desacelera antes de llegar al destino final. Esto permite elegir entre trayectorias rectas o desplazamientos punto a punto según la tarea.
 
 ## 6. Comparación entre EPSON RC+ 7.0, RoboDK y RobotStudio. 
 
