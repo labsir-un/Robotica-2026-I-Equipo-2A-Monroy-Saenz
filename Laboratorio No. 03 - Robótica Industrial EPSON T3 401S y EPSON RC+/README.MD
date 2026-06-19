@@ -169,7 +169,48 @@ Para almacenar una posición enseñada:
 5. Guardar los cambios mediante la opción `Save`.
 
 
-## 4. Explicación sobre los niveles de velocidad. 
+## 4. Explicación sobre los niveles de velocidad.
+
+### 4.1 Configuración de velocidad y potencia en EPSON RC+ 7.0
+
+En el software EPSON RC+ 7.0 el comportamiento del robot puede ajustarse mediante dos parámetros principales ubicados en diferentes secciones de la interfaz:
+
+1. Velocidad: se configura desde la pestaña **Jog & Teach**.
+2. Potencia (Power): se configura desde **Panel de control**.
+
+Aunque ambos parámetros afectan la operación del robot, cumplen funciones distintas. La velocidad controla qué tan rápido se desplaza el robot, mientras que la potencia determina la fuerza o torque disponible en los motores.
+
+### 4.2 Niveles de velocidad para movimientos manuales
+
+Durante la operación manual (*Jog*), la velocidad de desplazamiento se ajusta mediante el parámetro Speed, permitiendo adaptar el movimiento según la tarea realizada.
+
+| Parámetro            | Rango       |
+| -------------------- | ----------- |
+| Speed                | 1 % – 100 % |
+| Valor predeterminado | 5 %         |
+
+Se distinguen dos niveles generales:
+
+- Velocidad Baja: limita el valor de Speed, generando movimientos lentos y precisos para enseñanza y calibración.
+- Velocidad Alta: permite valores superiores de Speed, logrando desplazamientos más rápidos.
+
+La velocidad se ajusta en forma porcentual de 0 a 100.
+
+**[Insertar imagen – Velocidad Alta / Velocidad Baja]**
+
+
+### 4.3 Configuración del nivel de potencia (Power)
+
+El parámetro Power modifica la capacidad de esfuerzo del robot y no altera la velocidad programada.
+
+Según el manual del EPSON T3-401S, se dispone de dos niveles:
+
+- Power LOW: reduce la potencia entregada por los motores y limita la fuerza aplicada.
+- Power HIGH: habilita la potencia completa del sistema.
+
+Este ajuste permite adaptar el desempeño del robot dependiendo de las exigencias mecánicas de la tarea.
+
+**[Insertar imagen – Power HIGH / Power LOW]**
 
 ## 5. Descripción funcionalidades de EPSON RC+ 7.0, 
 ## 5.1 Descripción de las principales funcionalidades de EPSON RC+ 7.0
@@ -224,7 +265,9 @@ flowchart TD
 ## 10. Código desarrollado en EPSON RC+ 7.0. 
 
 Con el fin de implementar la aplicación de pick and place con el robot, se desarrolló una rutina de paletizado para manipular dos huevos ubicados inicialmente en posiciones opuestas de una cubeta de 30 cavidades (6×5), trasladándolos de forma alternada a través de todas las posiciones disponibles. Como restricción del problema, cada desplazamiento debía realizarse siguiendo exclusivamente el patrón de movimiento de un caballo en un tablero de ajedrez. 
-El código completo se presenta [aquí](./Código EPSON RC+ 7.0.MD) y consta de las siguientes secciones: 
+El código completo se presenta 
+[aquí](./Código EPSON RC+ 7.0.MD)
+y consta de las siguientes secciones: 
 
 ### 10.1 Inicialización del sistema
 
