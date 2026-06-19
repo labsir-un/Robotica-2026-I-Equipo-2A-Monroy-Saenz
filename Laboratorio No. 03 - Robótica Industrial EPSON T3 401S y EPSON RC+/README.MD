@@ -336,7 +336,13 @@ Integer Rosa(30)
 
 Estos nombres fueron asignados debido a que durante el planteamiento del laboratorio los huevos fueron identificados por colores diferentes: un huevo verde y un huevo rosa.
 
-Cada arreglo contiene una secuencia específica de posiciones dentro de la matriz de paletizado. Estas secuencias determinan el orden en que cada huevo debe visitar las distintas ubicaciones de la cubeta. A diferencia de un recorrido secuencial convencional, las posiciones fueron organizadas siguiendo el patrón inspirado en el movimiento de un caballo sobre un tablero de ajedrez.
+Cada arreglo contiene una secuencia específica de posiciones dentro de la matriz de paletizado. Estas secuencias determinan el orden en que cada huevo debe visitar las distintas ubicaciones de la cubeta. La secuencia fue definida con el siguiente orden: 
+
+<div align="center">
+<img src="Imágenes/Tablero.jpeg" style="border-radius: 50%; width: 400px;">
+</div> 
+
+A diferencia de un recorrido secuencial convencional, las posiciones fueron organizadas siguiendo el patrón inspirado en el movimiento de un caballo sobre un tablero de ajedrez.
 
 De esta manera, ambos huevos recorren progresivamente las diferentes ubicaciones de la cubeta siguiendo trayectorias previamente definidas.
 
