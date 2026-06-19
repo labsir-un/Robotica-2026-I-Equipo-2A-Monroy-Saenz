@@ -235,8 +235,6 @@ En cuanto a la ejecución de trayectorias, `Move` traslada el brazo con interpol
 
 ## 6. Comparación entre EPSON RC+ 7.0, RoboDK y RobotStudio. 
 
-## 6. Comparación entre RoboDK, EPSON RC+ y RobotStudio
-
 | Aspecto                      | RoboDK                                                                                                                     | EPSON RC+                                                                                                                      | RobotStudio                                                                                       |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | **Desarrollador**            | RoboDK                                                                                                                     | Epson Robots                                                                                                                   | ABB RobotStudio                                                                                   |
