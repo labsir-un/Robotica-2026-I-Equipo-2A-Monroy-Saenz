@@ -185,6 +185,7 @@ Luego, en RoboDK, se selecciona la opción Conectar a un robot, donde se introdu
 </div>
 <br>
 RoboDK no envía directamente un código de Python al robot. En su lugar, utiliza postprocesadores, cuya función es traducir el programa generado en RoboDK al lenguaje específico que entiende el controlador del robot. Esta es la razón por la cual RoboDK es compatible con distintos modelos y marcas de robots industriales.
+
 ## 6. Comparación entre RoboDK y RobotStudio. 
 
 <div align="center">
