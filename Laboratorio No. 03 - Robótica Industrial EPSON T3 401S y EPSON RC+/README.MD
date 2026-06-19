@@ -266,9 +266,7 @@ flowchart TD
 
 Con el fin de implementar la aplicación de pick and place con el robot, se desarrolló una rutina de paletizado para manipular dos huevos ubicados inicialmente en posiciones opuestas de una cubeta de 30 cavidades (6×5), trasladándolos de forma alternada a través de todas las posiciones disponibles. Como restricción del problema, cada desplazamiento debía realizarse siguiendo exclusivamente el patrón de movimiento de un caballo en un tablero de ajedrez. 
 El código completo se presenta aquí: 
-
-[Ver código](./Codigo_RBDK.MD)
-[aquí](./Código EPSON RC+ 7.0.MD) 
+[Ver código](./Codigo_EPSON.MD)
 
 ### 10.1 Inicialización del sistema
 
