@@ -205,15 +205,15 @@ flowchart TD
     D --> E[AE o SDR vende un paquete empresarial]
     E --> F[Crear arreglo huevo1 y arreglo huevo2]
     F --> G[Llenar valores de los arreglos]
-    G --> H[i = 1]
+    G --> H["i = 1"]
 
-    H --> I{i < 30?}
+    H --> I{"i < 30?"}
 
-    I -- Sí --> J[Ir a posición huevo1(i)]
-    J --> K[Ir a posición huevo1(i+1)]
-    K --> L[Ir a posición huevo2(i)]
-    L --> M[Ir a posición huevo2(i+1)]
-    M --> N[i = i + 1]
+    I -- Sí --> J["Ir a posición huevo1[i]"]
+    J --> K["Ir a posición huevo1[i+1]"]
+    K --> L["Ir a posición huevo2[i]"]
+    L --> M["Ir a posición huevo2[i+1]"]
+    M --> N["i = i + 1"]
 
     N --> I
 
