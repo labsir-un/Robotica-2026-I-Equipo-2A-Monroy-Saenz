@@ -11,6 +11,7 @@
 </div>
 
 ## 1. Cuadro Comparativo: Motoman MH6, IRB140 y EPSON T3-401S 
+
 | Característica Técnica | Motoman MH6 | ABB IRB 140 | Epson T3-401S |
 |------------------------|-------------|-------------|---------------|
 | Carga Máxima (Payload) | 6 kg | 6 kg | 3 kg |
@@ -29,6 +30,7 @@
 | Controlador | DX100 | IRC5 | RC90B |
 | Protección Estándar | No especificado explícitamente | IP67 (toda la unidad) | CE Mark, EMC directive, Machinery directive, RoHS directive , ANSI/RIA R15.06-2021, NFPA 79 (Edición 2007) |
 | Aplicaciones Típicas | Ensamble, soldadura (arco/punto), empaque, corte, manipulación de materiales | Manufactura, fundición, sala blanca, pegado, soldadura, carga/descarga | Ensamble, pick-and-place, manipulación de materiales, empaque, palletizado, inspección y pruebas |
+
 ## 2. Descripción de las configuraciones Home del EPSON T3-401S. 
 
 Durante la práctica de laboratorio con el robot SCARA EPSON T3-401S se identificaron dos configuraciones Home diferentes:
