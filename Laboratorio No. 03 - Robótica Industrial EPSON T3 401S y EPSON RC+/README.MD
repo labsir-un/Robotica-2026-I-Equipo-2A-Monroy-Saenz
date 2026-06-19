@@ -280,6 +280,10 @@ flowchart TD
 ```
 ## 9. Plano de planta montaje. 
 
+<div align="center">
+<img src="Imágenes/Plano Cubeta_page-0001.jpg" style="border-radius: 50%; width: 850px;">
+</div>
+
 ## 10. Código desarrollado en EPSON RC+ 7.0. 
 
 Con el fin de implementar la aplicación de pick and place con el robot, se desarrolló una rutina de paletizado para manipular dos huevos ubicados inicialmente en posiciones opuestas de una cubeta de 30 cavidades (6×5), trasladándolos de forma alternada a través de todas las posiciones disponibles. Como restricción del problema, cada desplazamiento debía realizarse siguiendo exclusivamente el patrón de movimiento de un caballo en un tablero de ajedrez. 
