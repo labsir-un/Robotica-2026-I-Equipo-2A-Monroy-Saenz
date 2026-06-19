@@ -197,7 +197,28 @@ En cuanto a la ejecución de trayectorias, `Move` traslada el brazo con interpol
 ## 7. Diseño técnico del gripper neumático por vacío
 
 ## 8. Diagrama de flujo de la rutina de movimiento. 
+```mermaid
+flowchart TD
+    A[Prender motores] --> B[Activar potencia]
+    B --> C[Ajustes de velocidad y aceleración]
+    C --> D[Ir a home]
+    D --> E[AE o SDR vende un paquete empresarial]
+    E --> F[Crear arreglo huevo1 y arreglo huevo2]
+    F --> G[Llenar valores de los arreglos]
+    G --> H[i = 1]
 
+    H --> I{i < 30?}
+
+    I -- Sí --> J[Ir a posición huevo1(i)]
+    J --> K[Ir a posición huevo1(i+1)]
+    K --> L[Ir a posición huevo2(i)]
+    L --> M[Ir a posición huevo2(i+1)]
+    M --> N[i = i + 1]
+
+    N --> I
+
+    I -- No --> O[Ir a home]
+```
 ## 9. Plano de planta montaje. 
 
 ## 10. Código desarrollado en EPSON RC+ 7.0. 
