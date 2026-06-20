@@ -260,13 +260,13 @@ En cuanto a la ejecución de trayectorias, `Move` traslada el brazo con interpol
 
 Para implementar un sistema de manipulación mediante vacío en el robot **Epson T3-401S**, es necesario incorporar varios componentes neumáticos que permitan generar, controlar y supervisar el vacío requerido para sujetar las piezas.
 
-## 7.1 Ventosa de vacío
+### 7.1 Ventosa de vacío
 <div align="center">
 <img src="Imágenes/hq720.jpg" style="border-radius: 50%; width: 400px;">
 </div> 
 La ventosa es el elemento encargado de entrar en contacto con la pieza y generar la fuerza de sujeción mediante vacío. La selección de la ventosa depende del material, la geometría, el peso y la superficie del objeto a manipular.
 
-## 7.2 Generador de vacío
+### 7.2 Generador de vacío
 
 El generador de vacío produce la diferencia de presión necesaria para que la ventosa pueda adherirse a la pieza. Este vacío puede obtenerse mediante:
 
@@ -275,19 +275,19 @@ El generador de vacío produce la diferencia de presión necesaria para que la v
 
 La elección del sistema depende de la velocidad de operación, el consumo energético y los requerimientos de la aplicación.
 
-## 7.3 Válvula solenoide
+### 7.3 Válvula solenoide
 
 La válvula solenoide permite controlar el flujo de aire hacia el generador de vacío. Su activación y desactivación pueden realizarse mediante las salidas digitales del controlador del robot, permitiendo tomar y liberar las piezas de manera automática.
 
-## 7.4 Filtro de vacío
+### 7.4 Filtro de vacío
 
 El filtro protege el sistema neumático evitando la entrada de polvo o partículas que puedan afectar el rendimiento de la ventosa o dañar los componentes del sistema.
 
-## 7.5 Mangueras y conexiones
+### 7.5 Mangueras y conexiones
 
 Las mangueras neumáticas transportan el aire entre los diferentes componentes del sistema. Las conexiones deben garantizar un sellado adecuado para evitar fugas que disminuyan la eficiencia del vacío.
 
-## 7.7 Funcionamiento del sistema
+### 7.7 Funcionamiento del sistema
 
 El funcionamiento general del sistema neumático se desarrolla de la siguiente manera:
 
