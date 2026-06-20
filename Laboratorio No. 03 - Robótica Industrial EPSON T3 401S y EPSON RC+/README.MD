@@ -198,8 +198,9 @@ Se distinguen dos niveles generales:
 
 La velocidad se ajusta en forma porcentual de 0 a 100.
 
-**[Insertar imagen – Velocidad Alta / Velocidad Baja]**
-
+<div align="center">
+<img src="Imágenes/Velocidad .png" style="border-radius: 50%; width: 400px;">
+</div> 
 
 ### 4.3 Configuración del nivel de potencia (Power)
 
@@ -212,7 +213,9 @@ Según el manual del EPSON T3-401S, se dispone de dos niveles:
 
 Este ajuste permite adaptar el desempeño del robot dependiendo de las exigencias mecánicas de la tarea.
 
-**[Insertar imagen – Power HIGH / Power LOW]**
+<div align="center">
+<img src="Imágenes/Potencia.png" style="border-radius: 50%; width: 400px;">
+</div> 
 
 ## 5. Descripción funcionalidades de EPSON RC+ 7.0, 
 ### 5.1 Descripción de las principales funcionalidades de EPSON RC+ 7.0
