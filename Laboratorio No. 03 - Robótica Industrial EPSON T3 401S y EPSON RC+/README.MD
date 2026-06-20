@@ -257,7 +257,6 @@ En cuanto a la ejecución de trayectorias, `Move` traslada el brazo con interpol
 
 
 ## 7. Diseño técnico del gripper neumático por vacío
-# 7. Sistema neumático para la ventosa
 
 Para implementar un sistema de manipulación mediante vacío en el robot **Epson T3-401S**, es necesario incorporar varios componentes neumáticos que permitan generar, controlar y supervisar el vacío requerido para sujetar las piezas.
 
