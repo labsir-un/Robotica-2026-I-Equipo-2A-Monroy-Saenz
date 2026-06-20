@@ -259,7 +259,9 @@ En cuanto a la ejecución de trayectorias, `Move` traslada el brazo con interpol
 Para implementar un sistema de manipulación mediante vacío en el robot **Epson T3-401S**, es necesario incorporar varios componentes neumáticos que permitan generar, controlar y supervisar el vacío requerido para sujetar las piezas.
 
 ## 7.1 Ventosa de vacío
-
+<div align="center">
+<img src="Imágenes/hq720.jpg" style="border-radius: 50%; width: 400px;">
+</div> 
 La ventosa es el elemento encargado de entrar en contacto con la pieza y generar la fuerza de sujeción mediante vacío. La selección de la ventosa depende del material, la geometría, el peso y la superficie del objeto a manipular.
 
 ## 7.2 Generador de vacío
