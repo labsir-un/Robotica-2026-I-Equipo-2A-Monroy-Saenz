@@ -44,6 +44,63 @@ flowchart TD
 ```
 ### 1.3 Código fuente 
 
+El control manual de la tortuga se implementó mediante el nodo TurtleController, desarrollado sobre la clase Node de la librería rclpy. El nodo crea un publicador asociado al tópico /turtle1/cmd_vel, a través del cual se envían los comandos de velocidad lineal y angular utilizando mensajes de tipo geometry_msgs/Twist.
+
+Para capturar la interacción del usuario se empleó la librería curses, que permite leer el teclado en modo no bloqueante. Cada pulsación de una tecla de dirección invoca el método move(), encargado de construir un mensaje Twist, asignar las velocidades correspondientes y publicarlo en el tópico de control. De esta forma, las flechas ↑ y ↓ producen el avance y retroceso de la tortuga, mientras que las flechas ← y → generan los giros sobre su eje.
+
+Desde el punto de vista de ROS 2, el nodo hereda de rclpy.node.Node y utiliza self.create_publisher(Twist, '/turtle1/cmd_vel', 10) para declarar el publicador del tópico de velocidad. Para cada tecla presionada se construye un nuevo mensaje Twist, el cual se envía de manera asíncrona mediante publish(). Internamente, ROS 2 utiliza el middleware DDS para transportar estos mensajes hasta el nodo turtlesim, donde son interpretados para actualizar el movimiento de la tortuga en tiempo real.
+
+```python 
+
+class TurtleController(Node):
+
+    def __init__(self):
+        super().__init__('turtle_controller')
+
+        self.pub = self.create_publisher(
+            Twist,
+            '/turtle1/cmd_vel',
+            10
+        )
+
+        self.lin = 2.0
+        self.ang = 3.5
+
+    def move(self, l, a):
+        msg = Twist()
+        msg.linear.x = l
+        msg.angular.z = a
+        self.pub.publish(msg)
+
+    def stop(self):
+        self.move(0.0, 0.0)
+
+
+def keyboard_loop(stdscr, node):
+    curses.curs_set(0)
+    stdscr.nodelay(True)
+
+    while rclpy.ok():
+        key = stdscr.getch()
+
+        if key == curses.KEY_UP:
+            node.move(node.lin, 0.0)
+
+        elif key == curses.KEY_DOWN:
+            node.move(-node.lin, 0.0)
+
+        elif key == curses.KEY_LEFT:
+            node.move(0.0, node.ang)
+
+        elif key == curses.KEY_RIGHT:
+            node.move(0.0, -node.ang)
+
+        elif key == ord('q'):
+            node.stop()
+
+        time.sleep(0.02)
+```
+
 ### 1.4 Evidencia (video)
 
 ## 2. Acciones complementarias y trayectorias automáticas
