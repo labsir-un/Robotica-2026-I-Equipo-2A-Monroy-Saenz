@@ -26,7 +26,21 @@ La lectura del teclado se ejecuta de manera continua dentro de un ciclo while en
 
 ```mermaid
 flowchart TD
-A --> B
+    A([Inicio nodo TurtleController])
+    B[Hilo de teclado: keyboard_loop]
+    C{Lectura de tecla}
+    D[Avanzar o retroceder]
+    E[Girar izquierda o derecha]
+    F[Publicar Twist en /turtle1/cmd_vel]
+    G[Mover tortuga]
+
+    A --> B
+    B --> C
+    C -->|↑ o ↓| D
+    C -->|← o →| E
+    D --> F
+    E --> F
+    F --> G
 ```
 
 ### 1.3 Código fuente 
