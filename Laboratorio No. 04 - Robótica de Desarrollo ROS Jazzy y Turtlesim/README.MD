@@ -428,6 +428,88 @@ flowchart TD
 
 ### 4.3 Código fuente 
 
+El sistema líder-seguidor se implementó utilizando dos tortugas dentro del entorno turtlesim. La segunda tortuga se crea dinámicamente mediante el servicio /spawn y, una vez disponible, ejecuta de forma continua un algoritmo de seguimiento encargado de aproximarla a la posición de la tortuga líder. Para evitar interferir con el control manual de la primera tortuga, el algoritmo de seguimiento se ejecuta en un hilo independiente, lo que permite mantener simultáneamente la interacción del usuario y el procesamiento del controlador.
+
+El seguimiento se realiza mediante un controlador proporcional en lazo cerrado basado en la posición relativa entre ambas tortugas. En cada iteración se calcula la distancia euclidiana y el ángulo que une la posición de la tortuga seguidora con la del líder. Posteriormente, se determina el error de orientación y se generan velocidades lineales y angulares proporcionales a la distancia y al error angular, respectivamente. Estas velocidades se encapsulan en un mensaje Twist y se publican continuamente sobre el tópico de control de la segunda tortuga, permitiendo que esta corrija de forma progresiva su trayectoria hasta mantenerse siguiendo al líder.
+
+Desde el punto de vista de ROS 2, esta implementación demuestra la capacidad de un mismo nodo de rclpy para gestionar múltiples interfaces de comunicación de manera simultánea. Además del publicador y la suscripción utilizados para controlar turtle1, se crea un segundo publicador (self.pub2) asociado al tópico /turtle2/cmd_vel y una segunda suscripción (self.pose2_sub) al tópico /turtle2/pose. De esta manera, un único proceso de ROS 2 es capaz de controlar y monitorear ambas tortugas de forma concurrente, aprovechando el modelo de comunicación distribuida proporcionado por rclpy.
+
+```python
+
+class TurtleController(Node):
+
+    def __init__(self):
+        super().__init__('turtle_controller')
+
+        self.pub2 = self.create_publisher(
+            Twist,
+            '/turtle2/cmd_vel',
+            10
+        )
+
+        self.pose2_sub = self.create_subscription(
+            Pose,
+            '/turtle2/pose',
+            self.pose_callback2,
+            10
+        )
+
+    def pose_callback2(self, msg):
+        self.x2 = msg.x
+        self.y2 = msg.y
+        self.theta2 = msg.theta
+
+    def spawn_turtle2(self):
+        while not self.spawn_client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Esperando servicio spawn...')
+
+        req = Spawn.Request()
+        req.x = 1.0
+        req.y = 1.0
+        req.theta = 0.0
+        req.name = 'turtle2'
+
+        self.spawn_client.call_async(req)
+
+    def follower_loop(self):
+        while rclpy.ok():
+            self.follow_turtle1()
+            time.sleep(0.05)
+
+    def follow_turtle1(self):
+        dx = self.x - self.x2
+        dy = self.y - self.y2
+
+        distance = math.sqrt(dx**2 + dy**2)
+
+        target_angle = math.atan2(dy, dx)
+        error_angle = target_angle - self.theta2
+        error_angle = math.atan2(
+            math.sin(error_angle),
+            math.cos(error_angle)
+        )
+
+        msg = Twist()
+        msg.linear.x = 2.0 * distance
+        msg.angular.z = 4.0 * error_angle
+
+        self.pub2.publish(msg)
+
+```
+
+La activación del sistema líder-seguidor se realiza desde keyboard_loop(), donde la tecla N crea la segunda tortuga y lanza el hilo encargado de ejecutar continuamente el algoritmo de seguimiento.
+
+```python
+
+elif key == ord('n'):
+    node.spawn_turtle2()
+    threading.Thread(
+        target=node.follower_loop,
+        daemon=True
+    ).start()
+
+```
+
 ### 4.4 Evidencia (video)
 
 ## 5. Verificación de la arquitectura de ROS 2
