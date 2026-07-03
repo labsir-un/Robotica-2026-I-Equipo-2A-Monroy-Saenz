@@ -302,6 +302,79 @@ flowchart TD
 
 ### 3.3 Código fuente 
 
+El dibujo automático de las iniciales del equipo se implementó mediante métodos independientes para cada letra (A, J, M, S y D), manteniendo una estructura modular que facilita la organización del código y la incorporación de nuevas trayectorias. Todas las funciones siguen una misma estrategia: antes de iniciar el trazado, la tortuga se orienta hacia una dirección inicial específica y, posteriormente, ejecuta una secuencia de desplazamientos lineales y giros que reproducen la geometría de la letra correspondiente.
+
+La orientación inicial se realiza mediante la función go_to_angle(), la cual implementa un controlador proporcional en lazo cerrado para el control de la orientación. En cada iteración se calcula el error entre el ángulo deseado y la orientación actual de la tortuga, normalizando dicho error al intervalo [−π,π] para garantizar que la corrección se efectúe siguiendo la trayectoria angular más corta. A partir de este error se genera una velocidad angular proporcional, repitiendo el proceso hasta alcanzar una orientación con un error inferior a 0.01 rad. Una vez alineada la tortuga, el resto del trazado se realiza mediante secuencias de movimientos lineales y giros temporizados utilizando la función move().
+
+Desde el punto de vista de ROS 2, la función go_to_angle() depende directamente del mecanismo de retroalimentación proporcionado por rclpy. La variable self.theta, utilizada para calcular el error de orientación, se actualiza continuamente mediante la suscripción creada con self.create_subscription(Pose, '/turtle1/pose', self.pose_callback1, 10). Gracias a esta información recibida en tiempo real, el controlador proporcional puede comparar continuamente la orientación actual con la referencia deseada y corregir el movimiento hasta converger al ángulo objetivo antes de iniciar el dibujo de cada letra.
+
+```python
+
+def go_to_angle(self, target):
+    kp = 3.0
+
+    while rclpy.ok():
+        error = target - self.theta
+        error = math.atan2(math.sin(error), math.cos(error))
+
+        if abs(error) < 0.01:
+            break
+
+        self.move(0.0, kp * error)
+        time.sleep(0.02)
+
+    self.stop()
+
+
+def A(self):
+    self.go_to_angle(math.pi / 2)
+
+    self.move(2.0, 0.0)
+    time.sleep(1.2)
+
+    self.move(0.0, -self.ang)
+    time.sleep((math.pi / 4) / self.ang)
+
+    self.move(2.0, 0.0)
+    time.sleep(0.8)
+
+    self.stop()
+
+
+def D(self):
+    self.go_to_angle(math.pi / 2)
+
+    self.move(2.0, 0.0)
+    time.sleep(1.2)
+
+    self.move(1.0, self.ang)
+    time.sleep(math.pi / self.ang)
+
+    self.stop()
+
+```
+
+El dibujo de cada letra se activa desde keyboard_loop() mediante la creación de un hilo independiente, evitando bloquear el procesamiento de nuevas entradas del teclado y la comunicación con ROS 2.
+
+```python
+
+elif key == ord('a'):
+    threading.Thread(target=node.A).start()
+
+elif key == ord('j'):
+    threading.Thread(target=node.J).start()
+
+elif key == ord('m'):
+    threading.Thread(target=node.M).start()
+
+elif key == ord('s'):
+    threading.Thread(target=node.S).start()
+
+elif key == ord('d'):
+    threading.Thread(target=node.D).start()
+
+```
+
 ### 3.4 Evidencia (video)
 
 ## 4. Sistema líder-seguidor con dos tortugas 
