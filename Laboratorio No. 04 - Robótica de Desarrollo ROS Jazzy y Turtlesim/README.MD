@@ -168,6 +168,41 @@ A diferencia de un seguimiento basado únicamente en trayectorias predefinidas, 
 
 ### 4.2 Diagrama de flujo 
 
+```mermaid
+flowchart TD
+
+    A["Tecla N"]
+    B["spawn_turtle2<br/>Servicio /spawn"]
+    C["Hilo daemon<br/>follower_loop"]
+
+    D["Suscripción<br/>/turtle1/pose<br/>self.x, self.y, self.theta"]
+    E["Suscripción<br/>/turtle2/pose<br/>self.x2, self.y2, self.theta2"]
+
+    F["follow_turtle1<br/>Calcula dx, dy y<br/>distancia"]
+
+    G["Calcula ángulo objetivo<br/>y error angular"]
+
+    H["Control proporcional<br/>v = K·distancia<br/>ω = K·error"]
+
+    I["Publica Twist<br/>en /turtle2/cmd_vel"]
+
+    J["turtle2 sigue<br/>a turtle1"]
+
+    A --> B
+    B --> C
+
+    C --> D
+    C --> E
+
+    D --> F
+    E --> F
+
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+```
+
 ### 4.3 Código fuente 
 
 ### 4.4 Evidencia (video)
