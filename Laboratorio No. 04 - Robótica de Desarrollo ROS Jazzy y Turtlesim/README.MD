@@ -175,6 +175,99 @@ flowchart TD
 
 ### 2.3 Código fuente 
 
+Las acciones complementarias fueron implementadas como métodos independientes de la clase TurtleController, lo que permite mantener una estructura modular y facilita la incorporación de nuevas funcionalidades. Las trayectorias automáticas, como el dibujo de figuras geométricas y el movimiento autónomo, se ejecutan en hilos independientes mediante la biblioteca threading, evitando bloquear la lectura del teclado y la comunicación con ROS 2.
+
+Las figuras geométricas se generan alternando movimientos lineales y giros controlados. En el caso del cuadrado, cada lado se recorre mediante un desplazamiento rectilíneo seguido de un giro de 90°, mientras que para el triángulo equilátero se realizan giros de 120°. Por otra parte, la función auto() implementa un comportamiento reactivo basado en la posición actual de la tortuga: cuando esta se aproxima a los límites del entorno de simulación, realiza un giro correctivo antes de continuar su recorrido, incorporando además una variación sinusoidal en la velocidad angular para evitar trayectorias repetitivas.
+
+Desde el punto de vista de ROS 2, las funciones reset() y toggle_pen() hacen uso del patrón cliente-servicio proporcionado por rclpy. Para ello, se crean clientes mediante self.create_client() asociados a los servicios TeleportAbsolute y SetPen, respectivamente. Antes de realizar una petición, el programa verifica que el servicio se encuentre disponible utilizando wait_for_service(). Posteriormente, la solicitud se envía de manera asíncrona mediante call_async(req), permitiendo que el nodo continúe ejecutando otras tareas mientras el servicio procesa la petición.
+
+```python
+
+def reset(self):
+    while not self.reset_client.wait_for_service(timeout_sec=1.0):
+        self.get_logger().info('Esperando servicio reset...')
+    req = TeleportAbsolute.Request()
+    req.x = 5.5
+    req.y = 5.5
+    req.theta = 0.0
+    self.reset_client.call_async(req)
+
+
+def toggle_pen(self):
+    while not self.pen_client.wait_for_service(timeout_sec=1.0):
+        self.get_logger().info('Esperando servicio set_pen...')
+    self.pen_on = not self.pen_on
+    req = SetPen.Request()
+    req.r = 255
+    req.g = 255
+    req.b = 255
+    req.width = 3
+    req.off = 0 if self.pen_on else 1
+    self.pen_client.call_async(req)
+
+
+def square(self):
+    for _ in range(4):
+        self.move(2.0, 0.0)
+        time.sleep(1.0)
+        self.move(0.0, self.ang)
+        time.sleep((math.pi / 2) / self.ang)
+    self.stop()
+
+
+def triangle(self):
+    for _ in range(3):
+        self.move(2.0, 0.0)
+        time.sleep(1.0)
+        self.move(0.0, self.ang)
+        time.sleep((2 * math.pi / 3) / self.ang)
+    self.stop()
+
+
+def auto(self):
+    self.auto_running = True
+    i = 0.0
+
+    while self.auto_running:
+        if (
+            self.x < 0.5 or self.x > 10.5 or
+            self.y < 0.5 or self.y > 10.5
+        ):
+            self.stop()
+            self.move(0.0, self.ang)
+            time.sleep(math.pi / self.ang)
+
+        self.move(2.0, math.sin(i))
+        i += 0.1
+        time.sleep(0.05)
+
+```
+
+Como complemento, el manejo de las teclas que activan estas funcionalidades se realiza desde keyboard_loop():
+
+```pyhton 
+
+elif key == ord('c'):
+    threading.Thread(target=node.square).start()
+
+elif key == ord('t'):
+    threading.Thread(target=node.triangle).start()
+
+elif key == ord('r'):
+    node.reset()
+
+elif key == ord('p'):
+    node.toggle_pen()
+
+elif key == ord('k'):
+    threading.Thread(target=node.auto).start()
+
+elif key == ord('q'):
+    node.auto_running = False
+    node.stop()
+
+```
+
 ### 2.4 Evidencia (video)
 
 ## 3. Dibujo automático de letras personalizadas 
