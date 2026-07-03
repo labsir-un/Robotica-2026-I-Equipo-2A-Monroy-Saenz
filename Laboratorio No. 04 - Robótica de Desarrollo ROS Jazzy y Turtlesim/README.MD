@@ -247,7 +247,6 @@ Como complemento, el manejo de las teclas que activan estas funcionalidades se r
 
 
 ```python
-
 elif key == ord('c'):
     threading.Thread(target=node.square).start()
 
