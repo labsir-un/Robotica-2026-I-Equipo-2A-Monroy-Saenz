@@ -26,14 +26,13 @@ La lectura del teclado se ejecuta de manera continua dentro de un ciclo while en
 
 ```mermaid
 flowchart TD
-
     A([Inicio nodo TurtleController])
     --> B[Hilo curses: keyboard_loop()]
 
-    B --> C{Lectura tecla}
+    B --> C{Lectura de tecla}
 
-    C -->|↑ o ↓| D[move(lin, 0)]
-    C -->|← o →| E[move(0, ang)]
+    C -->|Flecha ↑ o ↓| D[move(lin, 0)]
+    C -->|Flecha ← o →| E[move(0, ang)]
 
     D --> F[Publica Twist en /turtle1/cmd_vel]
     E --> F
