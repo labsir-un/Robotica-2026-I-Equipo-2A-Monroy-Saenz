@@ -97,6 +97,17 @@ flowchart TD
 
     I --> L
 
+    M{"¿x o y cerca<br/>del borde?<br/>0.5 / 10.5"}
+
+    L --> M
+
+    N["Sí:<br/>stop + gira<br/>evita el borde"]
+    O["No / después de girar:<br/>move(2.0, sin(i))<br/>i = i + 1"]
+
+    M -->|Sí| N
+    M -->|No| O
+
+
 ```
 
 ### 2.3 Código fuente 
