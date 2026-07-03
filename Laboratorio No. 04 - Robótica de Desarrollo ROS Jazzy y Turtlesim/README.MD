@@ -107,6 +107,12 @@ flowchart TD
     M -->|Sí| N
     M -->|No| O
 
+    P["Regresa al inicio del while<br/>hasta que Q pone<br/>auto_running = False"]
+
+    N --> P
+    O --> P
+
+    P -.-> L
 
 ```
 
