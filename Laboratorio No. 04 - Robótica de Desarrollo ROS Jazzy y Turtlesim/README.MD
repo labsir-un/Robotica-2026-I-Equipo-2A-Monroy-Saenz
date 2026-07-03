@@ -24,6 +24,32 @@ La lectura del teclado se ejecuta de manera continua dentro de un ciclo while en
 
 ### 1.2 Diagrama de flujo 
 
+```mermaid
+flowchart TD
+
+    A([Inicio nodo<br>TurtleController])
+
+    B[Hilo curses:<br>keyboard_loop()]
+
+    C{Lectura tecla<br>(stdscr.getch())}
+
+    D[Flecha ↑ / ↓<br>move(lin, 0)]
+
+    E[Flecha ← / →<br>move(0, ang)]
+
+    F[Publica Twist<br>en /turtle1/cmd_vel]
+
+    G[Turtlesim mueve<br>la tortuga]
+
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    D --> F
+    E --> F
+    F --> G
+```
+
 ### 1.3 Código fuente 
 
 ### 1.4 Evidencia (video)
