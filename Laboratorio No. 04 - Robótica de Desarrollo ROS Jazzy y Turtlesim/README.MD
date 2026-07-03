@@ -245,7 +245,9 @@ def auto(self):
 
 Como complemento, el manejo de las teclas que activan estas funcionalidades se realiza desde keyboard_loop():
 
-```pyhton 
+
+```python
+
 elif key == ord('c'):
     threading.Thread(target=node.square).start()
 
