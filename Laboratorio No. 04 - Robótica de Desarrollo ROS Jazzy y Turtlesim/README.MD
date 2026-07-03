@@ -62,6 +62,59 @@ Por su parte, la función auto() implementa un comportamiento reactivo basado en
 
 ### 2.2 Diagrama de flujo 
 
+```mermaid
+flowchart TD
+
+    A["Lectura tecla<br/>keyboard_loop"]
+
+    B["C / T<br/>square / triangle"]
+    C["R / P<br/>reset / toggle_pen"]
+    D["Q<br/>stop"]
+    E["K<br/>auto_running = True<br/>auto"]
+
+    A --> B
+    A --> C
+    A --> D
+    A --> E
+
+    F["threading.Thread<br/>sin revisión de borde"]
+    G["Llamada directa<br/>Servicio ROS 2<br/>teleport_absolute / set_pen"]
+    H["Llamada directa<br/>move(0,0)"]
+    I["threading.Thread<br/>auto"]
+
+    B --> F
+    C --> G
+    D --> H
+    E --> I
+
+    J["Secuencia fija de<br/>move + sleep<br/>por cada lado/giro"]
+    F --> J
+
+    K["stop<br/>Figura completa"]
+    J --> K
+
+    L["while rclpy.ok and<br/>auto_running"]
+
+    I --> L
+
+    M{"¿x o y cerca<br/>del borde?<br/>0.5 / 10.5"}
+
+    L --> M
+
+    N["Sí:<br/>stop + gira<br/>evita el borde"]
+    O["No / después de girar:<br/>move(2.0, sin(i))<br/>i = i + 1"]
+
+    M -->|Sí| N
+    M -->|No| O
+
+    P["Regresa al inicio del while<br/>hasta que Q pone<br/>auto_running = False"]
+
+    N --> P
+    O --> P
+
+    P -.-> L
+```
+
 ### 2.3 Código fuente 
 
 ### 2.4 Evidencia (video)
