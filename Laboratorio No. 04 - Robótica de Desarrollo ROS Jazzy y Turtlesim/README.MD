@@ -132,6 +132,23 @@ Una vez alcanzada la orientación inicial, cada letra se construye mediante una 
 
 ### 3.2 Diagrama de flujo 
 
+```mermaid
+flowchart TD
+
+    A["Lectura tecla<br/>A, J, M, S, D"]
+    B["threading.Thread<br/>letra"]
+    C["go_to_angle target<br/>Orienta la tortuga"]
+    D["Secuencia de<br/>move + sleep<br/>por cada trazo"]
+    E["stop<br/>al finalizar cada trazo"]
+    F["Letra dibujada<br/>en turtlesim"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+```
+
 ### 3.3 Código fuente 
 
 ### 3.4 Evidencia (video)
