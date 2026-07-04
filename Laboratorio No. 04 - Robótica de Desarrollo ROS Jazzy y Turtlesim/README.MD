@@ -702,5 +702,11 @@ Se comprueba la disponibilidad de los servicios utilizados durante el desarrollo
 
 Estas figuras permiten verificar la arquitectura de comunicación implementada durante el laboratorio. En ellas se observa que el nodo `turtle_controller` publica mensajes de velocidad en los tópicos `/turtle1/cmd_vel` y `/turtle2/cmd_vel`, mientras que el nodo `turtlesim` se suscribe a dichos tópicos para controlar el movimiento de ambas tortugas. De manera complementaria, `turtlesim` publica continuamente la información de estado en los tópicos `/turtle1/pose` y `/turtle2/pose`, los cuales son utilizados por `turtle_controller` como retroalimentación para implementar el control de orientación durante el trazado de letras y el algoritmo líder-seguidor. Esta representación confirma el uso del modelo publicador–suscriptor de ROS 2 y evidencia cómo un mismo nodo puede gestionar múltiples publicadores y suscriptores de forma simultánea.
 
+## 6. Código completo laboratorio 4
+
+El código fuente completo correspondiente a la implementación desarrollada en este laboratorio se encuentra disponible en el archivo [move_turtle.MD](move_turtle.MD).
+
+## 7. Video explicativo 
+
 
 ## Gracias 
