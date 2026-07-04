@@ -50,13 +50,11 @@ A continuación se muestra el fragmento real, extraído tal cual del archivo mov
 
 ```python 
 
-self.pub = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)#publisher tortuga 1
-
+self.pub = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
 self.lin = 2.0
 self.ang = 3.5
 
 def move(self, l=0.0, a=0.0):
-    #es importante considerar que las unidades de la velocidad angular son rad/segundos
     msg = Twist()
     msg.linear.x = l
     msg.angular.z = a
@@ -64,7 +62,6 @@ def move(self, l=0.0, a=0.0):
 
 def stop(self):
     self.move(0.0, 0.0)
-
 
 def keyboard_loop(stdscr, node: TurtleController):
 
@@ -80,7 +77,6 @@ def keyboard_loop(stdscr, node: TurtleController):
         if (key != ord('k') and key != -1):
             node.auto_running = False
 
-        # Flechas
         if key == curses.KEY_UP:
             node.move(node.lin, 0.0)
 
@@ -93,7 +89,6 @@ def keyboard_loop(stdscr, node: TurtleController):
         elif key == curses.KEY_RIGHT:
             node.move(0.0, -node.ang)
 
-        # letras
         elif key == ord('q'):
             node.stop()
         ...
@@ -203,7 +198,6 @@ A continuación se presentan los fragmentos reales, extraídos tal cual del arch
 def reset(self):
     if not self.teleport.wait_for_service(timeout_sec=1.0):
         return
-
     req = TeleportAbsolute.Request()
     req.x = 5.5
     req.y = 5.5
@@ -213,78 +207,54 @@ def reset(self):
 def toggle_pen(self):
     if not self.pen.wait_for_service(timeout_sec=1.0):
         return
-
     self.pen_on = not self.pen_on
-
     req = SetPen.Request()
     req.r = 255
     req.g = 255
     req.b = 255
     req.width = 3
     req.off = 0 if self.pen_on else 1
-
     self.pen.call_async(req)
 
 def square(self):
     side_time = 2.0   # tiempo en el que dibuja el cuadrado
 
     for _ in range(4):
-        # self.move es una funciòn que se define arriba, utiliza Twist y ahì se le modifican las cosas
-        # avanzar recto
         self.move(2.0, 0.0)
         time.sleep(side_time)
-
         self.stop()
         time.sleep( 0.2)
-
-        # giro 90°
         self.move(0.0, 2.0)  
-        time.sleep(math.pi/(2*2)) # aqui estoy dividiendo el angulo deseado por su respectiva velocidad
-
+        time.sleep(math.pi/(2*2))
         self.stop()
         time.sleep(0.2)
-
         self.stop()
 
 def triangle(self):
     side_time = 2.0 
     for _ in range(3):
-        # Se mueve linealmente
         self.move(2.0, 0.0)
         time.sleep(side_time)
-        # Para
         self.stop()
         time.sleep(0.2)
-        # gira 120 grados,que es 2pi/3 radianes
         self.move(0.0, self.ang)
         time.sleep(2*math.pi/(3*self.ang))
-        # Para
         self.stop()
         time.sleep(0.2)
         self.stop()
 
 def auto(self):
-
     i = 0
-
     while rclpy.ok() and self.auto_running:
-
-        # Si está cerca del borde → detener y girar
         if (self.x <= 0.5 or self.x >= 10.5 or
             self.y <= 0.5 or self.y >= 10.5):
-
             self.stop()
             self.move(0.0, self.ang)
             time.sleep(math.pi / self.ang)
             self.stop()
-
-        # movimiento continuo
         self.move(2.0, math.sin(i))
         time.sleep(0.4)
-
         i += 1
-
-
     self.stop()
 
 ```
@@ -372,60 +342,44 @@ A continuación se presentan los fragmentos reales, extraídos tal cual del arch
 ```python
 
 def go_to_angle(self, target):
-    kp = 2.0  # ganancia de control
+    kp = 2.0 
     
     while rclpy.ok():
         error = target - self.theta
-
-        # normalizar error a [-pi, pi]
         error = math.atan2(math.sin(error), math.cos(error))
 
         if abs(error) < 0.01:
-            self.stop()  # detiene el while si el error es menor al que aparece aqui
+            self.stop()
             break
-
-        self.move(0.0, kp * error) # segun el error que tanto se mueve
+        self.move(0.0, kp * error)
         time.sleep(0.01)
 
     self.stop()
 
 def A(self):
     self.go_to_angle(2*math.pi/3)
-    # lado izquierdo
     self.move(2.0, 0.0)
     time.sleep(1.5)
     self.stop()
     time.sleep(0.2)
-
     self.move(0.0, self.ang)
     time.sleep((2*math.pi/3) / self.ang)
-
-    # lado derecho
     self.move(2.0, 0.0)
     time.sleep(1.5)
     self.stop()
     time.sleep(0.2)
-
-    # subir barra horizontal
     self.move(0.0, self.ang)
     time.sleep((math.pi)/self.ang)
-    
     self.stop()
     time.sleep(0.2)
-    
     self.move(2.0, 0.0)
     time.sleep(1.5/4)
-    
     self.stop()
-    time.sleep(0.2)
-
-    
+    time.sleep(0.2)    
     self.move(0.0, -self.ang)
     time.sleep((math.pi/3) / self.ang)
-
     self.stop()
     time.sleep(0.2)
-    
     self.move(2.0, 0.0)
     time.sleep(0.6)
     self.stop()
@@ -436,20 +390,14 @@ def D(self):
     time.sleep(2.0)
     self.stop()
     time.sleep(0.2)
-
     self.move(0.0, -self.ang)
     time.sleep((math.pi/2)/self.ang)
-
     self.stop()
     time.sleep(0.2)
-
     self.move((math.pi)/((math.pi)/self.ang), -self.ang)
     time.sleep((math.pi)/self.ang)
-
     self.stop()
     time.sleep(0.2)
-    
-
     self.stop()
 ```
 
