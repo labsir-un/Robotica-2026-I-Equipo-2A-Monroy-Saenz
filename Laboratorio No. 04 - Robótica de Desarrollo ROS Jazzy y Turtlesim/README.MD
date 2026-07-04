@@ -685,7 +685,7 @@ Se comprueba la disponibilidad de los servicios utilizados durante el desarrollo
 ### 5.6 `rqt_graph`
 
 <p align="center">
-  <img src="Imágenes/diag1.jpeg" alt="Diagrama ROS 2 1" width="750"/>
+  <img src="Imágenes/diag1.jpeg" alt="Diagrama ROS 2 1" width="600"/>
 </p>
 
 <p align="center">
