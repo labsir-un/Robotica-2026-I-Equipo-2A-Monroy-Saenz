@@ -717,7 +717,7 @@ Estas figuras permiten verificar la arquitectura de comunicación implementada d
 
 El código fuente completo correspondiente a la implementación desarrollada en este laboratorio se encuentra disponible en el archivo [move_turtle.MD](move_turtle.MD).
 
-## 7. Video explicativo 
+## 7. Video final
 
-
+A continuación se presenta el link del video de youtube donde se encuentra el video: [Video resultado final Laboratorio 4](https://youtu.be/abyeA3-l3go)
 ## Gracias 
