@@ -101,7 +101,26 @@ def keyboard_loop(stdscr, node):
         time.sleep(0.02)
 ```
 
-### 1.4 Evidencia (video)
+### 1.4 Evidencia
+
+A continuación se presentan evidencias del funcionamiento del control manual implementado. La primera imagen corresponde a la interfaz de control mediante teclado y la segunda muestra el desplazamiento libre de la tortuga en el entorno de simulación.
+
+<p align="center">
+  <img src="Imágenes/Control.jpeg" alt="Control manual" width="600"/>
+</p>
+
+<p align="center">
+<b>Figura 1.</b> Interfaz de control manual mediante teclado.
+</p>
+
+<p align="center">
+  <img src="Imágenes/Mov libre.jpeg" alt="Movimiento libre" width="500"/>
+</p>
+
+<p align="center">
+<b>Figura 2.</b> Movimiento libre de la tortuga utilizando las teclas de dirección.
+</p>
+
 
 ## 2. Acciones complementarias y trayectorias automáticas
 
