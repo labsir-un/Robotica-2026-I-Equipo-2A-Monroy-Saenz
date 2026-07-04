@@ -517,4 +517,53 @@ elif key == ord('n'):
 
 ## 5. Verificación de la arquitectura de ROS 2
 
+Con el fin de verificar el funcionamiento de la arquitectura de comunicación implementada durante el laboratorio, se emplearon diversas herramientas de línea de comandos de ROS 2. Estas permiten inspeccionar los nodos, tópicos, servicios y conexiones existentes entre el nodo desarrollado (`turtle_controller`) y el simulador `turtlesim`, validando el modelo de comunicación basado en publicadores, suscriptores y servicios.
+
+La siguiente tabla resume los comandos utilizados y la información que aporta cada uno para el análisis de la arquitectura del sistema.
+
+| Comando | Información verificada |
+|:---------|:-----------------------|
+| `ros2 node list` | Muestra los nodos activos del sistema, entre ellos `/turtle_controller` (nodo desarrollado) y `/turtlesim` (simulador), evidenciando que el control y la simulación se ejecutan como procesos independientes que se comunican mediante el middleware DDS de ROS 2. |
+| `ros2 topic list` | Lista los tópicos disponibles, incluyendo `/turtle1/cmd_vel`, `/turtle2/cmd_vel`, `/turtle1/pose` y `/turtle2/pose`, confirmando la existencia de los canales de comunicación utilizados por el nodo para el envío y recepción de información. |
+| `ros2 topic echo /turtle1/pose` | Visualiza en tiempo real los mensajes de tipo `Pose` publicados por `turtlesim`, mostrando variables como `x`, `y`, `theta`, `linear_velocity` y `angular_velocity`, las cuales son utilizadas por el nodo para actualizar continuamente el estado de la tortuga. |
+| `ros2 topic info /turtle1/cmd_vel` | Permite verificar el tipo de mensaje asociado al tópico (`geometry_msgs/msg/Twist`), así como el número de publicadores y suscriptores conectados, confirmando la correcta comunicación entre `turtle_controller` y `turtlesim`. |
+| `ros2 service list` | Muestra los servicios disponibles en el sistema, entre ellos `/turtle1/teleport_absolute`, `/turtle1/set_pen`, `/clear` y `/spawn`, utilizados por las funciones `reset()`, `toggle_pen()`, `clear_screen()` y `spawn_turtle2()`, respectivamente. |
+| `rqt_graph` | Genera una representación gráfica de la arquitectura de ROS 2, permitiendo visualizar las conexiones entre `turtle_controller` y `turtlesim` mediante los tópicos `/turtle1/cmd_vel`, `/turtle2/cmd_vel`, `/turtle1/pose` y `/turtle2/pose`. |
+
+### 5.1 `ros2 node list`
+
+
+
+Se observa la presencia de los nodos `/turtle_controller` y `/turtlesim`, verificando que ambos se ejecutan como procesos independientes dentro del grafo de ROS 2.
+
+### 5.2 `ros2 topic list`
+
+
+
+Se identifican los tópicos utilizados para el intercambio de información entre ambos nodos, incluyendo los correspondientes al control y a la retroalimentación de las dos tortugas.
+
+### 5.3 `ros2 topic echo /turtle1/pose`
+
+
+
+La salida muestra la publicación continua de mensajes de tipo `Pose`, evidenciando la retroalimentación utilizada por el controlador para actualizar continuamente la posición y orientación de la tortuga.
+
+### 5.4 `ros2 topic info /turtle1/cmd_vel`
+
+
+
+Se verifica que el tópico utiliza mensajes `geometry_msgs/msg/Twist` y que existe un publicador (`turtle_controller`) y un suscriptor (`turtlesim`), validando el esquema publicador–suscriptor implementado.
+
+### 5.5 `ros2 service list`
+
+
+
+Se comprueba la disponibilidad de los servicios utilizados durante el desarrollo del laboratorio, como `/turtle1/teleport_absolute`, `/turtle1/set_pen`, `/clear` y `/spawn`, empleados para reiniciar la posición de la tortuga, controlar el lápiz, limpiar la pantalla y crear una segunda tortuga.
+
+### 5.6 `rqt_graph`
+
+
+La representación gráfica de ROS 2 permite visualizar la arquitectura de comunicación implementada, mostrando las conexiones entre `turtle_controller` y `turtlesim` mediante los tópicos de control (`/turtle1/cmd_vel` y `/turtle2/cmd_vel`) y los tópicos de retroalimentación (`/turtle1/pose` y `/turtle2/pose`). Asimismo, evidencia el uso simultáneo de los modelos de comunicación publicador–suscriptor y cliente–servicio empleados durante el laboratorio.
+
+
 ## Gracias 
