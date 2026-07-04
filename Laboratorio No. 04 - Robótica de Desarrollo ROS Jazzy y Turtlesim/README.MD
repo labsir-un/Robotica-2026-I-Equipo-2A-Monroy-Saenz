@@ -648,7 +648,7 @@ Se identifican los tópicos utilizados para el intercambio de información entre
 ### 5.3 `ros2 topic echo /turtle1/pose`
 
 <p align="center">
-  <img src="Imágenes/pose .jpeg" alt="topic echo pose" width="750"/>
+  <img src="Imágenes/pose .jpeg" alt="topic echo pose" width="500"/>
 </p>
 
 <p align="center">
@@ -682,14 +682,14 @@ Se verifica que el tópico utiliza mensajes `geometry_msgs/msg/Twist` y que exis
 
 Se comprueba la disponibilidad de los servicios utilizados durante el desarrollo del laboratorio, como `/turtle1/teleport_absolute`, `/turtle1/set_pen`, `/clear` y `/spawn`, empleados para reiniciar la posición de la tortuga, controlar el lápiz, limpiar la pantalla y crear una segunda tortuga.
 
-### 5.6 `rqt_graph
+### 5.6 `rqt_graph`
 
 <p align="center">
   <img src="Imágenes/diag1.jpeg" alt="Diagrama ROS 2 1" width="750"/>
 </p>
 
 <p align="center">
-<b>Figura 16.</b> Primera vista del grafo de comunicación generado por <code>rqt_graph</code>.
+<b>Figura 16.</b> Grafo de comunicación generado por <code>rqt_graph</code>, mostrando la relación entre los nodos <code>/turtle_controller</code> y <code>/turtlesim</code>, así como los tópicos asociados a <code>turtle1</code> y <code>turtle2</code>.
 </p>
 
 <p align="center">
@@ -697,11 +697,10 @@ Se comprueba la disponibilidad de los servicios utilizados durante el desarrollo
 </p>
 
 <p align="center">
-<b>Figura 17.</b> Segunda vista del grafo de comunicación generado por <code>rqt_graph</code>.
+<b>Figura 17.</b> Vista simplificada del grafo de comunicación, donde se observan los tópicos utilizados para el intercambio de mensajes entre <code>/turtle_controller</code> y <code>/turtlesim</code>.
 </p>
 
-
-La representación gráfica de ROS 2 permite visualizar la arquitectura de comunicación implementada, mostrando las conexiones entre `turtle_controller` y `turtlesim` mediante los tópicos de control (`/turtle1/cmd_vel` y `/turtle2/cmd_vel`) y los tópicos de retroalimentación (`/turtle1/pose` y `/turtle2/pose`). Asimismo, evidencia el uso simultáneo de los modelos de comunicación publicador–suscriptor y cliente–servicio empleados durante el laboratorio.
+Estas figuras permiten verificar la arquitectura de comunicación implementada durante el laboratorio. En ellas se observa que el nodo `turtle_controller` publica mensajes de velocidad en los tópicos `/turtle1/cmd_vel` y `/turtle2/cmd_vel`, mientras que el nodo `turtlesim` se suscribe a dichos tópicos para controlar el movimiento de ambas tortugas. De manera complementaria, `turtlesim` publica continuamente la información de estado en los tópicos `/turtle1/pose` y `/turtle2/pose`, los cuales son utilizados por `turtle_controller` como retroalimentación para implementar el control de orientación durante el trazado de letras y el algoritmo líder-seguidor. Esta representación confirma el uso del modelo publicador–suscriptor de ROS 2 y evidencia cómo un mismo nodo puede gestionar múltiples publicadores y suscriptores de forma simultánea.
 
 
 ## Gracias 
