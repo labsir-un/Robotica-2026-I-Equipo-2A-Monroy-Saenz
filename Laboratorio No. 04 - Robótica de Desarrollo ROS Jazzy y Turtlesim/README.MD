@@ -44,45 +44,43 @@ flowchart TD
 ```
 ### 1.3 Código fuente 
 
-El control manual de la tortuga se implementó mediante el nodo TurtleController, desarrollado sobre la clase Node de la librería rclpy. El nodo crea un publicador asociado al tópico /turtle1/cmd_vel, a través del cual se envían los comandos de velocidad lineal y angular utilizando mensajes de tipo geometry_msgs/Twist.
+Desde el punto de vista de ROS 2, el nodo hereda de rclpy.node.Node y utiliza self.create_publisher(Twist, '/turtle1/cmd_vel', 10) para declarar el publicador del tópico de velocidad. Para cada tecla presionada se construye un nuevo mensaje Twist mediante el método move(), el cual se envía de manera asíncrona con publish(). Internamente, ROS 2 utiliza el middleware DDS para transportar estos mensajes hasta el nodo turtlesim, donde son interpretados para actualizar el movimiento de la tortuga en tiempo real.
 
-Para capturar la interacción del usuario se empleó la librería curses, que permite leer el teclado en modo no bloqueante. Cada pulsación de una tecla de dirección invoca el método move(), encargado de construir un mensaje Twist, asignar las velocidades correspondientes y publicarlo en el tópico de control. De esta forma, las flechas ↑ y ↓ producen el avance y retroceso de la tortuga, mientras que las flechas ← y → generan los giros sobre su eje.
-
-Desde el punto de vista de ROS 2, el nodo hereda de rclpy.node.Node y utiliza self.create_publisher(Twist, '/turtle1/cmd_vel', 10) para declarar el publicador del tópico de velocidad. Para cada tecla presionada se construye un nuevo mensaje Twist, el cual se envía de manera asíncrona mediante publish(). Internamente, ROS 2 utiliza el middleware DDS para transportar estos mensajes hasta el nodo turtlesim, donde son interpretados para actualizar el movimiento de la tortuga en tiempo real.
+A continuación se muestra el fragmento real, extraído tal cual del archivo move_turtle.MD, correspondiente a la creación del publicador, los métodos move()/stop() y la lectura de las flechas dentro de keyboard_loop():
 
 ```python 
 
-class TurtleController(Node):
+self.pub = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)#publisher tortuga 1
 
-    def __init__(self):
-        super().__init__('turtle_controller')
+self.lin = 2.0
+self.ang = 3.5
 
-        self.pub = self.create_publisher(
-            Twist,
-            '/turtle1/cmd_vel',
-            10
-        )
+def move(self, l=0.0, a=0.0):
+    #es importante considerar que las unidades de la velocidad angular son rad/segundos
+    msg = Twist()
+    msg.linear.x = l
+    msg.angular.z = a
+    self.pub.publish(msg)
 
-        self.lin = 2.0
-        self.ang = 3.5
-
-    def move(self, l, a):
-        msg = Twist()
-        msg.linear.x = l
-        msg.angular.z = a
-        self.pub.publish(msg)
-
-    def stop(self):
-        self.move(0.0, 0.0)
+def stop(self):
+    self.move(0.0, 0.0)
 
 
-def keyboard_loop(stdscr, node):
-    curses.curs_set(0)
+def keyboard_loop(stdscr, node: TurtleController):
+
     stdscr.nodelay(True)
+    stdscr.clear()
+    stdscr.addstr(0, 0, "Control tortuga ROS2")
+    stdscr.addstr(1, 0, "Flechas: mover | C cuadrado | T triángulo| B limpia pantalla| N crear una nueva turtuga")
+    stdscr.addstr(2, 0, "K auto | R reset | P pen | Q stop | X salir | Letras: A, D, J, S, M ")
 
-    while rclpy.ok():
+    while True:
         key = stdscr.getch()
+        
+        if (key != ord('k') and key != -1):
+            node.auto_running = False
 
+        # Flechas
         if key == curses.KEY_UP:
             node.move(node.lin, 0.0)
 
@@ -95,10 +93,12 @@ def keyboard_loop(stdscr, node):
         elif key == curses.KEY_RIGHT:
             node.move(0.0, -node.ang)
 
+        # letras
         elif key == ord('q'):
             node.stop()
+        ...
 
-        time.sleep(0.02)
+        time.sleep(0.05)
 ```
 
 ### 1.4 Evidencia
@@ -194,54 +194,74 @@ flowchart TD
 
 ### 2.3 Código fuente 
 
-Las acciones complementarias fueron implementadas como métodos independientes de la clase TurtleController, lo que permite mantener una estructura modular y facilita la incorporación de nuevas funcionalidades. Las trayectorias automáticas, como el dibujo de figuras geométricas y el movimiento autónomo, se ejecutan en hilos independientes mediante la biblioteca threading, evitando bloquear la lectura del teclado y la comunicación con ROS 2.
+Desde el punto de vista de ROS 2, las funciones reset() y toggle_pen() hacen uso del patrón cliente-servidor proporcionado por rclpy. Para ello, se crean clientes mediante self.create_client() asociados a los servicios TeleportAbsolute y SetPen (self.teleport y self.pen, respectivamente). Antes de realizar una petición, el programa verifica que el servicio se encuentre disponible utilizando wait_for_service(); si no lo está dentro del tiempo de espera, la función retorna sin bloquear el resto del programa. Cuando el servicio sí está disponible, la solicitud se envía de manera asíncrona mediante call_async(req).
 
-Las figuras geométricas se generan alternando movimientos lineales y giros controlados. En el caso del cuadrado, cada lado se recorre mediante un desplazamiento rectilíneo seguido de un giro de 90°, mientras que para el triángulo equilátero se realizan giros de 120°. Por otra parte, la función auto() implementa un comportamiento reactivo basado en la posición actual de la tortuga. Mientras la variable auto_running permanece activa, el algoritmo verifica continuamente la posición recibida desde el tópico /turtle1/pose. Si la tortuga se aproxima a alguno de los límites de la ventana de simulación, detiene temporalmente el movimiento, realiza un giro de aproximadamente 180° y reanuda su recorrido. En condiciones normales, la tortuga avanza con velocidad lineal constante, mientras que la velocidad angular varía de acuerdo con la función sin(i), generando una trayectoria oscilante que evita desplazamientos completamente rectilíneos.
-
-Desde el punto de vista de ROS 2, las funciones reset() y toggle_pen() hacen uso del patrón cliente-servidor proporcionado por rclpy. Para ello, se crean clientes mediante self.create_client() asociados a los servicios TeleportAbsolute y SetPen, respectivamente. Antes de realizar una petición, el programa verifica que el servicio se encuentre disponible utilizando wait_for_service(). Posteriormente, la solicitud se envía de manera asíncrona mediante call_async(req), permitiendo que el nodo continúe ejecutando otras tareas mientras el servicio procesa la petición.
+A continuación se presentan los fragmentos reales, extraídos tal cual del archivo move_turtle.MD, correspondientes a reset(), toggle_pen(), square(), triangle() y auto():
 
 ```python
 
 def reset(self):
-    while not self.reset_client.wait_for_service(timeout_sec=1.0):
-        self.get_logger().info('Esperando servicio reset...')
+    if not self.teleport.wait_for_service(timeout_sec=1.0):
+        return
+
     req = TeleportAbsolute.Request()
     req.x = 5.5
     req.y = 5.5
     req.theta = 0.0
-    self.reset_client.call_async(req)
-
+    self.teleport.call_async(req)
 
 def toggle_pen(self):
-    while not self.pen_client.wait_for_service(timeout_sec=1.0):
-        self.get_logger().info('Esperando servicio set_pen...')
+    if not self.pen.wait_for_service(timeout_sec=1.0):
+        return
+
     self.pen_on = not self.pen_on
+
     req = SetPen.Request()
     req.r = 255
     req.g = 255
     req.b = 255
     req.width = 3
     req.off = 0 if self.pen_on else 1
-    self.pen_client.call_async(req)
 
+    self.pen.call_async(req)
 
 def square(self):
-    for _ in range(4):
-        self.move(2.0, 0.0)
-        time.sleep(1.0)
-        self.move(0.0, self.ang)
-        time.sleep((math.pi / 2) / self.ang)
-    self.stop()
+    side_time = 2.0   # tiempo en el que dibuja el cuadrado
 
+    for _ in range(4):
+        # self.move es una funciòn que se define arriba, utiliza Twist y ahì se le modifican las cosas
+        # avanzar recto
+        self.move(2.0, 0.0)
+        time.sleep(side_time)
+
+        self.stop()
+        time.sleep( 0.2)
+
+        # giro 90°
+        self.move(0.0, 2.0)  
+        time.sleep(math.pi/(2*2)) # aqui estoy dividiendo el angulo deseado por su respectiva velocidad
+
+        self.stop()
+        time.sleep(0.2)
+
+        self.stop()
 
 def triangle(self):
+    side_time = 2.0 
     for _ in range(3):
+        # Se mueve linealmente
         self.move(2.0, 0.0)
-        time.sleep(1.0)
+        time.sleep(side_time)
+        # Para
+        self.stop()
+        time.sleep(0.2)
+        # gira 120 grados,que es 2pi/3 radianes
         self.move(0.0, self.ang)
-        time.sleep((2 * math.pi / 3) / self.ang)
-    self.stop()
-
+        time.sleep(2*math.pi/(3*self.ang))
+        # Para
+        self.stop()
+        time.sleep(0.2)
+        self.stop()
 
 def auto(self):
 
@@ -249,6 +269,7 @@ def auto(self):
 
     while rclpy.ok() and self.auto_running:
 
+        # Si está cerca del borde → detener y girar
         if (self.x <= 0.5 or self.x >= 10.5 or
             self.y <= 0.5 or self.y >= 10.5):
 
@@ -257,23 +278,21 @@ def auto(self):
             time.sleep(math.pi / self.ang)
             self.stop()
 
+        # movimiento continuo
         self.move(2.0, math.sin(i))
         time.sleep(0.4)
 
         i += 1
 
+
     self.stop()
+
 ```
 
-Como complemento, el manejo de las teclas que activan estas funcionalidades se realiza desde keyboard_loop():
+Como complemento, el manejo de las teclas que activan estas funcionalidades se realiza desde keyboard_loop(), tal como aparece en move_turtle.MD:
 
 
 ```python
-elif key == ord('c'):
-    threading.Thread(target=node.square).start()
-
-elif key == ord('t'):
-    threading.Thread(target=node.triangle).start()
 
 elif key == ord('r'):
     node.reset()
@@ -281,12 +300,15 @@ elif key == ord('r'):
 elif key == ord('p'):
     node.toggle_pen()
 
-elif key == ord('k'):
-    threading.Thread(target=node.auto).start()
+elif key == ord('c'):
+    threading.Thread(target=node.square).start()
 
-elif key == ord('q'):
-    node.auto_running = False
-    node.stop()
+elif key == ord('t'):
+    threading.Thread(target=node.triangle).start()
+
+elif key == ord('k'):
+    node.auto_running = True
+    threading.Thread(target=node.auto).start()
 
 ```
 
@@ -315,7 +337,7 @@ Las siguientes imágenes muestran las trayectorias automáticas implementadas pa
 
 ### 3.1 Explicación 
 
-Para el dibujo automático de las iniciales de los integrantes del equipo se implementaron las letras A, J, M, S y D, correspondientes a los nombres Juan Diego Sáenz Ardila y Alejandra Sofía Monroy Socha. Cada letra fue desarrollada como un método independiente dentro de la clase TurtleController y asociada a una tecla específica del teclado (a, j, m, s y d), permitiendo su ejecución de forma individual y manteniendo una estructura modular del código.
+Para el dibujo automático de las iniciales de los integrantes del equipo se implementaron las letras A, J, M, S y D, correspondientes a los nombres Juan Diego Sáenz Ardila y Alejandra Sofia Monroy Socha. Cada letra fue desarrollada como un método independiente dentro de la clase TurtleController y asociada a una tecla específica del teclado (a, j, m, s y d), permitiendo su ejecución de forma individual y manteniendo una estructura modular del código.
 
 Todas las funciones comparten una misma estrategia de implementación. Antes de iniciar el trazado de cada letra, la tortuga debe orientarse hacia una dirección específica. Para ello se desarrolló la función go_to_angle(), la cual implementa un controlador proporcional en lazo cerrado para el control de la orientación. A diferencia de los movimientos ejecutados únicamente mediante velocidades y tiempos predefinidos (control en lazo abierto), este controlador utiliza la realimentación proporcionada por la suscripción al tópico /turtle1/pose, que actualiza continuamente la orientación de la tortuga (self.theta). En cada iteración se calcula el error entre el ángulo deseado y el ángulo actual, el cual se normaliza al intervalo [−π,π] mediante la función atan2(sin(error), cos(error)), garantizando que la corrección se realice siguiendo la trayectoria angular más corta. Posteriormente, se aplica una velocidad angular proporcional al error (\omega = K_p \cdot error), repitiendo este proceso de medición, comparación y corrección hasta que el error es inferior a 0.01 rad. Gracias a esta estrategia de control en lazo cerrado, la tortuga alcanza con precisión la orientación requerida antes de comenzar el trazado de cada letra.
 
@@ -343,59 +365,95 @@ flowchart TD
 
 ### 3.3 Código fuente 
 
-El dibujo automático de las iniciales del equipo se implementó mediante métodos independientes para cada letra (A, J, M, S y D), manteniendo una estructura modular que facilita la organización del código y la incorporación de nuevas trayectorias. Todas las funciones siguen una misma estrategia: antes de iniciar el trazado, la tortuga se orienta hacia una dirección inicial específica y, posteriormente, ejecuta una secuencia de desplazamientos lineales y giros que reproducen la geometría de la letra correspondiente.
-
-La orientación inicial se realiza mediante la función go_to_angle(), la cual implementa un controlador proporcional en lazo cerrado para el control de la orientación. En cada iteración se calcula el error entre el ángulo deseado y la orientación actual de la tortuga, normalizando dicho error al intervalo [−π,π] para garantizar que la corrección se efectúe siguiendo la trayectoria angular más corta. A partir de este error se genera una velocidad angular proporcional, repitiendo el proceso hasta alcanzar una orientación con un error inferior a 0.01 rad. Una vez alineada la tortuga, el resto del trazado se realiza mediante secuencias de movimientos lineales y giros temporizados utilizando la función move().
-
 Desde el punto de vista de ROS 2, la función go_to_angle() depende directamente del mecanismo de retroalimentación proporcionado por rclpy. La variable self.theta, utilizada para calcular el error de orientación, se actualiza continuamente mediante la suscripción creada con self.create_subscription(Pose, '/turtle1/pose', self.pose_callback1, 10). Gracias a esta información recibida en tiempo real, el controlador proporcional puede comparar continuamente la orientación actual con la referencia deseada y corregir el movimiento hasta converger al ángulo objetivo antes de iniciar el dibujo de cada letra.
+
+A continuación se presentan los fragmentos reales, extraídos tal cual del archivo move_turtle.MD, correspondientes a go_to_angle() y a las letras A y D (a modo de ejemplo; J, M y S siguen exactamente la misma lógica dentro del archivo completo):
 
 ```python
 
 def go_to_angle(self, target):
-    kp = 3.0
-
+    kp = 2.0  # ganancia de control
+    
     while rclpy.ok():
         error = target - self.theta
+
+        # normalizar error a [-pi, pi]
         error = math.atan2(math.sin(error), math.cos(error))
 
         if abs(error) < 0.01:
+            self.stop()  # detiene el while si el error es menor al que aparece aqui
             break
 
-        self.move(0.0, kp * error)
-        time.sleep(0.02)
+        self.move(0.0, kp * error) # segun el error que tanto se mueve
+        time.sleep(0.01)
 
     self.stop()
-
 
 def A(self):
-    self.go_to_angle(math.pi / 2)
-
+    self.go_to_angle(2*math.pi/3)
+    # lado izquierdo
     self.move(2.0, 0.0)
-    time.sleep(1.2)
+    time.sleep(1.5)
+    self.stop()
+    time.sleep(0.2)
 
+    self.move(0.0, self.ang)
+    time.sleep((2*math.pi/3) / self.ang)
+
+    # lado derecho
+    self.move(2.0, 0.0)
+    time.sleep(1.5)
+    self.stop()
+    time.sleep(0.2)
+
+    # subir barra horizontal
+    self.move(0.0, self.ang)
+    time.sleep((math.pi)/self.ang)
+    
+    self.stop()
+    time.sleep(0.2)
+    
+    self.move(2.0, 0.0)
+    time.sleep(1.5/4)
+    
+    self.stop()
+    time.sleep(0.2)
+
+    
     self.move(0.0, -self.ang)
-    time.sleep((math.pi / 4) / self.ang)
-
-    self.move(2.0, 0.0)
-    time.sleep(0.8)
+    time.sleep((math.pi/3) / self.ang)
 
     self.stop()
-
+    time.sleep(0.2)
+    
+    self.move(2.0, 0.0)
+    time.sleep(0.6)
+    self.stop()
 
 def D(self):
-    self.go_to_angle(math.pi / 2)
-
+    self.go_to_angle(math.pi/2)
     self.move(2.0, 0.0)
-    time.sleep(1.2)
+    time.sleep(2.0)
+    self.stop()
+    time.sleep(0.2)
 
-    self.move(1.0, self.ang)
-    time.sleep(math.pi / self.ang)
+    self.move(0.0, -self.ang)
+    time.sleep((math.pi/2)/self.ang)
 
     self.stop()
+    time.sleep(0.2)
 
+    self.move((math.pi)/((math.pi)/self.ang), -self.ang)
+    time.sleep((math.pi)/self.ang)
+
+    self.stop()
+    time.sleep(0.2)
+    
+
+    self.stop()
 ```
 
-El dibujo de cada letra se activa desde keyboard_loop() mediante la creación de un hilo independiente, evitando bloquear el procesamiento de nuevas entradas del teclado y la comunicación con ROS 2.
+El dibujo de cada letra se activa desde keyboard_loop() mediante la creación de un hilo independiente, evitando bloquear el procesamiento de nuevas entradas del teclado y la comunicación con ROS 2. Este es el fragmento real de move_turtle.MD para las teclas correspondientes:
 
 ```python
 
@@ -405,14 +463,13 @@ elif key == ord('a'):
 elif key == ord('j'):
     threading.Thread(target=node.J).start()
 
-elif key == ord('m'):
-    threading.Thread(target=node.M).start()
-
 elif key == ord('s'):
     threading.Thread(target=node.S).start()
 
 elif key == ord('d'):
     threading.Thread(target=node.D).start()
+elif key == ord('m'):
+    threading.Thread(target=node.M).start()
 
 ```
 
@@ -518,66 +575,62 @@ El seguimiento se realiza mediante un controlador proporcional en lazo cerrado b
 
 Desde el punto de vista de ROS 2, esta implementación demuestra la capacidad de un mismo nodo de rclpy para gestionar múltiples interfaces de comunicación de manera simultánea. Además del publicador y la suscripción utilizados para controlar turtle1, se crea un segundo publicador (self.pub2) asociado al tópico /turtle2/cmd_vel y una segunda suscripción (self.pose2_sub) al tópico /turtle2/pose. De esta manera, un único proceso de ROS 2 es capaz de controlar y monitorear ambas tortugas de forma concurrente, aprovechando el modelo de comunicación distribuida proporcionado por rclpy.
 
+A continuación se presentan los fragmentos reales, extraídos tal cual del archivo move_turtle.MD, correspondientes a la creación de los recursos de turtle2, pose_callback2(), spawn_turtle2(), follower_loop() y follow_turtle1():
+
 ```python
 
-class TurtleController(Node):
+self.pub2 = self.create_publisher(Twist, '/turtle2/cmd_vel', 10)#publishet tortuga 2
 
-    def __init__(self):
-        super().__init__('turtle_controller')
+self.pose2_sub = self.create_subscription(
+    Pose,
+    '/turtle2/pose',
+    self.pose_callback2,
+    10
+)
 
-        self.pub2 = self.create_publisher(
-            Twist,
-            '/turtle2/cmd_vel',
-            10
-        )
+def pose_callback2(self, msg):
+    self.x2 = msg.x
+    self.y2 = msg.y
+    self.theta2 = msg.theta
 
-        self.pose2_sub = self.create_subscription(
-            Pose,
-            '/turtle2/pose',
-            self.pose_callback2,
-            10
-        )
+def spawn_turtle2(self):# con esta funciòn se crea la tortuga 2
+    if not self.spawn_client.wait_for_service(timeout_sec=1.0):
+        return
 
-    def pose_callback2(self, msg):
-        self.x2 = msg.x
-        self.y2 = msg.y
-        self.theta2 = msg.theta
+    req = Spawn.Request()
+    req.x = 1.0
+    req.y = 1.0
+    req.theta = 0.0
+    req.name = "turtle2"
 
-    def spawn_turtle2(self):
-        while not self.spawn_client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Esperando servicio spawn...')
+    self.spawn_client.call_async(req)    
 
-        req = Spawn.Request()
-        req.x = 1.0
-        req.y = 1.0
-        req.theta = 0.0
-        req.name = 'turtle2'
+def follower_loop(self): #while donde se asegura de seguir a la tortuga 1
 
-        self.spawn_client.call_async(req)
+    while rclpy.ok():
+        self.follow_turtle1()
+        time.sleep(0.05)
 
-    def follower_loop(self):
-        while rclpy.ok():
-            self.follow_turtle1()
-            time.sleep(0.05)
+def follow_turtle1(self):
+    # nuevamente un control proporcional
+    # calculo de errores en x y en y
+    dx = self.x - self.x2
+    dy = self.y - self.y2
+    # distancia total
+    distance = math.sqrt(dx**2 + dy**2)
+    # àngulo que falta hasta el objetivo
+    angle_to_goal = math.atan2(dy, dx)
+    # diferencia entre angulo a la tortuga 1 y el angulo propio de la tortuga 2
+    error_angle = angle_to_goal - self.theta2
+    error_angle = math.atan2(math.sin(error_angle), math.cos(error_angle))
 
-    def follow_turtle1(self):
-        dx = self.x - self.x2
-        dy = self.y - self.y2
+    msg = Twist()
 
-        distance = math.sqrt(dx**2 + dy**2)
+    # control proporcional
+    msg.linear.x = 2.0 * distance
+    msg.angular.z = 4.0 * error_angle# se mueve mucho màs ràpido al angulo
 
-        target_angle = math.atan2(dy, dx)
-        error_angle = target_angle - self.theta2
-        error_angle = math.atan2(
-            math.sin(error_angle),
-            math.cos(error_angle)
-        )
-
-        msg = Twist()
-        msg.linear.x = 2.0 * distance
-        msg.angular.z = 4.0 * error_angle
-
-        self.pub2.publish(msg)
+    self.pub2.publish(msg)
 
 ```
 
@@ -591,6 +644,16 @@ elif key == ord('n'):
         target=node.follower_loop,
         daemon=True
     ).start()
+
+```
+
+La activación del sistema líder-seguidor se realiza desde keyboard_loop(), donde la tecla N crea la segunda tortuga y lanza el hilo encargado de ejecutar continuamente el algoritmo de seguimiento. Este es el fragmento real de move_turtle.MD:
+
+``` python 
+
+elif key == ord('n'):    
+    node.spawn_turtle2()
+    threading.Thread(target=node.follower_loop, daemon=True).start()
 
 ```
 
