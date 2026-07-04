@@ -177,9 +177,9 @@ flowchart TD
 
 Las acciones complementarias fueron implementadas como métodos independientes de la clase TurtleController, lo que permite mantener una estructura modular y facilita la incorporación de nuevas funcionalidades. Las trayectorias automáticas, como el dibujo de figuras geométricas y el movimiento autónomo, se ejecutan en hilos independientes mediante la biblioteca threading, evitando bloquear la lectura del teclado y la comunicación con ROS 2.
 
-Las figuras geométricas se generan alternando movimientos lineales y giros controlados. En el caso del cuadrado, cada lado se recorre mediante un desplazamiento rectilíneo seguido de un giro de 90°, mientras que para el triángulo equilátero se realizan giros de 120°. Por otra parte, la función auto() implementa un comportamiento reactivo basado en la posición actual de la tortuga: cuando esta se aproxima a los límites del entorno de simulación, realiza un giro correctivo antes de continuar su recorrido, incorporando además una variación sinusoidal en la velocidad angular para evitar trayectorias repetitivas.
+Las figuras geométricas se generan alternando movimientos lineales y giros controlados. En el caso del cuadrado, cada lado se recorre mediante un desplazamiento rectilíneo seguido de un giro de 90°, mientras que para el triángulo equilátero se realizan giros de 120°. Por otra parte, la función auto() implementa un comportamiento reactivo basado en la posición actual de la tortuga. Mientras la variable auto_running permanece activa, el algoritmo verifica continuamente la posición recibida desde el tópico /turtle1/pose. Si la tortuga se aproxima a alguno de los límites de la ventana de simulación, detiene temporalmente el movimiento, realiza un giro de aproximadamente 180° y reanuda su recorrido. En condiciones normales, la tortuga avanza con velocidad lineal constante, mientras que la velocidad angular varía de acuerdo con la función sin(i), generando una trayectoria oscilante que evita desplazamientos completamente rectilíneos.
 
-Desde el punto de vista de ROS 2, las funciones reset() y toggle_pen() hacen uso del patrón cliente-servicio proporcionado por rclpy. Para ello, se crean clientes mediante self.create_client() asociados a los servicios TeleportAbsolute y SetPen, respectivamente. Antes de realizar una petición, el programa verifica que el servicio se encuentre disponible utilizando wait_for_service(). Posteriormente, la solicitud se envía de manera asíncrona mediante call_async(req), permitiendo que el nodo continúe ejecutando otras tareas mientras el servicio procesa la petición.
+Desde el punto de vista de ROS 2, las funciones reset() y toggle_pen() hacen uso del patrón cliente-servidor proporcionado por rclpy. Para ello, se crean clientes mediante self.create_client() asociados a los servicios TeleportAbsolute y SetPen, respectivamente. Antes de realizar una petición, el programa verifica que el servicio se encuentre disponible utilizando wait_for_service(). Posteriormente, la solicitud se envía de manera asíncrona mediante call_async(req), permitiendo que el nodo continúe ejecutando otras tareas mientras el servicio procesa la petición.
 
 ```python
 
@@ -225,22 +225,25 @@ def triangle(self):
 
 
 def auto(self):
-    self.auto_running = True
-    i = 0.0
 
-    while self.auto_running:
-        if (
-            self.x < 0.5 or self.x > 10.5 or
-            self.y < 0.5 or self.y > 10.5
-        ):
+    i = 0
+
+    while rclpy.ok() and self.auto_running:
+
+        if (self.x <= 0.5 or self.x >= 10.5 or
+            self.y <= 0.5 or self.y >= 10.5):
+
             self.stop()
             self.move(0.0, self.ang)
             time.sleep(math.pi / self.ang)
+            self.stop()
 
         self.move(2.0, math.sin(i))
-        i += 0.1
-        time.sleep(0.05)
+        time.sleep(0.4)
 
+        i += 1
+
+    self.stop()
 ```
 
 Como complemento, el manejo de las teclas que activan estas funcionalidades se realiza desde keyboard_loop():
