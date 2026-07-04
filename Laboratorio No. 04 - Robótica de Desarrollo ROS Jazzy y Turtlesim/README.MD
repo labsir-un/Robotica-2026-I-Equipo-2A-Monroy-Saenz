@@ -106,7 +106,7 @@ def keyboard_loop(stdscr, node):
 A continuación se presentan evidencias del funcionamiento del control manual implementado. La primera imagen corresponde a la interfaz de control mediante teclado y la segunda muestra el desplazamiento libre de la tortuga en el entorno de simulación.
 
 <p align="center">
-  <img src="Imágenes/Control.jpeg" alt="Control manual" width="600"/>
+  <img src="Imágenes/Control.jpeg" alt="Control manual" width="750"/>
 </p>
 
 <p align="center">
@@ -114,7 +114,7 @@ A continuación se presentan evidencias del funcionamiento del control manual im
 </p>
 
 <p align="center">
-  <img src="Imágenes/Mov libre.jpeg" alt="Movimiento libre" width="500"/>
+  <img src="Imágenes/Mov libre.jpeg" alt="Movimiento libre" width="400"/>
 </p>
 
 <p align="center">
@@ -290,7 +290,26 @@ elif key == ord('q'):
 
 ```
 
-### 2.4 Evidencia (video)
+### 2.4 Evidencia
+
+Las siguientes imágenes muestran las trayectorias automáticas implementadas para el dibujo de figuras geométricas. Las funcionalidades de **reset** y **activación/desactivación del lápiz** pueden observarse en el video de demostración, donde se evidencia el funcionamiento completo de dichas acciones complementarias.
+
+<p align="center">
+  <img src="Imágenes/cuadrado.jpeg" alt="Cuadrado" width="400"/>
+</p>
+
+<p align="center">
+<b>Figura 3.</b> Trayectoria automática para el dibujo de un cuadrado.
+</p>
+
+<p align="center">
+  <img src="Imágenes/triangulo.jpeg" alt="Triángulo" width="400"/>
+</p>
+
+<p align="center">
+<b>Figura 4.</b> Trayectoria automática para el dibujo de un triángulo equilátero.
+</p>
+
 
 ## 3. Dibujo automático de letras personalizadas 
 
@@ -397,7 +416,50 @@ elif key == ord('d'):
 
 ```
 
-### 3.4 Evidencia (video)
+### 3.4 Evidencia
+
+A continuación se presentan las trayectorias obtenidas para cada una de las letras implementadas como parte del dibujo automático de las iniciales del equipo.
+
+<p align="center">
+  <img src="Imágenes/LetraA.jpeg" alt="Letra A" width="400"/>
+</p>
+
+<p align="center">
+<b>Figura 5.</b> Letra A.
+</p>
+
+<p align="center">
+  <img src="Imágenes/LetraJ.jpeg" alt="Letra J" width="400"/>
+</p>
+
+<p align="center">
+<b>Figura 6.</b> Letra J.
+</p>
+
+<p align="center">
+  <img src="Imágenes/LetraM.jpeg" alt="Letra M" width="400"/>
+</p>
+
+<p align="center">
+<b>Figura 7.</b> Letra M.
+</p>
+
+<p align="center">
+  <img src="Imágenes/LetraS.jpeg" alt="Letra S" width="400"/>
+</p>
+
+<p align="center">
+<b>Figura 8.</b> Letra S.
+</p>
+
+<p align="center">
+  <img src="Imágenes/LetraD.jpeg" alt="Letra D" width="400"/>
+</p>
+
+<p align="center">
+<b>Figura 9.</b> Letra D.
+</p>
+
 
 ## 4. Sistema líder-seguidor con dos tortugas 
 
@@ -532,7 +594,17 @@ elif key == ord('n'):
 
 ```
 
-### 4.4 Evidencia (video)
+### 4.4 Evidencia 
+
+La siguiente imagen evidencia el funcionamiento del sistema líder-seguidor, en el cual una segunda tortuga sigue continuamente la trayectoria de la tortuga controlada por el usuario mediante un controlador proporcional.
+
+<p align="center">
+  <img src="Imágenes/Seguidor.jpeg" alt="Líder seguidor" width="500"/>
+</p>
+
+<p align="center">
+<b>Figura 10.</b> Funcionamiento del sistema líder-seguidor.
+</p>
 
 ## 5. Verificación de la arquitectura de ROS 2
 
@@ -551,35 +623,82 @@ La siguiente tabla resume los comandos utilizados y la información que aporta c
 
 ### 5.1 `ros2 node list`
 
+<p align="center">
+  <img src="Imágenes/nodelist.jpeg" alt="node list" width="750"/>
+</p>
 
+<p align="center">
+<b>Figura 11.</b> Resultado del comando <code>ros2 node list</code>.
+</p>
 
 Se observa la presencia de los nodos `/turtle_controller` y `/turtlesim`, verificando que ambos se ejecutan como procesos independientes dentro del grafo de ROS 2.
 
 ### 5.2 `ros2 topic list`
 
+<p align="center">
+  <img src="Imágenes/topiclist.jpeg" alt="topic list" width="750"/>
+</p>
 
+<p align="center">
+<b>Figura 12.</b> Resultado del comando <code>ros2 topic list</code>.
+</p>
 
 Se identifican los tópicos utilizados para el intercambio de información entre ambos nodos, incluyendo los correspondientes al control y a la retroalimentación de las dos tortugas.
 
 ### 5.3 `ros2 topic echo /turtle1/pose`
 
+<p align="center">
+  <img src="Imágenes/pose .jpeg" alt="topic echo pose" width="750"/>
+</p>
+
+<p align="center">
+<b>Figura 13.</b> Resultado del comando <code>ros2 topic echo /turtle1/pose</code>.
+</p>
 
 
 La salida muestra la publicación continua de mensajes de tipo `Pose`, evidenciando la retroalimentación utilizada por el controlador para actualizar continuamente la posición y orientación de la tortuga.
 
 ### 5.4 `ros2 topic info /turtle1/cmd_vel`
 
+<p align="center">
+  <img src="Imágenes/velcmd.jpeg" alt="topic info" width="750"/>
+</p>
 
+<p align="center">
+<b>Figura 14.</b> Resultado del comando <code>ros2 topic info /turtle1/cmd_vel</code>.
+</p>
 
 Se verifica que el tópico utiliza mensajes `geometry_msgs/msg/Twist` y que existe un publicador (`turtle_controller`) y un suscriptor (`turtlesim`), validando el esquema publicador–suscriptor implementado.
 
 ### 5.5 `ros2 service list`
 
+<p align="center">
+  <img src="Imágenes/servicelist.jpeg" alt="service list" width="750"/>
+</p>
 
+<p align="center">
+<b>Figura 15.</b> Resultado del comando <code>ros2 service list</code>.
+</p>
 
 Se comprueba la disponibilidad de los servicios utilizados durante el desarrollo del laboratorio, como `/turtle1/teleport_absolute`, `/turtle1/set_pen`, `/clear` y `/spawn`, empleados para reiniciar la posición de la tortuga, controlar el lápiz, limpiar la pantalla y crear una segunda tortuga.
 
-### 5.6 `rqt_graph`
+### 5.6 `rqt_graph
+
+<p align="center">
+  <img src="Imágenes/diag1.jpeg" alt="Diagrama ROS 2 1" width="750"/>
+</p>
+
+<p align="center">
+<b>Figura 16.</b> Primera vista del grafo de comunicación generado por <code>rqt_graph</code>.
+</p>
+
+<p align="center">
+  <img src="Imágenes/diag2.jpeg" alt="Diagrama ROS 2 2" width="750"/>
+</p>
+
+<p align="center">
+<b>Figura 17.</b> Segunda vista del grafo de comunicación generado por <code>rqt_graph</code>.
+</p>
 
 
 La representación gráfica de ROS 2 permite visualizar la arquitectura de comunicación implementada, mostrando las conexiones entre `turtle_controller` y `turtlesim` mediante los tópicos de control (`/turtle1/cmd_vel` y `/turtle2/cmd_vel`) y los tópicos de retroalimentación (`/turtle1/pose` y `/turtle2/pose`). Asimismo, evidencia el uso simultáneo de los modelos de comunicación publicador–suscriptor y cliente–servicio empleados durante el laboratorio.
