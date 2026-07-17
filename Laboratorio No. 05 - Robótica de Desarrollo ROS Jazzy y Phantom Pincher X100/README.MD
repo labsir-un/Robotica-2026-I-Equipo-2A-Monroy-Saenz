@@ -24,6 +24,8 @@ En esta actividad se identificaron las cinco articulaciones del robot Phantom X 
 | Muñeca | 4 | AX-12A | Rotación | Orienta el efector final antes de la pinza. |
 | Pinza | 5 | AX-12A | Apertura | Permite la apertura y el cierre de la pinza para sujetar objetos. |
 
+---
+
 # Actividad 4. Movimiento individual de articulaciones
 
 Para esta actividad se implementó el nodo `individual_joint_move.py`, cuyo propósito es controlar de manera independiente cada una de las articulaciones del robot Phantom X Pincher X100. El programa publica comandos sobre el tópico `/pincher/command` utilizando mensajes del tipo `sensor_msgs/JointState`, enviando únicamente la articulación que se desea mover mientras las demás permanecen en su posición actual.
@@ -115,6 +117,8 @@ Este procedimiento permite comprobar el funcionamiento independiente de cada art
 El código completo desarrollado para esta actividad se encuentra en el archivo: 
 [individual_joint_move.py](individual_joint_move.MD) 
 
+---
+
 # Actividad 6. Determinación de límites seguros
 
 Para esta actividad se implementó el módulo `joint_limits.py`, encargado de definir y validar los límites seguros de operación para cada una de las articulaciones del robot Phantom X Pincher X100. Su objetivo es impedir el envío de posiciones que puedan llevar al manipulador a alcanzar los topes mecánicos, proporcionando una capa adicional de seguridad antes de ejecutar cualquier movimiento.
@@ -191,8 +195,6 @@ def check_safe(joint: str, angle_deg: float):
 
 Si el valor solicitado supera alguno de los límites establecidos, el programa genera una excepción e impide el envío del movimiento, evitando posibles colisiones con los topes mecánicos.
 
----
-
 ## Límites seguros obtenidos
 
 Los límites implementados para cada articulación se resumen en la siguiente tabla.
@@ -210,6 +212,8 @@ Los límites implementados para cada articulación se resumen en la siguiente ta
 El código completo desarrollado para esta actividad se encuentra en el archivo:
 
 [joint_limits.py](join_limits-MD)
+
+---
 
 # Actividad 8. Movimiento secuencial
 
@@ -233,8 +237,6 @@ CONFIGURATIONS_DEG = {
 
 Para las pruebas realizadas se utilizó por defecto la configuración 2, la cual se encuentra dentro de los límites seguros definidos para el robot.
 
----
-
 ## Creación del nodo ROS 2
 
 Se implementó la clase `SequentialMover`, encargada de crear el nodo y el publicador utilizado para enviar los comandos al controlador del robot.
@@ -256,8 +258,6 @@ class SequentialMover(Node):
 ```
 
 Una vez inicializado el nodo, este queda preparado para publicar los movimientos secuenciales hacia el manipulador.
-
----
 
 ## Envío de movimientos
 
@@ -281,8 +281,6 @@ def send_one(self, joint: str, angle_deg: float):
 
 Esta validación evita que el robot reciba posiciones fuera de los límites establecidos durante la Actividad 6.
 
----
-
 ## Ejecución del movimiento secuencial
 
 El movimiento secuencial se implementó recorriendo las articulaciones en el orden indicado por la guía del laboratorio. Después de mover una articulación, el programa espera un tiempo determinado antes de continuar con la siguiente.
@@ -301,8 +299,6 @@ def run_sequential(node, config_id, settle_s):
 
 Con este procedimiento el robot ejecuta la configuración seleccionada desplazando primero la base, luego el hombro, posteriormente el codo, la muñeca y finalmente la pinza.
 
----
-
 ## Ejecución del programa
 
 El movimiento secuencial puede ejecutarse mediante el siguiente comando:
@@ -312,8 +308,6 @@ ros2 run pincher_control sequential_move --config 2
 ```
 
 El parámetro `--config` permite seleccionar cualquiera de las cinco configuraciones definidas en el programa.
-
----
 
 ## Comparación con el movimiento simultáneo
 
@@ -330,5 +324,7 @@ Durante las pruebas se observó que el movimiento secuencial requiere un mayor t
 El código completo desarrollado para esta actividad se encuentra en el archivo:
 
 [sequential_move.py](sequential_move.MD)
+
+---
 
 # GRACIAS
