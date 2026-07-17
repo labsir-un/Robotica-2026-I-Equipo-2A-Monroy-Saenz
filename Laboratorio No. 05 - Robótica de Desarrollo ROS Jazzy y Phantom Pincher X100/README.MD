@@ -223,3 +223,127 @@ El código completo desarrollado para esta actividad se encuentra en el archivo:
 ```text
 pincher_control/joint_limits.py
 ```
+
+# Actividad 8. Movimiento secuencial
+
+Para esta actividad se implementó el nodo `sequential_move.py`, cuyo propósito es ejecutar una configuración articular siguiendo una secuencia de movimientos independiente para cada articulación. A diferencia del movimiento simultáneo, donde todas las articulaciones reciben el comando al mismo tiempo, en esta implementación cada articulación completa su desplazamiento antes de iniciar el movimiento de la siguiente.
+
+El programa utiliza una de las configuraciones propuestas en la Actividad 7 y ejecuta los movimientos en el orden establecido por la guía del laboratorio: base, hombro, codo, muñeca y pinza.
+
+## Configuraciones del robot
+
+Se definieron las cinco configuraciones articulares propuestas en la guía del laboratorio, las cuales pueden seleccionarse mediante el parámetro `--config`.
+
+```python
+CONFIGURATIONS_DEG = {
+    1: (0, 0, 0, 0, 0),
+    2: (25, 25, 20, -20, 0),
+    3: (-35, 35, -30, 30, 0),
+    4: (85, -20, 55, 25, 0),
+    5: (80, -35, 55, -45, 0),
+}
+```
+
+Para las pruebas realizadas se utilizó por defecto la configuración 2, la cual se encuentra dentro de los límites seguros definidos para el robot.
+
+---
+
+## Creación del nodo ROS 2
+
+Se implementó la clase `SequentialMover`, encargada de crear el nodo y el publicador utilizado para enviar los comandos al controlador del robot.
+
+```python
+class SequentialMover(Node):
+
+    def __init__(self):
+
+        super().__init__("sequential_move")
+
+        self.publisher = self.create_publisher(
+            JointState,
+            "/pincher/command",
+            10
+        )
+
+        time.sleep(0.3)
+```
+
+Una vez inicializado el nodo, este queda preparado para publicar los movimientos secuenciales hacia el manipulador.
+
+---
+
+## Envío de movimientos
+
+Antes de publicar cada movimiento, el programa verifica que la posición solicitada se encuentre dentro del rango seguro definido para la articulación correspondiente.
+
+```python
+def send_one(self, joint: str, angle_deg: float):
+
+    angle_deg = check_safe(joint, angle_deg)
+
+    msg = JointState()
+
+    msg.header.stamp = self.get_clock().now().to_msg()
+
+    msg.name = [joint]
+
+    msg.position = [math.radians(angle_deg)]
+
+    self.publisher.publish(msg)
+```
+
+Esta validación evita que el robot reciba posiciones fuera de los límites establecidos durante la Actividad 6.
+
+---
+
+## Ejecución del movimiento secuencial
+
+El movimiento secuencial se implementó recorriendo las articulaciones en el orden indicado por la guía del laboratorio. Después de mover una articulación, el programa espera un tiempo determinado antes de continuar con la siguiente.
+
+```python
+def run_sequential(node, config_id, settle_s):
+
+    values = CONFIGURATIONS_DEG[config_id]
+
+    for joint, angle in zip(JOINT_ORDER, values):
+
+        node.send_one(joint, angle)
+
+        time.sleep(settle_s)
+```
+
+Con este procedimiento el robot ejecuta la configuración seleccionada desplazando primero la base, luego el hombro, posteriormente el codo, la muñeca y finalmente la pinza.
+
+---
+
+## Ejecución del programa
+
+El movimiento secuencial puede ejecutarse mediante el siguiente comando:
+
+```bash
+ros2 run pincher_control sequential_move --config 2
+```
+
+El parámetro `--config` permite seleccionar cualquiera de las cinco configuraciones definidas en el programa.
+
+---
+
+## Comparación con el movimiento simultáneo
+
+Durante las pruebas se observó que el movimiento secuencial requiere un mayor tiempo de ejecución debido a que cada articulación debe finalizar su desplazamiento antes de iniciar la siguiente. En contraste, el movimiento simultáneo permite que todas las articulaciones se desplacen al mismo tiempo, produciendo una trayectoria más continua y un movimiento visualmente más fluido.
+
+| Característica | Movimiento simultáneo | Movimiento secuencial |
+|:--------------|:---------------------:|:---------------------:|
+| Tiempo de ejecución | Menor | Mayor |
+| Trayectoria del TCP | Continua | Segmentada |
+| Suavidad del movimiento | Mayor | Menor |
+
+---
+
+## Código fuente completo
+
+El código completo desarrollado para esta actividad se encuentra en el archivo:
+
+```text
+pincher_control/sequential_move.py
+```
