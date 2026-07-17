@@ -9,6 +9,39 @@
 <h3>Estudiantes: Juan Diego Sáenz Ardila <br> Alejandra Sofia Monroy Socha <br> </h3>
 
 </div>
+# Actividad 1. Preparación del robot 
+
+Para iniciar el entorno de simulación del PhantomX Pincher, primero navegue hasta el directorio del workspace del robot.
+
+Abra dos terminales dentro del workspace. En ambas terminales ejecute los siguientes comandos para compilar el proyecto y cargar el entorno de trabajo:
+
+```python
+source install/setup.bash
+```
+
+```python
+colcon build
+```
+
+Si el workspace se recompila, es recomendable volver a ejecutar `source install/setup.bash` una vez finalice el proceso de compilación.
+
+En la primera terminal, inicie el entorno de simulación ejecutando:
+```python
+ros2 launch pincher_description display_gui.launch.py use_meshes:=true
+```
+
+Este comando abrirá RViz, cargará el modelo del PhantomX Pincher y mostrará un panel gráfico desde el cual es posible controlar manualmente las articulaciones del robot.
+
+Si desea conectar el robot físico, asegúrese de que esté conectado al computador mediante USB y, en la segunda terminal, ejecute:
+
+```python
+ros2 launch pincher_control pincher_system.launch.py \
+  motor_model:=xl430 \
+  use_hardware:=true \
+  use_meshes:=true
+```
+
+Con estos pasos, el robot quedará listo para ser visualizado en RViz y, si está conectado el hardware, podrá controlarse directamente desde la interfaz gráfica.
 
 # Actividad 2. Identificación de motores y articulaciones
 
