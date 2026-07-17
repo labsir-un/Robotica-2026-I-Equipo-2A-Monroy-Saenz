@@ -262,11 +262,11 @@ def ejecutar_secuencia_pasos(self):
         """Secuencia de desplazamientos directos de la actividad anterior."""
         self.get_logger().info("\n>>> INICIANDO ACTIVIDAD: DESPLAZAMIENTOS SIMULTÁNEOS <<<")
         configuraciones = [
-            [0.0,   0.0,  0.0,   0.0, 0.0],   # 1. Home
-            [25.0,  25.0, 20.0, -20.0, 0.0],  # 2. Desplazamiento suave
-            [-35.0, 35.0,-30.0,  30.0, 0.0],  # 3. Orientación opuesta
-            [85.0, -20.0, 55.0,  25.0, 0.0],  # 4. Giro pronunciado
-            [80.0, -20.0, 55.0, -45.0, 0.0]   # 5. Modificada por seguridad
+            [0.0,   0.0,  0.0,   0.0, 0.0],   
+            [25.0,  25.0, 20.0, -20.0, 0.0],  
+            [-35.0, 35.0,-30.0,  30.0, 0.0],  
+            [85.0, -20.0, 55.0,  25.0, 0.0],  
+            [80.0, -20.0, 55.0, -45.0, 0.0]   # Modificada por seguridad, antes era 80, −35, 55, −45, 0
         ]
         
         for i, config in enumerate(configuraciones):
