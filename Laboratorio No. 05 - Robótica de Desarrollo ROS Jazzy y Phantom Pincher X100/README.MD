@@ -125,3 +125,101 @@ El código completo desarrollado para esta actividad se encuentra en el archivo:
 ```text
 pincher_control/individual_joint_move.py
 ```
+
+# Actividad 6. Determinación de límites seguros
+
+Para esta actividad se implementó el módulo `joint_limits.py`, encargado de definir y validar los límites seguros de operación para cada una de las articulaciones del robot Phantom X Pincher X100. Su objetivo es impedir el envío de posiciones que puedan llevar al manipulador a alcanzar los topes mecánicos, proporcionando una capa adicional de seguridad antes de ejecutar cualquier movimiento.
+
+El módulo es utilizado por los programas de control desarrollados en las actividades posteriores, verificando automáticamente que cada posición solicitada se encuentre dentro del rango permitido antes de ser enviada al robot.
+
+## Definición de los límites desde DYNAMIXEL
+
+Inicialmente se establecieron los límites de operación definidos para cada articulación del robot. Para la base, hombro, codo y muñeca se considera un recorrido de ±150°, mientras que la pinza posee un rango de ±90°.
+
+```python
+FACTORY_LIMITS_DEG = {
+    "waist": (-150.0, 150.0),
+    "shoulder": (-150.0, 150.0),
+    "elbow": (-150.0, 150.0),
+    "wrist": (-150.0, 150.0),
+    "gripper": (-90.0, 90.0),
+}
+```
+
+Estos valores corresponden al rango máximo de operación permitido para cada articulación. Luego, con el fin de evitar que el robot alcance los topes mecánicos, se definió un margen de seguridad de 5° para todas las articulaciones.
+
+```python
+MARGIN_DEG = {
+    "waist": 5.0,
+    "shoulder": 5.0,
+    "elbow": 5.0,
+    "wrist": 5.0,
+    "gripper": 5.0,
+}
+```
+
+Este margen reduce el rango efectivo de movimiento y proporciona una operación más segura durante la ejecución de las trayectorias.
+
+## Construcción de los límites seguros
+
+A partir de los límites de fábrica y del margen definido, el programa calcula automáticamente el rango seguro de cada articulación.
+
+```python
+def build_safe_limits():
+
+    safe = {}
+
+    for joint, (lo, hi) in FACTORY_LIMITS_DEG.items():
+
+        m = MARGIN_DEG[joint]
+
+        safe[joint] = SafeLimit(
+            lower_deg=lo + m,
+            upper_deg=hi - m,
+            margin_deg=m,
+        )
+
+    return safe
+```
+
+De esta forma se generan los límites utilizados por el resto de los programas del proyecto.
+
+## Validación de movimientos
+
+Antes de enviar cualquier comando al robot, el programa verifica que el ángulo solicitado pertenezca al rango seguro correspondiente.
+
+```python
+def check_safe(joint: str, angle_deg: float):
+
+    limit = SAFE_LIMITS[joint]
+
+    if not (limit.lower_deg <= angle_deg <= limit.upper_deg):
+
+        raise OutOfSafeRangeError(...)
+
+    return angle_deg
+```
+
+Si el valor solicitado supera alguno de los límites establecidos, el programa genera una excepción e impide el envío del movimiento, evitando posibles colisiones con los topes mecánicos.
+
+---
+
+## Límites seguros obtenidos
+
+Los límites implementados para cada articulación se resumen en la siguiente tabla.
+
+| Articulación | Límite inferior | Límite superior | Margen |
+|:------------:|:---------------:|:---------------:|:-------:|
+| Base | -145° | 145° | 5° |
+| Hombro | -145° | 145° | 5° |
+| Codo | -145° | 145° | 5° |
+| Muñeca | -145° | 145° | 5° |
+| Pinza | -85° | 85° | 5° |
+
+## Código fuente completo
+
+El código completo desarrollado para esta actividad se encuentra en el archivo:
+
+```text
+pincher_control/joint_limits.py
+```
