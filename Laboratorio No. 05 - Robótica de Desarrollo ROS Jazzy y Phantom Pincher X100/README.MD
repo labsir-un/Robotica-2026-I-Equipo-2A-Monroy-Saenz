@@ -59,7 +59,11 @@ En esta actividad se identificaron las cinco articulaciones del robot Phantom X 
 | Pinza | 5 | AX-12A | Apertura | Permite la apertura y el cierre de la pinza para sujetar objetos. |
 
 ---
+# Actividad 3. Medición del robot
 
+<p align="center">
+  <img src="Para_punto3.jpeg" alt="Control manual" width="750"/>
+</p>
 # Actividad 4. Movimiento individual de articulaciones
 
 Para esta actividad se implementó el nodo `individual_joint_move.py`, cuyo propósito es controlar de manera independiente cada una de las articulaciones del robot Phantom X Pincher X100. El programa publica comandos sobre el tópico `/pincher/command` utilizando mensajes del tipo `sensor_msgs/JointState`, enviando únicamente la articulación que se desea mover mientras las demás permanecen en su posición actual.
