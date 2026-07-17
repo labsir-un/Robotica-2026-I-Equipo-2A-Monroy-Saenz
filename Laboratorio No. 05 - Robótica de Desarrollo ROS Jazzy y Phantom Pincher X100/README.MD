@@ -253,7 +253,91 @@ El código completo desarrollado para esta actividad se encuentra en el archivo:
 [joint_limits.py](join_limits-MD)
 
 ---
+# Actividad 7. Movimiento individual de articulaciones
 
+Para realizar el desplazamiento simultáneo de todas las articulaciones se implementaron dos funciones principales: `desplazar_a_configuracion()` y `ejecutar_secuencia_pasos()`. Ambas trabajan de forma conjunta para enviar una secuencia de posiciones al robot utilizando el tópico de estados articulares de ROS 2.
+La función `ejecutar_secuencia_pasos()` se encarga de mandar las configuraciones a la función `desplazar_a_configuracion()` cada 2 segundos.
+```python
+def ejecutar_secuencia_pasos(self):
+        """Secuencia de desplazamientos directos de la actividad anterior."""
+        self.get_logger().info("\n>>> INICIANDO ACTIVIDAD: DESPLAZAMIENTOS SIMULTÁNEOS <<<")
+        configuraciones = [
+            [0.0,   0.0,  0.0,   0.0, 0.0],   # 1. Home
+            [25.0,  25.0, 20.0, -20.0, 0.0],  # 2. Desplazamiento suave
+            [-35.0, 35.0,-30.0,  30.0, 0.0],  # 3. Orientación opuesta
+            [85.0, -20.0, 55.0,  25.0, 0.0],  # 4. Giro pronunciado
+            [80.0, -20.0, 55.0, -45.0, 0.0]   # 5. Modificada por seguridad
+        ]
+        
+        for i, config in enumerate(configuraciones):
+            self.desplazar_a_configuracion(config)
+            self.get_logger().info(f"Configuración {i+1} enviada: {config}")
+            time.sleep(2.0)
+```
+
+
+
+La función `desplazar_a_configuracion(self, angulos_grados)` es la encargada de publicar una configuración articular completa. 
+```python
+  def desplazar_a_configuracion(self, angulos_grados):
+        """Toma una lista de 5 ángulos en grados y los publica a RViz."""
+        msg = JointState()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.name = self.joint_names
+        msg.position = [math.radians(deg) for deg in angulos_grados]
+        self.publisher_.publish(msg)
+```
+Como parámetro recibe una lista con cinco ángulos, correspondientes a las articulaciones del PhantomX Pincher, expresados en grados. En primer lugar, se crea un mensaje de tipo `JointState`, el cual es el formato estándar utilizado por ROS 2 para representar el estado de las articulaciones de un robot. Posteriormente, se actualiza el campo `header.stamp` con la hora actual mediante `self.get_clock().now().to_msg()`, permitiendo que el mensaje quede correctamente sincronizado dentro del sistema ROS.
+
+A continuación, el atributo `msg.name` se inicializa con la lista `self.joint_names`, la cual contiene el nombre de cada una de las articulaciones del robot. Esto permite que cada posición enviada sea asociada a la articulación correspondiente. Posteriormente, la línea
+
+```python
+msg.position = [math.radians(deg) for deg in angulos_grados]
+```
+
+convierte cada uno de los ángulos recibidos en grados a radianes utilizando la función `math.radians()`. Esta conversión es necesaria porque el sistema de representación de posiciones articulares en ROS 2 utiliza radianes como unidad de medida. Finalmente, el mensaje completo es publicado mediante
+
+```python
+self.publisher_.publish(msg)
+```
+
+lo que provoca que todas las posiciones sean enviadas al mismo tiempo y que el robot actualice simultáneamente todas sus articulaciones.
+
+La segunda función, `ejecutar_secuencia_pasos(self)`, tiene como objetivo ejecutar automáticamente una serie de configuraciones previamente definidas. Inicialmente, se muestra un mensaje informativo en la consola indicando el comienzo de la actividad mediante:
+
+```python
+self.get_logger().info("\n>>> INICIANDO ACTIVIDAD: DESPLAZAMIENTOS SIMULTÁNEOS <<<")
+```
+
+Después se define la variable `configuraciones`, que corresponde a una lista de listas. Cada sublista representa una postura diferente del robot y contiene los cinco ángulos articulares que serán enviados de forma simultánea.
+
+Posteriormente, la instrucción
+
+```python
+for i, config in enumerate(configuraciones):
+```
+
+recorre cada una de las configuraciones almacenadas. La variable `i` almacena el número de la configuración, mientras que `config` contiene la lista de ángulos correspondiente. Para cada iteración se llama a la función
+
+```python
+self.desplazar_a_configuracion(config)
+```
+
+encargada de publicar dicha configuración en el robot. Una vez enviada, se imprime en consola la configuración ejecutada utilizando:
+
+```python
+self.get_logger().info(f"Configuración {i+1} enviada: {config}")
+```
+
+lo que facilita el seguimiento del programa durante las pruebas.
+
+Finalmente, la instrucción
+
+```python
+time.sleep(2.0)
+```
+
+introduce una pausa de dos segundos antes de enviar la siguiente configuración. Este tiempo permite que el robot alcance completamente la posición deseada antes de iniciar el siguiente movimiento, evitando cambios demasiado rápidos entre posturas y garantizando una ejecución ordenada de la secuencia.
 # Actividad 8. Movimiento secuencial
 
 Para esta actividad se implementó el nodo `sequential_move.py`, cuyo propósito es ejecutar una configuración articular siguiendo una secuencia de movimientos independiente para cada articulación. A diferencia del movimiento simultáneo, donde todas las articulaciones reciben el comando al mismo tiempo, en esta implementación cada articulación completa su desplazamiento antes de iniciar el movimiento de la siguiente.
