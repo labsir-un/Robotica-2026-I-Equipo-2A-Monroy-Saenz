@@ -110,17 +110,10 @@ def run_demo(node, settle_s=2.0):
 
 Este procedimiento permite comprobar el funcionamiento independiente de cada articulación antes de continuar con las demás.
 
-## Ejecución del programa
-
-La demostración automática se ejecuta mediante el siguiente comando:
-
-```bash
-ros2 run pincher_control individual_joint_move --demo
-```
-
 ## Código fuente completo
 
-El código completo desarrollado para esta actividad se encuentra en el archivo: [individual_joint_move.py] (individual_joint_move.MD) 
+El código completo desarrollado para esta actividad se encuentra en el archivo: 
+[individual_joint_move.py](individual_joint_move.MD) 
 
 # Actividad 6. Determinación de límites seguros
 
@@ -216,9 +209,7 @@ Los límites implementados para cada articulación se resumen en la siguiente ta
 
 El código completo desarrollado para esta actividad se encuentra en el archivo:
 
-```text
-pincher_control/joint_limits.py
-```
+[joint_limits.py](join_limits-MD)
 
 # Actividad 8. Movimiento secuencial
 
