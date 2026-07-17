@@ -325,12 +325,10 @@ Durante las pruebas se observó que el movimiento secuencial requiere un mayor t
 | Trayectoria del TCP | Continua | Segmentada |
 | Suavidad del movimiento | Mayor | Menor |
 
----
-
 ## Código fuente completo
 
 El código completo desarrollado para esta actividad se encuentra en el archivo:
 
-```text
-pincher_control/sequential_move.py
-```
+[sequential_move.py](sequential_move.MD)
+
+# GRACIAS
