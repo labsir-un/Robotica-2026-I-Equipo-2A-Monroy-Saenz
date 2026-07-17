@@ -9,6 +9,7 @@
 <h3>Estudiantes: Juan Diego Sáenz Ardila <br> Alejandra Sofia Monroy Socha <br> </h3>
 
 </div>
+
 # Actividad 1. Preparación del robot 
 
 Para iniciar el entorno de simulación del PhantomX Pincher, primero navegue hasta el directorio del workspace del robot.
