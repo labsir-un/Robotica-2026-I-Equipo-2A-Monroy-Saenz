@@ -120,11 +120,7 @@ ros2 run pincher_control individual_joint_move --demo
 
 ## Código fuente completo
 
-El código completo desarrollado para esta actividad se encuentra en el archivo:
-
-```text
-pincher_control/individual_joint_move.py
-```
+El código completo desarrollado para esta actividad se encuentra en el archivo: [individual_joint_move.py] (Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/individual_joint_move.MD) 
 
 # Actividad 6. Determinación de límites seguros
 
