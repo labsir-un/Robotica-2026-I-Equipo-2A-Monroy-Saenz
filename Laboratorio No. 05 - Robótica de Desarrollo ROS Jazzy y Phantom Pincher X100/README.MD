@@ -607,21 +607,34 @@ $$
 
 El mecanismo planar presenta dos posibles soluciones geométricas:
 
-- **Elbow up:** configuración donde el codo queda orientado hacia arriba.
-- **Elbow down:** configuración donde el codo queda orientado hacia abajo.
+- **Elbow up**
 
-Las soluciones para las articulaciones del hombro y codo son:
+$$
+q_2=
+\frac{\pi}{2}-\beta-\alpha-\gamma
+$$
 
-<div align="center">
+$$
+q_3=
+\pi-\psi-\phi
+$$
 
-| Articulación | Elbow up | Elbow down |
-| :----------: | :------: | :--------: |
-| \(q_2\) | \(\frac{\pi}{2}-\beta-\alpha-\gamma\) | \(\frac{\pi}{2}-(\gamma-\alpha+\beta)\) |
-| \(q_3\) | \(\pi-\psi-\phi\) | \(-\pi+(\phi-\psi)\) |
+
+- **Elbow down**
+
+$$
+q_2=
+\frac{\pi}{2}-(\gamma-\alpha+\beta)
+$$
+
+$$
+q_3=
+-\pi+(\phi-\psi)
+$$
 
 </div>
 
-Para la implementación del PhantomX Pincher se selecciona la solución que mantiene los movimientos dentro de los límites mecánicos del robot y evita configuraciones que puedan generar colisiones entre sus eslabones.
+Para la implementación del PhantomX Pincher se debe seleccionar la solución que mantiene los movimientos dentro de los límites mecánicos del robot y evita configuraciones que puedan generar colisiones entre sus eslabones.
 
 ---
 
