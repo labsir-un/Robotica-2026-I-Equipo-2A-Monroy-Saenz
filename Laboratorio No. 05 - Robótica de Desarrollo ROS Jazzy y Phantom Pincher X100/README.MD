@@ -485,6 +485,7 @@ Finalmente, utilizando los datos almacenados durante la ejecución, se genera un
 <p align="center">
   <img src="image (1).png" alt="Control manual" width="750"/>
 </p>
+
 ## Código fuente completo
 
 El código completo desarrollado para esta actividad se encuentra en el archivo:
