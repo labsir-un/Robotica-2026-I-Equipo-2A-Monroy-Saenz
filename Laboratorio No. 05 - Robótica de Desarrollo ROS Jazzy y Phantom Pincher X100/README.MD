@@ -337,6 +337,13 @@ time.sleep(2.0)
 ```
 
 introduce una pausa de dos segundos antes de enviar la siguiente configuración. Este tiempo permite que el robot alcance completamente la posición deseada antes de iniciar el siguiente movimiento, evitando cambios demasiado rápidos entre posturas y garantizando una ejecución ordenada de la secuencia.
+
+## Código fuente completo
+
+El código completo desarrollado para esta actividad se encuentra en el archivo:
+
+[CodigoParaPunto7y10.py](Cod_P7yP10.MD)
+
 # Actividad 8. Movimiento secuencial
 
 Para esta actividad se implementó el nodo `sequential_move.py`, cuyo propósito es ejecutar una configuración articular siguiendo una secuencia de movimientos independiente para cada articulación. A diferencia del movimiento simultáneo, donde todas las articulaciones reciben el comando al mismo tiempo, en esta implementación cada articulación completa su desplazamiento antes de iniciar el movimiento de la siguiente.
@@ -475,6 +482,13 @@ la cual fue descrita en el punto 7 y es la encargada de publicar simultáneament
 Al finalizar el recorrido, la función calcula dos indicadores de desempeño. El primero corresponde al error máximo, obtenido como el mayor valor registrado en la lista de errores. El segundo es el error cuadrático medio (MSE), calculado como el promedio del cuadrado de todos los errores registrados durante la trayectoria. Estas métricas permiten cuantificar el seguimiento de la trayectoria programada.
 
 Finalmente, utilizando los datos almacenados durante la ejecución, se genera una gráfica en la que se compara la posición deseada con la posición medida para cada una de las pruebas realizadas, facilitando el análisis visual del comportamiento de la articulación. Sin embargo, como todo se hizo en un entorno de simulación las gráficas resultaron en que el seguimiento fue perfecto como se muestra a continuación.
+<p align="center">
+  <img src="image (1).png" alt="Control manual" width="750"/>
+</p>
+## Código fuente completo
 
+El código completo desarrollado para esta actividad se encuentra en el archivo:
+
+[CodigoParaPunto7y10.py](Cod_P7yP10.MD)
 
 # GRACIAS
