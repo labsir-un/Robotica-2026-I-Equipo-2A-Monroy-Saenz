@@ -256,26 +256,6 @@ El código completo desarrollado para esta actividad se encuentra en el archivo:
 # Actividad 7. Movimiento individual de articulaciones
 
 Para realizar el desplazamiento simultáneo de todas las articulaciones se implementaron dos funciones principales: `desplazar_a_configuracion()` y `ejecutar_secuencia_pasos()`. Ambas trabajan de forma conjunta para enviar una secuencia de posiciones al robot utilizando el tópico de estados articulares de ROS 2.
-La función `ejecutar_secuencia_pasos()` se encarga de mandar las configuraciones a la función `desplazar_a_configuracion()` cada 2 segundos.
-```python
-def ejecutar_secuencia_pasos(self):
-        """Secuencia de desplazamientos directos de la actividad anterior."""
-        self.get_logger().info("\n>>> INICIANDO ACTIVIDAD: DESPLAZAMIENTOS SIMULTÁNEOS <<<")
-        configuraciones = [
-            [0.0,   0.0,  0.0,   0.0, 0.0],   
-            [25.0,  25.0, 20.0, -20.0, 0.0],  
-            [-35.0, 35.0,-30.0,  30.0, 0.0],  
-            [85.0, -20.0, 55.0,  25.0, 0.0],  
-            [80.0, -20.0, 55.0, -45.0, 0.0]   # Modificada por seguridad, antes era 80, −35, 55, −45, 0
-        ]
-        
-        for i, config in enumerate(configuraciones):
-            self.desplazar_a_configuracion(config)
-            self.get_logger().info(f"Configuración {i+1} enviada: {config}")
-            time.sleep(2.0)
-```
-
-
 
 La función `desplazar_a_configuracion(self, angulos_grados)` es la encargada de publicar una configuración articular completa. 
 ```python
@@ -303,7 +283,26 @@ self.publisher_.publish(msg)
 
 lo que provoca que todas las posiciones sean enviadas al mismo tiempo y que el robot actualice simultáneamente todas sus articulaciones.
 
-La segunda función, `ejecutar_secuencia_pasos(self)`, tiene como objetivo ejecutar automáticamente una serie de configuraciones previamente definidas. Inicialmente, se muestra un mensaje informativo en la consola indicando el comienzo de la actividad mediante:
+La segunda función, `ejecutar_secuencia_pasos(self)`, tiene como objetivo ejecutar automáticamente una serie de configuraciones previamente definidas.
+```python
+def ejecutar_secuencia_pasos(self):
+        """Secuencia de desplazamientos directos de la actividad anterior."""
+        self.get_logger().info("\n>>> INICIANDO ACTIVIDAD: DESPLAZAMIENTOS SIMULTÁNEOS <<<")
+        configuraciones = [
+            [0.0,   0.0,  0.0,   0.0, 0.0],   
+            [25.0,  25.0, 20.0, -20.0, 0.0],  
+            [-35.0, 35.0,-30.0,  30.0, 0.0],  
+            [85.0, -20.0, 55.0,  25.0, 0.0],  
+            [80.0, -20.0, 55.0, -45.0, 0.0]   # Modificada por seguridad, antes era 80, −35, 55, −45, 0
+        ]
+        
+        for i, config in enumerate(configuraciones):
+            self.desplazar_a_configuracion(config)
+            self.get_logger().info(f"Configuración {i+1} enviada: {config}")
+            time.sleep(2.0)
+```
+
+Inicialmente, se muestra un mensaje informativo en la consola indicando el comienzo de la actividad mediante:
 
 ```python
 self.get_logger().info("\n>>> INICIANDO ACTIVIDAD: DESPLAZAMIENTOS SIMULTÁNEOS <<<")
