@@ -448,5 +448,33 @@ El código completo desarrollado para esta actividad se encuentra en el archivo:
 [sequential_move.py](sequential_move.MD)
 
 ---
+# Actividad 10. Trayectoria sinusoidal de una articulación 
+
+Para desarrollar esta actividad se implementó la función `trayectoria_sinusoidal()`, cuyo objetivo es generar una trayectoria sinusoidal para una de las articulaciones del PhantomX Pincher, en este caso la articulación de la **cintura (base)**. La trayectoria se define mediante la ecuación
+
+\[
+q(t)=q_0+A\sin(2\pi ft)
+\]
+
+donde \(q_0\) corresponde a la posición inicial de la articulación, \(A\) es la amplitud de la señal sinusoidal y \(f\) es la frecuencia de oscilación.
+
+La función recibe como parámetros el número de la prueba (`num_prueba`), la posición inicial (`q0`), la amplitud (`A`), la frecuencia (`f`) y la duración de la prueba (`duracion_seg`). Inicialmente se define una frecuencia de muestreo de **50 Hz**, a partir de la cual se calcula el intervalo de tiempo entre muestras (`dt`) y el número total de iteraciones que se ejecutarán durante la prueba.
+
+Antes de comenzar el movimiento se crean cuatro listas para almacenar el tiempo, la posición deseada, la posición medida y el error instantáneo. Estos datos son utilizados posteriormente para calcular las métricas de desempeño y generar la gráfica correspondiente.
+
+Dentro del ciclo principal se calcula el instante de tiempo actual y, utilizando la ecuación de la trayectoria, se obtiene la posición deseada para la articulación. Dado que la simulación se realiza directamente en RViz, la posición medida coincide con la posición enviada al robot, por lo que ambas toman el mismo valor durante la ejecución. Con estos datos se calcula el error instantáneo como la diferencia absoluta entre la posición deseada y la medida.
+
+Una vez calculada la posición deseada, esta se asigna a la primera articulación del vector `pose_actual_grados` y posteriormente se envía al robot mediante la función
+
+```python
+self.desplazar_a_configuracion(pose_actual_grados)
+```
+
+la cual fue descrita en el punto 7 y es la encargada de publicar simultáneamente la configuración articular utilizando un mensaje de tipo `JointState`.
+
+Al finalizar el recorrido, la función calcula dos indicadores de desempeño. El primero corresponde al error máximo, obtenido como el mayor valor registrado en la lista de errores. El segundo es el error cuadrático medio (MSE), calculado como el promedio del cuadrado de todos los errores registrados durante la trayectoria. Estas métricas permiten cuantificar el seguimiento de la trayectoria programada.
+
+Finalmente, utilizando los datos almacenados durante la ejecución, se genera una gráfica en la que se compara la posición deseada con la posición medida para cada una de las pruebas realizadas, facilitando el análisis visual del comportamiento de la articulación. Sin embargo, como todo se hizo en un entorno de simulación las gráficas resultaron en que el seguimiento fue perfecto como se muestra a continuación.
+
 
 # GRACIAS
