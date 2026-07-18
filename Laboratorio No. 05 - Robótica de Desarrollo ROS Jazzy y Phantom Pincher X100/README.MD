@@ -492,4 +492,173 @@ El código completo desarrollado para esta actividad se encuentra en el archivo:
 
 [CodigoParaPunto7y10.py](Cod_P7yP10.MD)
 
+# Cinemática inversa
+
+La cinemática inversa del PhantomX Pincher tiene como objetivo encontrar la configuración angular de las articulaciones necesaria para alcanzar una posición determinada del efector final (**TCP**). Para resolver este problema se utiliza un enfoque geométrico basado en el desacoplamiento de la muñeca (*wrist decoupling*), lo que permite separar el cálculo de la posición y orientación del efector final.
+
+El procedimiento se divide en tres etapas principales:
+
+1. Cálculo de la articulación de la base.
+2. Desacoplamiento de la muñeca.
+3. Resolución geométrica de las articulaciones del hombro, codo y muñeca.
+
+---
+
+## Primera articulación (Base)
+
+La primera articulación corresponde al movimiento de rotación de la base del robot alrededor del eje vertical. Debido a que esta articulación se comporta como un mecanismo planar, su valor se obtiene directamente a partir de las coordenadas del objetivo:
+
+\[
+q_1 = atan2(y_T,x_T)
+\]
+
+donde \(x_T\) y \(y_T\) corresponden a la posición objetivo del TCP respecto al sistema de referencia de la base.
+
+---
+
+## Desacoplamiento de la muñeca
+
+Para simplificar la solución de la cinemática inversa, la muñeca se desacopla del resto del mecanismo. Esto permite calcular primero la posición del centro de muñeca y posteriormente obtener la orientación del efector final.
+
+La posición del centro de muñeca se obtiene desplazando el TCP una distancia \(L_4\) en dirección contraria al vector de aproximación:
+
+\[
+w =
+\begin{bmatrix}
+x_w\\
+y_w\\
+z_w
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_T\\
+y_T\\
+z_T
+\end{bmatrix}
+-
+L_4
+\begin{bmatrix}
+a_x\\
+a_y\\
+a_z
+\end{bmatrix}
+\]
+
+donde:
+
+- \(L_4\) es la longitud del último eslabón.
+- \(a_x,a_y,a_z\) son las componentes del vector de aproximación del TCP.
+
+Con este procedimiento el problema queda reducido a encontrar la posición del centro de muñeca utilizando las primeras tres articulaciones.
+
+---
+
+## Mecanismo planar equivalente
+
+Después del desacoplamiento, la cinemática inversa se reduce a un mecanismo planar equivalente de dos eslabones. Para esto se calculan las distancias geométricas:
+
+\[
+r=\sqrt{x_w^2+y_w^2}
+\]
+
+\[
+h=z_w-L_1
+\]
+
+\[
+c=\sqrt{r^2+h^2}
+\]
+
+donde \(r\) representa la distancia radial al eje de la base, \(h\) la diferencia de altura y \(c\) la distancia entre el hombro y el centro de muñeca.
+
+Posteriormente se calculan los parámetros auxiliares:
+
+\[
+\beta = atan2(L_m,L_2)
+\]
+
+\[
+\psi=\frac{\pi}{2}-\beta
+\]
+
+\[
+L_r=\sqrt{L_m^2+L_2^2}
+\]
+
+\[
+\phi=
+acos
+\left(
+\frac{c^2-L_3^2-L_r^2}{-2L_rL_3}
+\right)
+\]
+
+\[
+\gamma=atan2(h,r)
+\]
+
+\[
+\alpha=
+acos
+\left(
+\frac{L_3^2-L_r^2-c^2}{-2L_rc}
+\right)
+\]
+
+---
+
+## Soluciones del codo
+
+El mecanismo planar presenta dos soluciones posibles:
+
+- **Elbow up:** configuración donde el codo queda elevado.
+- **Elbow down:** configuración donde el codo queda orientado hacia abajo.
+
+Las ecuaciones utilizadas para obtener las articulaciones del hombro y codo son:
+
+<div align="center">
+
+| Articulación | Elbow up | Elbow down |
+| :----------: | :------: | :--------: |
+| \(q_2\) | \(\frac{\pi}{2}-\beta-\alpha-\gamma\) | \(\frac{\pi}{2}-(\gamma-\alpha+\beta)\) |
+| \(q_3\) | \(\pi-\psi-\phi\) | \(-\pi+(\phi-\psi)\) |
+
+</div>
+
+Para el PhantomX Pincher se selecciona la solución que mantiene las articulaciones dentro de sus límites mecánicos y evita configuraciones donde pueda existir una colisión entre los eslabones del robot.
+
+---
+
+## Articulación de la muñeca
+
+Una vez calculadas las articulaciones de la base, hombro y codo, se determina el ángulo de la muñeca para recuperar la orientación deseada del efector final.
+
+El ángulo del vector de aproximación se calcula mediante:
+
+\[
+\theta_a=
+atan2(\sqrt{x_a^2+y_a^2},z_a)
+\]
+
+y la articulación de la muñeca queda definida como:
+
+\[
+q_4=\theta_a-q_2-q_3-\frac{\pi}{2}
+\]
+
+De esta manera se obtiene la configuración completa de las articulaciones necesarias para alcanzar una pose determinada del TCP.
+
+---
+
+## Implementación en ROS 2
+
+La cinemática inversa fue implementada dentro del nodo de control del PhantomX Pincher. El algoritmo recibe una posición objetivo del efector final, calcula la configuración articular correspondiente y publica los valores obtenidos mediante el mensaje `JointState`.
+
+El resultado de la cinemática inversa se utiliza posteriormente para generar movimientos del robot, enviando las posiciones calculadas mediante la misma función de control articular utilizada en los desplazamientos anteriores:
+
+```python
+self.desplazar_a_configuracion(configuracion)
+```
+
+Esta función permite transformar una posición cartesiana del efector final en valores articulares que pueden ser ejecutados directamente por el robot.
 # GRACIAS
