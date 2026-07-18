@@ -512,21 +512,7 @@ Para reducir la complejidad del problema cinemático, la muñeca se desacopla de
 
 La posición del centro de muñeca se obtiene desplazando el TCP una distancia \(L_4\) en dirección contraria al vector de aproximación:
 $$
-\begin{aligned}
-    w &=
-    \begin{bmatrix}
-        x_T\\
-        y_T\\
-        z_T
-    \end{bmatrix}
-    -
-    L_4
-    \begin{bmatrix}
-        a_x\\
-        a_y\\
-        a_z
-    \end{bmatrix}
-\end{aligned}
+w = (x_T - L_4a_x,\; y_T - L_4a_y,\; z_T - L_4a_z)
 $$
 
 donde:
