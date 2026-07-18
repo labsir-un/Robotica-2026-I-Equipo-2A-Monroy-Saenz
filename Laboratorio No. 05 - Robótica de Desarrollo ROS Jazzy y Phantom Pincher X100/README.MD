@@ -511,10 +511,7 @@ donde \(x_T\) y \(y_T\) corresponden a las coordenadas del punto objetivo del TC
 Para reducir la complejidad del problema cinemático, la muñeca se desacopla del resto del mecanismo. Esto permite calcular primero la posición del centro de muñeca y posteriormente determinar la orientación del efector final.
 
 La posición del centro de muñeca se obtiene desplazando el TCP una distancia \(L_4\) en dirección contraria al vector de aproximación:
-
-$$
-\mathbf{w}
-=
+$$\mathbf{w}=
 \begin{bmatrix}
 x_w\\
 y_w\\
